@@ -97,6 +97,16 @@ img {
     /* Center images */
 }
 
+.images-section-small img {
+    max-width: 40%;
+    /* Image takes up no more than half of the screen width */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Ensures images are block elements */
+    margin: 0 auto;
+    /* Center images */
+}
 /* Header Styles */
 header {
     background-color: #0056b3;
