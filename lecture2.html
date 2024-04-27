@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Lecture 2: Types of Machine Learning</title>
+    <title>Comparison of Machine Learning Paradigms</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <header class="bg-gray-800 text-white p-4">
@@ -31,9 +45,66 @@
             <p>Unsupervised learning, on the other hand, works with unlabeled data. Here, the model tries to identify patterns on its own. We'll study techniques like clustering and association, which are fundamental to unsupervised learning.</p>
             <h3>Reinforcement Learning</h3>
             <p>Reinforcement learning is a type of machine learning where an agent learns to make decisions by performing actions and receiving feedback. This feedback is often in the form of rewards or penalties, shaping the learning process through trial and error.</p>
-            <!-- Additional content would follow here for other chapters -->
+            <h3>Relationship with Large Language Models</h3><!-- Additional content would follow here for other chapters -->
+            <p>Transformers and their associated technologies primarily rely on supervised and semi-supervised learning paradigms due to their effectiveness in leveraging both labeled and unlabeled data to learn complex representations of language.<p>
+            <p>Unsupervised methods are also crucial, particularly in the pre-training stages of model development, where the aim is to capture broad linguistic patterns from large datasets without specific task-oriented labels. <p>
+            <p>Reinforcement learning, while less common in traditional NLP tasks, is gaining traction in interactive and real-time application scenarios involving LLMs. Graph Attention Networks, being versatile, can operate across different learning paradigms depending on the specific application and the available data.</p>
         </section>
-        <!-- Rest of Lecture 2 content -->
+        <h2>Comparison of Machine Learning Paradigms</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Aspect</th>
+                <th>Supervised Learning</th>
+                <th>Unsupervised Learning</th>
+                <th>Reinforcement Learning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Data</td>
+                <td>Labeled data (input-output pairs)</td>
+                <td>Unlabeled data</td>
+                <td>Feedback from the environment (rewards)</td>
+            </tr>
+            <tr>
+                <td>Goal</td>
+                <td>Predict output from given input</td>
+                <td>Discover structure in data</td>
+                <td>Learn a policy to maximize rewards</td>
+            </tr>
+            <tr>
+                <td>Examples</td>
+                <td>Classification, Regression</td>
+                <td>Clustering, Dimensionality Reduction</td>
+                <td>Game AI, Robotics</td>
+            </tr>
+            <tr>
+                <td>Algorithms</td>
+                <td>Linear Regression, Decision Trees</td>
+                <td>K-means, PCA</td>
+                <td>Q-learning, Policy Gradient</td>
+            </tr>
+            <tr>
+                <td>Challenges</td>
+                <td>Overfitting, Need for labeled data</td>
+                <td>Harder to evaluate, No definite feedback</td>
+                <td>Requires lots of computation, Delayed feedback</td>
+            </tr>
+            <tr>
+                <td>Feedback</td>
+                <td>Direct feedback (error signals)</td>
+                <td>No feedback</td>
+                <td>Indirect/delayed feedback</td>
+            </tr>
+            <tr>
+                <td>Dependency</td>
+                <td>Dependent on quality and quantity of labels</td>
+                <td>Less dependent on external data, more on data’s intrinsic structure</td>
+                <td>Depends on the environment setup and reward structure</td>
+            </tr>
+        </tbody>
+    </table>
     </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
         © 2024 Standard Testing <a href="http://standardtesting.io" class="text-blue-400 hover:text-blue-700" target="_blank">standardtesting.io</a>
