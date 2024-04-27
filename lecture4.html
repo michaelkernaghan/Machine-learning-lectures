@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Lecture 4: Practical Applications and Ethical Considerations</title>
+    <title>Lecture 4: Machine Learning for Sequence Prediction</title>
 </head>
 <body>
     <header class="bg-gray-800 text-white p-4">
@@ -15,12 +15,51 @@
                 <li><a href="lecture1.html" class="text-blue-400">Lecture 1</a></li>
                 <li><a href="lecture2.html" class="text-blue-400">Lecture 2</a></li>
                 <li><a href="lecture3.html" class="text-blue-400">Lecture 3</a></li>
-                <li><a href="lecture5.html" class="text-blue-400">Lecture 5</a></li>
+                <li><a href="contact.html" class="text-blue-400">Contact</a></li>
             </ul>
         </nav>
-        <h1>Lecture 4: Practical Applications and Ethical Considerations</h1>
+        <h1>Lecture 4: Machine Learning for Sequence Prediction</h1>
     </header>
     <main class="p-4">
         <section>
-            <h2>Practical Applications and Ethical Considerations</h2>
-            <p>As we dive into the applications of AI and ML in various industries, we also need to address
+            <h2>Machine Learning for Sequence Prediction</h2>
+            <h3>1. Problem Framing:</h3>
+            <ul>
+                <li><strong>Numerical Sequence Prediction:</strong> The task is to predict the next number in a series based on previous numbers. 
+                    Commonly, this involves recognizing patterns or relationships in the sequence, which can be linear, polynomial, or more complex (like trigonometric or exponential).</li>
+                <li><strong>Text Sequence Prediction (Next Word/Character):</strong> This involves predicting the next word or character in a text sequence. 
+                    The challenge is to understand the context, grammar, and semantics of the text to make accurate predictions.</li>
+            </ul>
+            <h3>2. Data Representation:</h3>
+            <ul>
+                <li><strong>Numerical Sequences:</strong> Data can be a simple list of numbers. Data can be a simple list of numbers. These numbers could represent time-series data, counts, measurements, or other quantitative attributes.</li>
+                <li><strong>Text Sequences:</strong> Data must be tokenized into words or characters. Each token is typically converted into vectors using methods like one-hot encoding, embeddings, or other numerical representations that capture the semantic properties of the text.</li>
+            </ul>
+            <h3>3. Model Selection:</h3>
+            <ul>
+                <li><strong>Numerical Sequence Models:</strong> Might use ARIMA, SVM, regression models, or neural networks.</li>
+                <li><strong>Text Sequence Models:</strong> Often involve complex models like RNNs, LSTMs, GRUs, or transformers.</li>
+            </ul>
+            <h3>4. Training the Model:</h3>
+            <p>Both types of sequence prediction involve training a model on a set of known sequence data, then testing it on unseen data. The model learns to predict the next item in the sequence based on the patterns it has learned during training.</p>
+            <h3>5. Evaluation:</h3>
+            <ul>
+                <li><strong>Numerical Sequence Prediction:</strong>  Evaluated on metrics like Mean Squared Error (MSE), Mean Absolute Error (MAE), or more complex metrics tailored to specific types of data or applications.</li>
+                <li><strong>Text Sequence Prediction:</strong> Evaluated based on accuracy, perplexity, or using NLP-specific metrics like BLEU scores (for tasks like translation).</li>
+            </ul>
+            <h3>Similarities and Differences:</h3>
+            <ul>
+                <li><strong>Similarities:</strong> Both tasks involve learning from sequences, modeling dependencies, and often use RNNs.</li>
+                <li><strong>Differences:</strong> Data type, complexity, context, and output space vary significantly between numerical and text data.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>While the underlying principles of sequence prediction in machine learning are similar, the specifics of application vary between tasks like numerical and text sequence prediction. Each type of data requires tailored approaches in terms of data preprocessing, model selection, and evaluation metrics.</p>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        © 2024 Standard Testing <a href="http://standardtesting.io" class="text-blue-400 hover:text-blue-700" target="_blank">standardtesting.io</a>
+    </footer>
+</body>
+</html>
