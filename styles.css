@@ -1,0 +1,197 @@
+/* Base Styles */
+body {
+    background-color: #f8f9fa;
+    /* Off-white background */
+    font-family: 'Roboto', sans-serif;
+    /* Modern typography for body */
+    color: #495057;
+    /* Gray blue text */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto Condensed', sans-serif;
+    /* Modern typography for headers */
+}
+
+/* Main Container Styles */
+main,
+header,
+footer {
+    max-width: 60%;
+    /* Limits the width of the content, header, and footer */
+    margin: 0 auto;
+    /* Centers the content, header, and footer horizontally */
+    padding: 20px;
+    /* Padding inside the main container for spacing */
+}
+
+main {
+    background-color: #ffffff;
+    /* White background for the content area */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+/* Links and Navigation */
+a {
+    color: #6c757d;
+    /* Dark gray primary color */
+    text-decoration: none;
+    /* No underline */
+}
+
+a:hover,
+a:focus {
+    color: #dc3545;
+    /* Red accent color */
+    text-decoration: underline;
+    /* Underline on hover for better visibility */
+}
+
+/* Buttons and Input Fields */
+button,
+input,
+textarea {
+    background-color: #ffffff;
+    /* White background */
+    border: 1px solid #6c757d;
+    /* Dark gray border */
+    border-radius: 8px;
+    /* Rounded corners */
+    padding: 8px 16px;
+    /* Padding for better touch */
+    transition: background-color 0.3s, box-shadow 0.3s;
+    /* Smooth transition for hover effects */
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: #dc3545;
+    /* Red accent color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+/* Images and Icons */
+img {
+    max-width: 100%;
+    /* Responsive images */
+    height: auto;
+    border-radius: 4px;
+    /* Softly rounded corners for images */
+}
+
+.images-section img {
+    max-width: 100%;
+    /* Image takes up no more than half of the screen width */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Ensures images are block elements */
+    margin: 0 auto;
+    /* Center images */
+}
+
+/* Header Styles */
+header {
+    background-color: #0056b3;
+    /* Dark blue background */
+}
+
+header h1 {
+    color: #ffffff;
+    /* White color for better visibility */
+    text-align: center;
+    /* Center the title if needed */
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* Center align the items */
+    align-items: center;
+    gap: 20px;
+    /* Uniform gap between items */
+}
+
+header nav ul li {
+    padding: 8px 16px;
+    /* Padding to make links easier to click */
+}
+
+header nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    /* Make the links bolder */
+    transition: color 0.3s ease;
+    /* Smooth transition for hover effects */
+}
+
+header nav ul li a:hover {
+    color: #dc3545;
+    /* Accent color on hover */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #495057; /* Dark gray blue background for the footer */
+    color: #ffffff; /* White text for better contrast and readability */
+    text-align: center;
+    padding: 10px 20px;
+}
+
+footer a {
+    color: #ffdd57; /* A bright color for links to ensure visibility */
+    text-decoration: none; /* Optional: removes the underline from links */
+    transition: color 0.3s ease; /* Smooth transition for hover effects */
+}
+
+footer a:hover {
+    color: #ffffff; /* A lighter color for hover states for clear interactivity */
+    text-decoration: underline; /* Optional: adds underline on hover */
+}
+
+
+/* Responsive Design Adjustments */
+@media (min-width: 768px) {
+
+    header,
+    footer,
+    main {
+        padding: 20px 40px;
+        /* Increased padding on larger screens */
+    }
+}
+
+/* Animations */
+a,
+button {
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+a:hover,
+button:hover {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
