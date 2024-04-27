@@ -55,8 +55,61 @@
             </ul>
         </section>
         <section>
-            <h2>Conclusion</h2>
             <p>While the underlying principles of sequence prediction in machine learning are similar, the specifics of application vary between tasks like numerical and text sequence prediction. Each type of data requires tailored approaches in terms of data preprocessing, model selection, and evaluation metrics.</p>
+        </section>
+        <section>
+            <h1>Dog Name Generator Using Bigrams</h1>
+            <p>This webpage explains a Python script that generates dog names based on the concept of bigrams. Bigrams are pairs of consecutive characters used to predict the next character in a sequence.</p>
+           <p>The code is hosted at: </p>
+           <a href="https://github.com/michaelkernaghan/Machine-learning-lectures/blob/main/scripts/dog_name_predictor.py" class="text-blue-400 hover:text-blue-700" target="_blank">dog_name_predictor.py</a> 
+           <h2>Python Script Components Explained</h2>
+            <h3>1. Importing Libraries</h3>
+            <p>The script starts by importing necessary Python libraries:</p>
+            <ul>
+                <li><code>random</code>: For random selections.</li>
+                <li><code>json</code>: To load JSON files containing dog names.</li>
+                <li><code>collections.defaultdict</code> and <code>collections.Counter</code>: For managing the bigram model easily.</li>
+            </ul>
+        
+            <h3>2. Loading Dog Names</h3>
+            <p>The function <code>load_dog_names</code> reads names from a JSON file:</p>
+            <pre><code>def load_dog_names(filename):
+            with open(filename, 'r') as file:
+                data = json.load(file)
+            return data</code></pre>
+            <p>This function opens a JSON file, loads the names into a list, and returns this list.</p>
+        
+            <h3>3. Creating Bigrams</h3>
+            <p>The <code>create_bigrams</code> function generates bigrams from the list of names:</p>
+            <pre><code>def create_bigrams(names):
+            bigrams = []
+            for name in names:
+                name = "*" + name + "#"
+                for i in range(len(name) - 1):
+                    bigrams.append((name[i], name[i+1]))
+            return bigrams</code></pre>
+            <p>It adds a special character at the beginning and end of each name to signify boundaries, then pairs adjacent characters.</p>
+        
+            <h3>4. Building the Bigram Model</h3>
+            <p>The <code>build_bigram_model</code> constructs a probabilistic model from bigrams:</p>
+            <pre><code>def build_bigram_model(bigrams):
+            model = defaultdict(Counter)
+            for bigram in bigrams:
+                model[bigram[0]][bigram[1]] += 1
+            return model</code></pre>
+            <p>This model uses the frequency of each bigram to predict the likelihood of the next character.</p>
+        
+            <h3>5. Generating a Dog Name</h3>
+            <p>The <code>generate_name</code> function creates a new dog name using the bigram model:</p>
+            <pre><code>def generate_name(model, max_length=12):
+            name = '*'
+            while True:
+                next_char = random.choices(list(model[name[-1]].keys()), weights=model[name[-1]].values())[0]
+                if next_char == '#' or len(name) - 1 == max_length:
+                    break
+                name += next_char
+            return name[1:]</code></pre>
+            <p>It begins with a starting character and iteratively selects the next character based on the model until it reaches a stopping condition.</p>
         </section>
     </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
