@@ -1,0 +1,36 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Roboto', sans-serif;
+    color: #495057;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+}
+
+main {
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.vector-display, .matrix-display {
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.matrix-display table {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.matrix-display td {
+    border: 1px solid #000;
+    padding: 8px 16px;
+}
