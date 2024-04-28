@@ -205,3 +205,15 @@ button:hover {
         transform: scale(1);
     }
 }
+
+/* Additional Materials Link Styles */
+.additional-materials a {
+    color: #007bff; /* Blue color for more visibility */
+    text-decoration: underline; /* Underline to distinguish */
+    font-weight: bold; /* Make the links bold */
+}
+
+.additional-materials a:hover {
+    color: #0056b3; /* Darker blue on hover */
+    text-decoration: none; /* Remove underline on hover for a dynamic effect */
+}
