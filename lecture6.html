@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Lecture 6: Introduction to Character-Level Language Modeling with PyTorch</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Introduction to Vectors and Matrices</title>
+        <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            .slide { margin-bottom: 40px; }
+            h2 { color: #333; }
+            p { margin: 10px 0; }
+            img { max-width: 100%; height: auto; }
+        </style>
+    </head>
 </head>
 <body>
     <header class="bg-gray-800 text-white p-4">
@@ -19,28 +30,59 @@
                 <li><a href="lecture5.html" class="text-blue-400">Lecture 5</a></li>
             </ul>
         </nav>
-        <h1>Lecture 6: Introduction to Character-Level Language Modeling with PyTorch</h1>
+        <h1>Lecture 6: Introduction to Text Embedded in Vector Spaces</h1>
     </header>
-    <main class="p-4">
-        <section>
-            <h2>Chapter Breakdown</h2>
-            <h3>00:00:00 - Introduction</h3>
-            <p>Brief introduction to the course content and objectives.</p>
-            <h3>00:03:03 - Reading and Exploring the Dataset</h3>
-            <p>How to load and understand the dataset to be used for the model.</p>
-            <h3>00:06:24 - Exploring Bigrams in the Dataset</h3>
-            <p>Detailed exploration of bigrams within the dataset.</p>
-            <h3>00:09:24 - Counting Bigrams Using Python Dictionary</h3>
-            <p>Techniques for counting bigrams efficiently using Python.</p>
-            <h3>00:12:45 - Counting Bigrams Using a 2D Torch Tensor</h3>
-            <p>Introduction to using PyTorch tensors for bigram counting ("training the model").</p>
-            <h3>00:18:19 - Visualizing the Bigram Tensor</h3>
-            <p>Methods for visualizing data stored in tensors.</p>
-            <h3>00:20:54 - Deleting Spurious Tokens</h3>
-            <p>Simplifying the model by consolidating start (S) and end (E) tokens to a single token ('.').</p>
-            <!-- Additional sections for Technical Focus, Practical Exercises, Further Learning and Efficiency, and Summary and Next Steps -->
+
+    <body>
+        <div class="slide">
+            <h2>Introduction to Vectors</h2>
+            <p>What is a Vector?</p>
+            <ul>
+                <li>A vector in mathematics and physics is a quantity that has both magnitude (or length) and direction.</li>
+                <li>Unlike scalars, which have only magnitude, vectors help us represent quantities that direct towards a particular direction.</li>
+            </ul>
+            <img src="./images/number_vectors.png" alt="Diagram of a vector in a plane">
+        </div>
+        <div class="slide">
+            <h2>Components of Vectors</h2>
+            <p>Direction</p>
+            <ul>
+                <li>The direction of a vector describes the line along which it lies. It is often indicated by an arrow where the vector points from the origin to a specific point.</li>
+            </ul>
+            <p>Length (Magnitude)</p>
+            <ul>
+                <li>The length of a vector represents the size of the vector. It is calculated from the origin to the endpoint of the vector.</li>
+                <li>Consider a vector v = (3, 4).</li>
+                <li>Length: √(3² + 4²) = 5</li>
+                <li>This vector extends 3 units in the x-direction and 4 units in the y-direction.</li>
+            </ul>
+            <img src="./images/number_vectors2.png" alt="Diagram showing vector components">
+        </div>
+        <div class="slide">
+            <h2>Application to Word Embeddings</h2>
+            <p>From Vectors to Word Embeddings</p>
+            <ul>
+                <li>In natural language processing, words can be transformed into vectors in a multi-dimensional space.</li>
+                <li>This transformation allows us to measure the similarity between words based on the geometric distance between their vectors.</li>
+            </ul>
+            <p>Numerical Example</p>
+            <ul>
+                <li>Imagine "king" and "queen" as vectors in a 300-dimensional space.</li>
+                <li>The similarity in their meanings is reflected in the closeness of their vectors in this high-dimensional space.</li>
+            </ul>
+            <img src="./images/name_vectors.png" alt="Conceptual diagram of word vectors in space">
+        </div>
+        <div class="slide">
+            <h2>Conclusion</h2>
+            <p>Understanding vectors is fundamental to exploring more complex models, such as those used in machine learning and deep learning for natural language processing.</p>
+        </div>
+        <section class="additional-materials">
+            <h1>Additional Materials</h1>
+            <ul>
+                <li><a href="https://medium.com/@AlyssaSha/represent-word-vectors-in-natural-language-processing-13ae6230976d">
+                    Represent word vectors in Natural Language Processing</a>
+            </ul>
         </section>
-    </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
          
     </footer>
