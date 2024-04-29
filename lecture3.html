@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Lecture 3: Key Concepts in Machine Learning</title>
+    <title>Historical Timeline of Machine Learning</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            /* Sets a clean, readable font */
+            line-height: 1.6;
+            /* Increases line spacing for readability */
+            color: #333;
+            /* Dark grey text for softer contrast */
+            background-color: #f4f4f4;
+            /* Light grey background */
+        }
+
+        nav ul {
+            list-style: none;
+            /* Removes list bullets */
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            /* Aligns links in a row */
+            margin-right: 10px;
+            /* Adds spacing between the links */
+        }
+
+        nav a {
+            color: #1abc9c;
+            /* Soft teal color for links */
+            text-decoration: none;
+            /* Removes underline from links */
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            /* Underlines links on hover for better visibility */
+        }
+
+        /* Main content area styling */
+        main {
+            padding: 20px;
+            /* Adds padding around the main content */
+            max-width: 960px;
+            /* Limits the width of the main content and centers it */
+            margin: 0 auto;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #3498db;
+            /* Blue shades for headings for better hierarchy visibility */
+        }
+
+        /* Styling for sections and details within */
+        section {
+            background-color: #ffffff;
+            /* White background for sections */
+            border: 1px solid #dddddd;
+            /* Adds a subtle border */
+            padding: 15px;
+            /* Adds padding inside the sections */
+            margin-top: 20px;
+            /* Adds spacing between each section */
+        }
+
+        ul ul {
+            margin-left: 20px;
+            /* Indents nested lists */
+        }
+
+        strong {
+            color: #2c3e50;
+            /* Dark blue color for strong emphasis */
+        }
+
+        footer {
+            font-size: 0.8em;
+            /* Smaller font size for footer */
+        }
+        .section-image {
+    max-width: 40%;  /* Limits the image width to 50% of its container */
+   
+    margin: 10px auto;  /* Centers the image and provides some margin */
+    height: auto;  /* Keeps the aspect ratio of the image */
+}
+    </style>
 </head>
+
 <body>
     <header class="bg-gray-800 text-white p-4">
         <nav>
@@ -19,69 +108,122 @@
                 <li><a href="lecture6.html" class="text-blue-400">Lecture 6</a></li>
             </ul>
         </nav>
-        <h1>Lecture 3: Key Concepts in Machine Learning</h1>
+        <h1>Historical Timeline of Machine Learning</h1>
     </header>
     <main class="p-4">
         <section>
-            <h2>Key Concepts in Machine Learning</h2>
-            <p>This lecture is dedicated to the core concepts that underpin the field of machine learning, focusing on data preprocessing, feature engineering, model selection, and the balancing act of bias and variance.</p>
-            
-            <h3>Data Preprocessing</h3>
+            <p>Explore the key milestones in the evolution of machine learning from its inception to the present day.
+            </p>
+
+            <h3>Timeline of Key Developments</h3>
             <ul>
-                <li><strong>Cleaning Data:</strong> Techniques include handling missing values and removing outliers.</li>
-                <li><strong>Normalizing Data:</strong> Methods such as Min-Max scaling and Z-score normalization adjust the scale of features to a standard range.</li>
-                <li><strong>Transforming Data:</strong> Applying logarithmic transformations and other mathematical functions to improve the suitability for modeling.</li>
-                <li><strong>Encoding Categorical Data:</strong> Techniques like one-hot encoding and label encoding to convert categories into numbers suitable for modeling.</li>
-            </ul>
-            
-            <h3>Feature Engineering</h3>
-            <p>A feature is an individual measurable property or characteristic of a phenomenon being observed. In machine learning, features are used as input variables to models.</p>
-            <ul>
-                <li><strong>Creation of Interaction Terms:</strong> Captures interactions between variables to improve model predictions.</li>
-                <li><strong>Polynomial Features:</strong> Deriving new features by considering polynomial combinations of existing features, which can expose more complex relationships in data.</li>
-                <li><strong>Domain-specific Aggregations:</strong> Summarizing data by creating averages, sums, or other statistical aggregations specific to the domain to highlight important trends.</li>
-                <li><strong>Advanced Techniques:</strong> Including feature selection algorithms to identify significant features and dimensionality reduction to simplify the feature space without losing critical information.</li>
-            </ul>
-            
-            <h3>Model Selection</h3>
-            <ul>
-                <li><strong>Criteria for Selection:</strong> Includes accuracy, interpretability, training time, and complexity.</li>
-                <li><strong>Comparative Analysis:</strong> Evaluating models like SVM, decision trees, and neural networks to determine their effectiveness for various data types and tasks.</li>
-                <li><strong>Model Validation Techniques:</strong> Utilizing k-fold cross-validation and training/validation/test splits to test model robustness and ensure generalizability.</li>
-            </ul>
-            
-            <h3>Overfitting and Underfitting</h3>
-            <ul>
-                <li><strong>Overfitting:</strong> When a model learns too much detail including noise from the training data, leading to poor performance on new data.</li>
-                <li><strong>Underfitting:</strong> When a model is too simple to learn the underlying pattern of the data, resulting in inadequate performance even on the training data.</li>
-                <li><strong>Techniques to Combat:</strong> Include cross-validation, regularization (L1 and L2), and pruning of decision trees to enhance model reliability.</li>
-                <li><strong>Hyperparameter Tuning:</strong> Using methods like grid search and random search to optimize model parameters for best performance.</li>
-            </ul>
-            <h3>Evaluation Metrics</h3>
-            <ul>
-                <li><strong>Accuracy, Precision, and Recall:</strong> Fundamental metrics for classification problems.</li>
-                <li><strong>Mean Squared Error and Mean Absolute Error:</strong> Key metrics for regression analysis.</li>
-                <li><strong>Confusion Matrix:</strong> A table used to describe the performance of a classification model on a set of test data for which the true values are known.</li>
-                <li><strong>AUC-ROC:</strong> The area under the curve of the receiver operating characteristics; a comprehensive measure for evaluating binary classification models.</li>
-            </ul>
-            
-            <h3>Ensemble Methods</h3>
-            <ul>
-                <li><strong>Boosting:</strong> Combining multiple weak learners to form a strong learner, e.g., AdaBoost, Gradient Boosting.</li>
-                <li><strong>Bagging:</strong> Building multiple models (typically of the same type) from different subsamples of the training dataset, e.g., Random Forest.</li>
-                <li><strong>Stacking:</strong> Combining multiple classification or regression models via a meta-classifier or a meta-regressor.</li>
-            </ul>
-            
-            <h3>Ethical Considerations and Bias in Machine Learning</h3>
-            <ul>
-                <li><strong>Algorithmic Bias:</strong> How biases in data or model design can lead to unfair outcomes, such as discrimination against certain groups.</li>
-                <li><strong>Data Privacy:</strong> Ensuring that the data used in models does not violate privacy rights and is compliant with regulations like GDPR.</li>
-                <li><strong>Model Transparency and Explainability:</strong> Developing models that can be understood and interpreted by humans, important for accountability and trust.</li>
+                <li><strong>1950s</strong> - Early Foundations:
+                    <ul>
+                        <li>1950: Alan Turing publishes "Computing Machinery and Intelligence," proposing what is now
+                            called the Turing Test.</li>
+                        <li>1952: Arthur Samuel develops the first computer learning program, which was a game of
+                            checkers.</li>
+                    </ul>
+                </li>
+                <li><strong>1960s</strong> - Concept of Neural Networks:
+                    <ul>
+                        <li>1961: The first step toward modern AI as Frank Rosenblatt proposes the Perceptron, an early
+                            neural network.</li>
+                            <img src="./images/perceptron-1961.png" alt="Perceptron" class="section-image">
+                        <li>1967: The nearest neighbor algorithm was written, which allowed computers to begin using
+                            basic pattern recognition.</li>
+                    </ul>
+                </li>
+                <li><strong>1980s</strong> - Revival and Expansion:
+                    <ul>
+                        <li>1980: The concept of backpropagation is popularized by Geoffrey Hinton and others, improving
+                            training for multi-layer networks.</li>
+                        <li>1985: Terry Sejnowski and Charles Rosenberg develop NetTalk, which learns to pronounce
+                            English text aloud using a neural network.</li>
+                    </ul>
+                </li>
+                <li><strong>1990s</strong> - Support Vector Machines and Advances in Theory:
+                    <ul>
+                        <li>1995: Support Vector Machines (SVMs) are developed, providing a new generation of learning
+                            algorithms.</li>
+                            <img src="./images/svms-1990s.png" alt="SVMs" class="section-image">
+                        <li>1997: Long Short-Term Memory (LSTM) networks are introduced by Hochreiter & Schmidhuber,
+                            which significantly improve recurrent neural network capabilities.</li>
+                    </ul>
+                </li>
+                <li><strong>2000s</strong> - The Era of Big Data:
+                    <ul>
+                        <li>2006: Geoffrey Hinton et al. introduce concepts of deep learning in neural networks with
+                            deep architectures.</li>
+                        <li>2009: Fei-Fei Li launches ImageNet, a large visual database designed for use in visual
+                            object recognition software research.</li>
+                    </ul>
+                </li>
+                <li><strong>2010s</strong> - Deep Learning Breakthroughs:
+                    <ul>
+                        <li>2012: AlexNet wins the ImageNet challenge, significantly outperforming the second-place
+                            competitor, which catalyzes the focus on deep learning in the AI community.</li>
+                        <li>2016: Google's AlphaGo defeats Lee Sedol in Go, a milestone for AI in complex problem
+                            solving.</li>
+                    </ul>
+                <li><strong>2017</strong> - Transformers Revolution:
+                    <ul>
+                        <li>2017: The paper "Attention Is All You Need" by Vaswani et al. is published, introducing the
+                            transformer model, which uses self-attention mechanisms to significantly improve the
+                            efficiency of training language models.</li>
+                            <img src="./images/transformer-2017.png" alt="Transformer" class="section-image">
+                    </ul>
+                </li>
+                <li><strong>2018</strong> - Advancements in Natural Language Processing:
+                    <ul>
+                        <li>2018: BERT (Bidirectional Encoder Representations from Transformers) is developed by
+                            researchers at Google. This model sets new standards for a variety of NLP tasks, including
+                            question answering and language inference.</li>
+                    </ul>
+                </li>
+                <li><strong>2019</strong> - GPT-2 and the Rise of Generative Models:
+                    <ul>
+                        <li>2019: OpenAI introduces GPT-2, a large transformer-based language model known for its
+                            ability to generate coherent and contextually relevant text on a wide range of topics.</li>
+                    </ul>
+                </li>
+                <li><strong>2020</strong> - AI Ethics and Regulation:
+                    <ul>
+                        <li>2020: AI regulation begins to take shape with the European Union proposing the first legal
+                            framework for ethical AI use, focusing on transparency, accountability, and accuracy.</li>
+                    </ul>
+                </li>
+                <li><strong>2021</strong> - Foundation Models:
+                    <ul>
+                        <li>2021: The concept of foundation models is proposed, characterized by large-scale models
+                            trained on broad data at scale that are adaptable to a wide range of tasks.</li>
+                    </ul>
+                </li>
+                <li><strong>2022</strong> - Advances in Multimodal AI:
+                    <ul>
+                        <li>2022: AI models that can understand and generate multiple forms of data (text, image, video)
+                            simultaneously become more prevalent, enhancing capabilities in applications from autonomous
+                            vehicles to content creation.</li>
+                    </ul>
+                </li>
+                <li><strong>2023</strong> - AI in Quantum Computing:
+                    <ul>
+                        <li>2023: Breakthroughs in integrating AI with quantum computing promise new horizons in solving
+                            complex problems that are intractable for classical computers.</li>
+                    </ul>
+                </li>
+                <li><strong>2024</strong> - Personalized AI:
+                    <ul>
+                        <li>2024: Advancements in personalized AI systems provide customized health diagnostics,
+                            learning supports, and financial advice, making artificial intelligence more directly
+                            applicable to individual daily needs.</li>
+                            <img src="./images/personalized-2024.png" alt="Personalized" class="section-image">
+                    </ul>
+                </li>
             </ul>
         </section>
     </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
-         
+        © 2024 Standard Machine Learning Lectures
     </footer>
 </body>
-</html>
