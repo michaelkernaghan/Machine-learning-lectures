@@ -3,16 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Understanding Gradient Descent</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <title>Introduction to NLP and Deep Learning</title>
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .section { margin-bottom: 40px; }
-        h2 { color: #333; }
-        p { margin: 10px 0; }
-        img { max-width: 100%; height: auto; }
-    </style>
 </head>
 <body>
     <header class="bg-gray-800 text-white p-4">
@@ -25,44 +19,40 @@
                 <li><a href="lecture4.html" class="text-blue-400">4</a></li>
                 <li><a href="lecture5.html" class="text-blue-400">5</a></li>
                 <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">End</a></li>
             </ul>
         </nav>
         <h1>Introduction to Gradient Descent</h1>
     </header>
-
-    <div class="section">
-        <h2>What is Gradient Descent?</h2>
-        <p>Gradient Descent is a fundamental optimization algorithm used in machine learning to minimize a function by iteratively moving towards the steepest descent as defined by the negative of the gradient.</p>
-        <img src="./images/gradient_descent.png" alt="Diagram of Gradient Descent">
-    </div>
-    <div class="section">
-        <h2>How Does Gradient Descent Work?</h2>
-        <p>Gradient Descent involves calculating the gradient (derivative) of the loss function, which indicates the direction of the steepest ascent. By moving in the opposite direction, we can find the minimum of the function.</p>
-        <ul>
-            <li>Identify the function to minimize (e.g., loss function in machine learning).</li>
-            <li>Compute the gradient of the function.</li>
-            <li>Update the parameters of the function in the direction opposite to the gradient.</li>
-            <li>Repeat until convergence.</li>
-        </ul>
-        <img src="./images/gradient_process.png" alt="Process of Gradient Descent">
-    </div>
-    <div class="section">
-        <h2>Types of Gradient Descent</h2>
-        <p>There are several variants of Gradient Descent depending on how much data is used to compute the gradient of the objective function.</p>
-        <ul>
-            <li><strong>Batch Gradient Descent:</strong> Uses the entire dataset to compute the gradient at each iteration.</li>
-            <li><strong>Stochastic Gradient Descent:</strong> Uses a single sample from the dataset at each iteration which makes the algorithm much faster and can escape local minima more effectively.</li>
-            <li><strong>Mini-batch Gradient Descent:</strong> Uses a subset of the dataset to compute the gradient at each iteration, balancing efficiency and convergence speed.</li>
-        </ul>
-    </div>
-    <div class="section">
-        <h2>Applications of Gradient Descent</h2>
-        <p>Gradient Descent is used across various fields for optimizing problems, especially in training deep learning models.</p>
-        <ul>
-            <li>Neural network training</li>
-            <li>Large scale machine learning problems</li>
-            <li>Anywhere that requires the minimization of error functions</li>
-        </ul>
-    </div>
-</body>
-</html>
+    <body>
+        <header class="bg-gray-800 text-white p-4">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="text-blue-400">Home</a></li>
+                    <li><a href="https://web.stanford.edu/class/cs224n/assignments/a1_preview/exploring_word_vectors.html" class="text-blue-400">Stanford NLP Course</a></li>
+                </ul>
+            </nav>
+            <h1>Basics of NLP and Deep Learning</h1>
+        </header>
+    
+        <div class="section">
+            <h2>Introduction to Natural Language Processing (NLP)</h2>
+            <p>Natural Language Processing (NLP) is a field of AI focused on the interaction between computers and humans through natural language. The ultimate objective of NLP is to read, decipher, understand, and make sense of the human languages in a manner that is valuable.</p>
+        </div>
+        <div class="section">
+            <h2>Deep Learning in NLP</h2>
+            <p>Deep learning, a subset of machine learning, uses algorithms inspired by the structure and function of the brain called artificial neural networks. In NLP, deep learning has been applied to a number of tasks including speech recognition, natural language understanding, and text generation.</p>
+        </div>
+        <div class="section">
+            <h2>Text Embeddings</h2>
+            <p>Text embeddings are a type of word representation that allows words with similar meaning to have a similar representation. They are essential for deep learning models in NLP to process and analyze large amounts of text data.</p>
+            <img src="./images/text_embeddings.png" alt="Diagram of Text Embeddings">
+        </div>
+        <div class="section">
+            <h2>Understanding Gradient Descent</h2>
+            <p>Gradient Descent is a core optimization technique in deep learning that adjusts the parameters of the neural network algorithms. It is used extensively to minimize the loss function of the models during training.</p>
+            <img src="./images/gradient_descent.png" alt="Diagram of Gradient Descent">
+            <p>For a practical application of these concepts, including exercises on text embeddings, visit the <a href="https://web.stanford.edu/class/cs224n/assignments/a1_preview/exploring_word_vectors.html" class="text-blue-400">Stanford University engineering course assignments on NLP</a>.</p>
+        </div>
+    </body>
+    </html>
