@@ -218,7 +218,7 @@ button:hover {
     text-decoration: none; /* Remove underline on hover for a dynamic effect */
 }
 .section-image {
-    max-width: 20%;  /* Limits the image width to 50% of its container */
+    max-width: 40%;  /* Limits the image width to 50% of its container */
    
     margin: 10px auto;  /* Centers the image and provides some margin */
     height: auto;  /* Keeps the aspect ratio of the image */
