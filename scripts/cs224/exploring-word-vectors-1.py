@@ -357,3 +357,4 @@ words = ['value', 'gold', 'platinum', 'reserves', 'silver', 'metals', 'copper', 
 
 plot_embeddings(M_reduced_normalized, word2ind, words)
 
+
