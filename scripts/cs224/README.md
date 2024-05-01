@@ -24,8 +24,8 @@ Ensure you have Python 3.8 or higher installed. This program uses several advanc
 1. **Clone the repository:**
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/michaelkernaghan/Machine-learning-lectures.git
+cd Machine-learning-lectures/scripts/cs224
 ```
 
 2. **Set up a Python virtual environment (optional but recommended):**
