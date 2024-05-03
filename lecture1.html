@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Lecture 1: Introduction to AI and ML</title>
 </head>
+
 <body>
     <header class="bg-gray-800 text-white p-4">
         <nav>
@@ -24,115 +26,185 @@
     </header>
     <main class="p-4">
         <section>
-            <h2>Welcome to the first lecture of our series on Machine Learning (ML) and Artificial Intelligence (AI)</h2>
-            <p>Today, we will explore the foundational concepts that define these fields, trace their development, and examine some of their most significant applications. This lecture aims to provide a clear understanding of the differences and interconnections between AI and ML, debunk some of the myths, and set a solid groundwork for deeper exploration in subsequent lectures.</p>
+            <h2>Welcome to the first lecture of our series on Machine Learning (ML) and Artificial Intelligence (AI)
+            </h2>
+            <p>Today, we will explore the foundational concepts that define these fields, trace their development, and
+                examine some of their most significant applications. This lecture aims to provide a clear understanding
+                of the differences and interconnections between AI and ML, debunk some of the myths, and set a solid
+                groundwork for deeper exploration in subsequent lectures.</p>
+
+            <h3>Prerequisites for Learning About Large Language Models</h3>
+            <p>To fully engage with the topic of large language models, such as those used in AI for natural language
+                processing, students are expected to have a certain level of knowledge and skills in several key areas:
+            </p>
+            <ul>
+                <li><strong>Python Programming:</strong> Proficiency in Python is crucial, as it is the predominant
+                    language used in developing and interacting with large language models. Students should be
+                    comfortable with Python's syntax, data structures, and libraries such as NumPy and pandas.
+                </li>
+                <li><strong>Mathematical Foundations:</strong> A grasp of linear algebra,
+                    probability, and statistics, is beneficial. Understanding vectors and matrices is critical
+                    for building and tweaking models. Basic calculus knowledge, particularly
+                    differentiation, is necessary to understand optimization algorithms used in training models.</li>
+                <li><strong>Neural Networks and Deep Learning Experience:</strong> A foundational understanding of
+                    neural networks, particularly how they are structured, trained, and optimized, is required.
+                    Experience with deep learning architectures, especially those relevant to processing sequential data
+                    like RNNs, LSTMs, and Transformers, is particularly valuable for studying large language models.
+                </li>
+            </ul>
+            <p>These prerequisites ensure that students can not only follow the discussions but also engage in practical
+                implementations and innovations within the field. The plan is to provide these prerequsites and prepare
+                students
+                for working with models using simple examples.</p>
         </section>
         <section>
             <h2>Machine Learning and Large Language Models</h2>
-            <p>Machine Learning (ML) and Large Language Models (LLMs) have a significant and intrinsic relationship where ML serves as the foundational technology enabling the development and functioning of LLMs.</p>
+            <p>Machine Learning (ML) and Large Language Models (LLMs) have a significant and intrinsic relationship
+                where ML serves as the foundational technology enabling the development and functioning of LLMs.</p>
             <h3>Machine Learning: The Foundation</h3>
-            <p>Machine Learning is a subset of artificial intelligence that involves training algorithms to recognize patterns, make decisions, and predictions based on data. The ML paradigm shifts from explicitly programming rules to creating algorithms that can learn from and make decisions based on data.</p>
+            <p>Machine Learning is a subset of artificial intelligence that involves training algorithms to recognize
+                patterns, make decisions, and predictions based on data. The ML paradigm shifts from explicitly
+                programming rules to creating algorithms that can learn from and make decisions based on data.</p>
             <h3>Large Language Models: A Specialization within ML</h3>
-            <p>Large Language Models like GPT (from OpenAI), BERT (developed by Google), and others, are specific applications of machine learning focused on processing and understanding natural language. LLMs are trained using deep learning, a subset of machine learning, on vast amounts of text data. This training involves the following ML concepts and methodologies:</p>
+            <p>Large Language Models like GPT (from OpenAI), BERT (developed by Google), and others, are specific
+                applications of machine learning focused on processing and understanding natural language. LLMs are
+                trained using deep learning, a subset of machine learning, on vast amounts of text data. This training
+                involves the following ML concepts and methodologies:</p>
             <ul>
-                <li><strong>Supervised Learning:</strong> Most LLMs initially rely on supervised learning where the model is trained on labeled datasets.</li>
-                <li><strong>Unsupervised Learning:</strong> Some aspects of LLM training involve unsupervised learning where models try to make sense of data without explicit labels.</li>
-                <li><strong>Neural Networks and Deep Learning:</strong> LLMs are built using large neural networks, particularly transformer architectures.</li>
+                <li><strong>Supervised Learning:</strong> Most LLMs initially rely on supervised learning where the
+                    model is trained on labeled datasets.</li>
+                <li><strong>Unsupervised Learning:</strong> Some aspects of LLM training involve unsupervised learning
+                    where models try to make sense of data without explicit labels.</li>
+                <li><strong>Neural Networks and Deep Learning:</strong> LLMs are built using large neural networks,
+                    particularly transformer architectures.</li>
             </ul>
             <h3>Key Relationships and Applications</h3>
-            <p>Natural Language Processing (NLP): LLMs are a cornerstone of modern NLP, enabling applications from machine translation and summarization to question-answering and sentiment analysis. They represent a shift towards more general and powerful language understanding capabilities compared to earlier models.</p>
-            <p>Transfer Learning: LLMs are often pre-trained on general tasks and then fine-tuned for specific applications. This is an example of transfer learning, where a model developed for one task is reused as the starting point for a model on a second task.</p>
-            <p>Scaling and Performance: The performance of language models generally improves with an increasing amount of training data and model size, highlighting ML principles like feature representation and model capacity.</p>
+            <p>Natural Language Processing (NLP): LLMs are a cornerstone of modern NLP, enabling applications from
+                machine translation and summarization to question-answering and sentiment analysis. They represent a
+                shift towards more general and powerful language understanding capabilities compared to earlier models.
+            </p>
+            <p>Transfer Learning: LLMs are often pre-trained on general tasks and then fine-tuned for specific
+                applications. This is an example of transfer learning, where a model developed for one task is reused as
+                the starting point for a model on a second task.</p>
+            <p>Scaling and Performance: The performance of language models generally improves with an increasing amount
+                of training data and model size, highlighting ML principles like feature representation and model
+                capacity.</p>
         </section>
         <section>
             <h3>Differences Between AI and ML</h3>
-            <p>While AI is a broader concept concerning creating machines capable of performing tasks that seem intelligent, ML is a specific subset of AI that trains a machine how to learn. ML is one way to achieve AI.</p>
+            <p>While AI is a broader concept concerning creating machines capable of performing tasks that seem
+                intelligent, ML is a specific subset of AI that trains a machine how to learn. ML is one way to achieve
+                AI.</p>
         </section>
         <section class="additional-materials">
             <h1>Additional Materials</h1>
             <ul>
                 <li><a href="https://www.youtube.com/watch?v=2IK3DFHRFfw">
-                    Generative AI in a Nutshell - how to survive and thrive in the age of AI</a> - Basically a full day AI course crammed into 18 mins of drawing & talking. Target audience: Everyone. </li>
+                        Generative AI in a Nutshell - how to survive and thrive in the age of AI</a> - Basically a full
+                    day AI course crammed into 18 mins of drawing & talking. Target audience: Everyone. </li>
+            </ul>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=zjkBMFhNj_g&t=1010s">
+                        [1hr Talk] Intro to Large Language Models</a> - Andrej
+                    Karpathy </li>
             </ul>
             <ul>
                 <li><a href="https://www.youtube.com/watch?v=rURRYI66E54">
-                    AI Language Models & Transformers - Computerphile</a> - Presentation of GPT-2 and the Attention/Transformer mechanism from 2019</li>
-            </ul>
-            <ul>
-                <li><a href="https://www.youtube.com/watch?v=OQQ-W_63UgQ">
-                    Stanford University School of Engineering 2017</a> - Lecture 1 | Natural Language Processing with Deep Learning: A foundational lecture on Natural Language Processing which serves as the start of the story we want to explore.  </li>
+                        AI Language Models & Transformers - Computerphile</a> - Presentation of GPT-2 and the
+                    Attention/Transformer mechanism from 2019</li>
             </ul>
         </section>
         <section>
             <h1>Everyday Life Encounters with Embedded Machine Learning and Deep Learning Technologies</h1>
-        <p>In today's digital age, machine learning, deep learning, and large language models are integral to a vast array of technologies that people encounter every day. These technologies have been seamlessly integrated into products and services across various industries, enhancing user experiences and providing personalized content. Here are some common examples that many people interact with on a daily basis:</p>
+            <p>In today's digital age, machine learning, deep learning, and large language models are integral to a vast
+                array of technologies that people encounter every day. These technologies have been seamlessly
+                integrated into products and services across various industries, enhancing user experiences and
+                providing personalized content. Here are some common examples that many people interact with on a daily
+                basis:</p>
         </section>
         <section>
             <h2>Smart Personal Assistants</h2>
             <p><strong>Examples:</strong> Siri, Alexa, Google Assistant.</p>
             <img src="./images/smart-personal-assistants.png" alt="Smart Personal Assistants" class="section-image">
-            <p><strong>Technology:</strong> These devices use advanced NLP powered by large language models to understand and respond to spoken commands. Large language models like GPT (Generative Pre-trained Transformer) and BERT (Bidirectional Encoder Representations from Transformers) are trained on vast amounts of text data. This training enables them to grasp the nuances of language, context, and user intent.</p>
-            <p>Through a process known as 'transfer learning,' these models can be fine-tuned to perform specific tasks such as understanding inquiries about the weather, controlling home automation systems, or providing real-time translations. Smart assistants continuously learn from new interactions to improve their accuracy and user experience.</p>
-            <p><strong>Implementation Details:</strong> These models are hosted on cloud servers, providing the computational power necessary for real-time processing and response. This cloud architecture ensures that the personal assistants can be updated and improved without requiring changes to the hardware of the consumer devices.</p>
-            <p><strong>Privacy and Data Handling:</strong> To address privacy concerns, leading technology companies implement stringent data protection protocols. Users' voice inputs are anonymized and encrypted before being processed by these models, ensuring that personal information remains confidential.</p>
+            <p><strong>Technology:</strong> These devices use advanced NLP powered by large language models to
+                understand and respond to spoken commands. Large language models like GPT (Generative Pre-trained
+                Transformer) and BERT (Bidirectional Encoder Representations from Transformers) are trained on vast
+                amounts of text data. This training enables them to grasp the nuances of language, context, and user
+                intent.</p>
+            <p>Through a process known as 'transfer learning,' these models can be fine-tuned to perform specific tasks
+                such as understanding inquiries about the weather, controlling home automation systems, or providing
+                real-time translations. Smart assistants continuously learn from new interactions to improve their
+                accuracy and user experience.</p>
+            <p><strong>Implementation Details:</strong> These models are hosted on cloud servers, providing the
+                computational power necessary for real-time processing and response. This cloud architecture ensures
+                that the personal assistants can be updated and improved without requiring changes to the hardware of
+                the consumer devices.</p>
+            <p><strong>Privacy and Data Handling:</strong> To address privacy concerns, leading technology companies
+                implement stringent data protection protocols. Users' voice inputs are anonymized and encrypted before
+                being processed by these models, ensuring that personal information remains confidential.</p>
         </section>
         <section>
             <h2>Recommendation Systems</h2>
             <p><strong>Examples:</strong> Netflix, Spotify, Amazon.</p>
             <img src="./images/recommendation-systems.png" alt="Recommendation Systems" class="section-image">
-            <p><strong>Technology:</strong> These platforms use collaborative filtering, content-based filtering, and sometimes deep learning to recommend products or media. They analyze past user behavior alongside large datasets of similar decisions made by other users to predict what the user might like next. For instance, Netflix may suggest movies based on genres you've watched before, while Spotify recommends songs by analyzing listening habits.</p>
+            <p><strong>Technology:</strong> Machine learning algorithms suggest content based on user behavior and preferences.</p>
         </section>
         <section>
             <h2>Social Media Feeds</h2>
             <p><strong>Examples:</strong> Facebook, Instagram, Twitter.</p>
             <img src="./images/social-media-feeds.png" alt="Social Media feeds" class="section-image">
-            <p><strong>Technology:</strong> Social media platforms use machine learning algorithms to personalize user feeds and moderate content effectively. This involves natural language processing to understand the context of posts and collaborative filtering to deliver content that aligns with user preferences, maximizing engagement and user interaction.</p>
+            <p><strong>Technology:</strong> Algorithms personalize feeds and moderate content using ML techniques.</p>
         </section>
         <section>
             <h2>Email Spam and Phishing Detection</h2>
             <p><strong>Examples:</strong> Gmail, Outlook.</p>
             <img src="./images/spam-detection.png" alt="Email Spam and Phishing Detection" class="section-image">
-            <p><strong>Technology:</strong> Email services employ deep learning algorithms to detect spam and phishing attempts by analyzing patterns in the text that may signify malicious intent. Techniques such as text classification and anomaly detection help improve the accuracy of spam filters over time.</p>
+            <p><strong>Technology:</strong> Deep learning models identify and filter out unwanted emails.</p>
         </section>
         <section>
             <h2>Autonomous Vehicles</h2>
             <p><strong>Examples:</strong> Tesla Autopilot, Google Waymo.</p>
             <img src="./images/autonomous-vehicles.png" alt="Autonomous Vehicles" class="section-image">
-            <p><strong>Technology:</strong> Autonomous vehicles use a combination of convolutional neural networks and reinforcement learning to process sensor data and make decisions in real-time. This data comes from cameras, LIDAR, and GPS systems to enable safe navigation and obstacle avoidance in diverse driving conditions.</p>
+            <p><strong>Technology:</strong> Autonomous vehicles use a combination of convolutional neural networks and
+                reinforcement learning to process sensor data and make decisions in real-time. This data comes from
+                cameras, LIDAR, and GPS systems to enable safe navigation and obstacle avoidance in diverse driving
+                conditions.</p>
         </section>
         <section>
             <h2>Facial Recognition Systems</h2>
             <p><strong>Examples:</strong> iPhone Face ID, Surveillance Systems.</p>
             <img src="./images/facial-recognition-systems.png" alt="Facial Recognition Systems" class="section-image">
-            <p><strong>Technology:</strong> These systems leverage convolutional neural networks (CNNs) to analyze facial features and perform tasks such as identity verification. Advanced algorithms can adapt to variations in light, facial expressions, and angles, ensuring reliability and accuracy.</p>
+            <p><strong>Technology:</strong> These systems leverage convolutional neural networks (CNNs) to analyze
+                facial features and perform tasks such as identity verification. Advanced algorithms can adapt to
+                variations in light, facial expressions, and angles, ensuring reliability and accuracy.</p>
         </section>
         <section>
             <h2>Voice-to-Text Services</h2>
             <p><strong>Examples:</strong> Voice typing on Google Docs, Real-time captioning on YouTube.</p>
             <img src="./images/voice-to-text-services.png" alt="Voice-to-Text Services" class="section-image">
-            <p><strong>Technology:</strong> These services use advanced speech recognition algorithms powered by deep learning to convert spoken language into written text accurately. Continuous learning from vast amounts of voice data helps improve the precision of speech-to-text engines.</p>
+            <p><strong>Technology:</strong> These services use advanced speech recognition algorithms powered by deep
+                learning to convert spoken language into written text accurately. Continuous learning from vast amounts
+                of voice data helps improve the precision of speech-to-text engines.</p>
         </section>
         <section>
             <h2>Customer Service Chatbots</h2>
             <p><strong>Examples:</strong> Chatbots on banking websites, customer support on e-commerce sites.</p>
-            <img src="./images/customer-service-chatbots.png" alt="Customer Service Chatbots" class="section-image">
-            <p><strong>Technology:</strong> Powered by natural language processing, these chatbots are capable of understanding and responding to customer inquiries effectively. They are trained on specific data sets to handle a wide range of queries, from transaction support to troubleshooting, providing a 24/7 customer service solution.</p>
+            <p><strong>Technology:</strong> Chatbots understand and process customer inquiries using NLP.</p>
         </section>
         <section>
             <h2>Sentiment Analysis</h2>
             <p><strong>Examples:</strong> Product reviews, market research.</p>
-            <img src="./images/sentiment-analysis.png" alt="Sentiment Analysis" class="section-image">
-            <p><strong>Technology:</strong> Machine learning models, particularly those based on natural language processing, analyze textual data to determine the sentiment expressed in product reviews or social media posts, aiding companies in understanding consumer emotions and opinions.</p>
+            <p><strong>Technology:</strong> ML models analyze text to gauge public sentiment.</p>
         </section>
         <section>
             <h2>Healthcare Diagnostics</h2>
             <p><strong>Examples:</strong> Radiology imaging, predictive diagnostics.</p>
-            <img src="./images/healthcare-diagnostics.png" alt="Healthcare Diagnostics" class="section-image">
-            <p><strong>Technology:</strong> Deep learning models, such as CNNs, are used to analyze medical imaging data, helping to detect and diagnose diseases with a level of accuracy comparable to or sometimes surpassing human experts. These models can also predict patient outcomes based on historical data, improving over time as they process more cases.</p>
+            <p><strong>Technology:</strong> Deep learning models assist in diagnosing and predicting patient outcomes.</p>
         </section>
     </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
-        
+
     </footer>
 </body>
+
 </html>
