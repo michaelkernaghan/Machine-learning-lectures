@@ -1,3 +1,6 @@
 .hypothesis
 .vscode
+<<<<<<< HEAD
 scripts/data/glove.6B.50d.txt
+=======
+>>>>>>> 978637b68dc909bf4213261c86f7144b9ab7a5ba
