@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Understanding the Perceptron</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="perceptron.html" class="text-blue-400">Perceptron</a></li>
+                <li><a href="applications.html" class="text-blue-400">Applications</a></li>
+            </ul>
+        </nav>
+        <h1>Understanding the Perceptron</h1>
+    </header>
+    <main class="p-4">
+        <section>
+            <h2>Introduction to Perceptrons</h2>
+            <p>Perceptrons are the simplest type of artificial neural network, often used as a stepping stone to understand more complex network structures. This section delves into the perceptron's basics, its architecture, and its role as a linear classifier.</p>
+            <img src="/images/perceptron.png" alt="Perceptron Architecture">
+            
+            <h3>Architecture of a Perceptron</h3>
+            <p>The perceptron consists of input nodes (or neurons) connected to a single output node via weighted edges. The output node applies an activation function to the weighted sum of the inputs to produce the output.</p>
+            
+            <img src="/images/perceptron2.png" alt="Perceptron Training Process">
+            <h3>Training a Perceptron</h3>
+            <p>Training a perceptron involves adjusting the weights based on the errors made by the model during the training process. This is typically done using the perceptron learning rule, which is a type of online learning.</p>
+            
+            <img src="/images/perceptron3.png" alt="Perceptron Example">
+            <h3>Example Applications of Perceptrons</h3>
+            <p>Initially, perceptrons were used for simple binary classification tasks, such as distinguishing between two types of objects based on input features.</p>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white p-4 text-center">
+
+    </footer>
+</body>
+</html>
