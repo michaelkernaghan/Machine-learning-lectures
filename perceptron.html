@@ -115,20 +115,34 @@
                 # Train the neural network using a sigmoid activation function
                 # Loop over 10,000 iterations to perform the gradient descent optimization.
                 for iteration in range(10000):
-                    # Calculate the output of the neural network using the sigmoid activation function.
+                    # Forward pass: Calculate the output of the neural network using the sigmoid activation function.
                     # `dot` is used for matrix multiplication between inputs and weights.
                     # The sigmoid function transforms the dot product into a probability-like output between 0 and 1.
                     output = 1 / (1 + exp(-(dot(training_set_inputs, synaptic_weights))))
-                
-                    # Adjust synaptic weights based on the difference between actual and predicted outputs.
-                    # The adjustment is the derivative of the sigmoid function times the error in output.
-                    # dot(training_set_inputs.T, ...) performs gradient descent using the inputs as the derivatives.
-                    synaptic_weights += dot(training_set_inputs.T, (training_set_outputs - output) * output * (1 - output))
+                    
+                    # Backpropagation step:
+                    # 1. Calculate the error by subtracting the output from the expected output.
+                    error = training_set_outputs - output
+                    
+                    # 2. Calculate the gradient of the sigmoid function.
+                    # The gradient is the derivative of the sigmoid function.
+                    sigmoid_derivative = output * (1 - output)
+                    
+                    # 3. Adjust synaptic weights based on the error and the gradient.
+                    # The adjustment is the dot product of the input features and the product of the error and the sigmoid derivative.
+                    adjustment = dot(training_set_inputs.T, error * sigmoid_derivative)
+                    
+                    # Update the synaptic weights by adding the adjustment to the current weights.
+                    synaptic_weights += adjustment
                 
                 # Testing the neural network with a new input after training
                 # This tests how the trained model predicts a new input.
+                # The input [1, 0, 0] is fed into the neural network, and the output is calculated.
                 test_output = 1 / (1 + exp(-(dot(array([1, 0, 0]), synaptic_weights))))
-                print(test_output)  # Print the output of the neural network for the new input.
+                
+                # Print the output of the neural network for the new input.
+                print(test_output)
+                
                 </code></pre>
         </section>
         <section>
