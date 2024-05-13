@@ -1,10 +1,10 @@
-# Machine Learning Lectures Website
+# Machine Learning explorations Website
 
-This repository hosts the web content and backend scripts for a series of educational lectures on Machine Learning (ML) and Artificial Intelligence (AI). The website aims to provide insightful lectures ranging from introductory topics to advanced discussions on ML techniques, including practical examples implemented through Python scripts.
+This repository hosts the web content and backend scripts for a series of educational explorations on Machine Learning (ML) and Artificial Intelligence (AI). The website aims to provide insightful explorations ranging from introductory topics to advanced discussions on ML techniques, including practical examples implemented through Python scripts.
 
 ## Features
 
-- **Educational Content**: Detailed HTML pages for each lecture covering various topics in machine learning and AI.
+- **Educational Content**: Detailed HTML pages for each exploration covering various topics in machine learning and AI.
 - **Interactive Examples**: Use of Python scripts to demonstrate practical applications like generating dog names using bigrams.
 - **Responsive Design**: The website is designed to be fully responsive, providing a good user experience across different devices.
 
@@ -12,7 +12,7 @@ This repository hosts the web content and backend scripts for a series of educat
 
 - `/scripts`: Python scripts that demonstrate machine learning concepts, such as the bigram name generator.
 - `/styles`: CSS files for styling the website.
-- `/images`: Directory containing all images used in the lectures.
+- `/images`: Directory containing all images used in the explorations.
 - `README.md`: This file, providing an overview of the project and guidance on how to use it.
 
 ## Installation
@@ -27,7 +27,7 @@ To get the website running locally or deploy it:
 ### Running the Website
 
 1. Clone this repository to your local machine.
-2. Open the HTML file index.html with a web browser to access the lectures.
+2. Open the HTML file index.html with a web browser to access the explorations.
 3. Python scripts in the `/scripts` directory can be run separately to see machine learning concepts in action.
 
 ### Running Python Scripts
