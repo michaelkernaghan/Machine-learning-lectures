@@ -169,6 +169,36 @@ footer a:hover {
     text-decoration: underline; /* Optional: adds underline on hover */
 }
 
+footer nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* Center align the items */
+    align-items: center;
+    gap: 20px;
+    /* Uniform gap between items */
+}
+
+footer nav ul li {
+    padding: 8px 16px;
+    /* Padding to make links easier to click */
+}
+
+footer nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    /* Make the links bolder */
+    transition: color 0.3s ease;
+    /* Smooth transition for hover effects */
+}
+
+footer nav ul li a:hover {
+    color: #dc3545;
+    /* Accent color on hover */
+}
+
 
 /* Responsive Design Adjustments */
 @media (min-width: 768px) {
