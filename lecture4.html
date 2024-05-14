@@ -7,8 +7,18 @@
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <title>Lecture 4: How Neural Networks Work</title>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <title>Exploration 4: Bigrams in Sequence Prediction</title>
 </head>
 
 <body>
@@ -24,374 +34,132 @@
                 <li><a href="lecture7.html" class="text-blue-400">End</a></li>
             </ul>
         </nav>
-        <h1>4: How Neural Networks Work</h1>
+        <h1> 4: Bigrams in Sequence Prediction</h1>
     </header>
     <main class="p-4">
         <section>
-            <h2>Understanding Neural Networks</h2>
-            <h3>1. Introduction:</h3>
-            <p>Neural networks are a class of machine learning models inspired by the human brain. They consist of
-                layers of interconnected nodes (neurons) that can learn to recognize patterns in data.</p>
-            <h3>2. Training a Simple Neural Network:</h3>
-            <p>The following <a
-                    href="https://medium.com/technology-invention-and-more/how-to-build-a-simple-neural-network-in-9-lines-of-python-code-cc8f23647ca1"
-                    class="text-blue-400">python code</a>
-                    demonstrates how to train a simple neural network using a sigmoid activation function and
-                    backpropagation.</p>
-            <pre>
-<code>
-from numpy import exp, array, random, dot
-
-# Setting up the training data
-# Here we have 4 training samples, each with 3 input features.
-# These inputs can be thought of as features in a simple binary classification problem.
-training_set_inputs = array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
-
-# The expected outputs corresponding to the inputs above.
-# It's a column vector (due to the .T transpose operation), suitable for matrix multiplication with input features.
-training_set_outputs = array([[0, 1, 1, 0]]).T
-
-# Seed the random number generator to make the results reproducible.
-# The seed ensures that the random numbers generated are the same every time the program is run.
-random.seed(1)
-
-# Initialize synaptic weights with random values.
-# Weights are initialized randomly but are scaled to range between -1 and 1.
-# There are 3 weights for 3 input features, shaped as a 3x1 matrix.
-synaptic_weights = 2 * random.random((3, 1)) - 1
-
-# Train the neural network using a sigmoid activation function
-# Loop over 10,000 iterations to perform the gradient descent optimization.
-for iteration in range(10000):
-    # Forward pass: Calculate the output of the neural network using the sigmoid activation function.
-    # `dot` is used for matrix multiplication between inputs and weights.
-    # The sigmoid function transforms the dot product into a probability-like output between 0 and 1.
-    output = 1 / (1 + exp(-(dot(training_set_inputs, synaptic_weights))))
-    
-    # Backpropagation step:
-    # 1. Calculate the error by subtracting the output from the expected output.
-    error = training_set_outputs - output
-    
-    # 2. Calculate the gradient of the sigmoid function.
-    # The gradient is the derivative of the sigmoid function.
-    sigmoid_derivative = output * (1 - output)
-    
-    # 3. Adjust synaptic weights based on the error and the gradient.
-    # The adjustment is the dot product of the input features and the product of the error and the sigmoid derivative.
-    adjustment = dot(training_set_inputs.T, error * sigmoid_derivative)
-    
-    # Update the synaptic weights by adding the adjustment to the current weights.
-    synaptic_weights += adjustment
-
-# Testing the neural network with a new input after training
-# This tests how the trained model predicts a new input.
-# The input [1, 0, 0] is fed into the neural network, and the output is calculated.
-test_output = 1 / (1 + exp(-(dot(array([1, 0, 0]), synaptic_weights))))
-
-# Print the output of the neural network for the new input.
-print(test_output)
-</code>
-</pre>
+            <h2>Introduction to Bigrams</h2>
+            <p>Bigrams can be used to predict elements in a sequence, particularly in the context of language
+                processing. A <strong>bigram</strong> is a sequence of two adjacent elements from a string of tokens,
+                which can be letters, syllables, or words. Bigrams are a basic form of n-gram, where "n" refers to the
+                number of combined elements.</p>
         </section>
         <section>
-            <h3>3. Mathematical Details of Backpropagation and Gradient Descent:</h3>
-            <p>The backpropagation algorithm involves calculating the gradient of the loss function with respect to each
-                weight by the chain rule, iterating backward from the output layer to the input layer.</p>
+            <h2>Bigrams in Language Processing</h2>
+            <h3>Statistical Language Models</h3>
             <ul>
-                <li><strong>Forward Pass:</strong> Calculate the output of the network using the current weights.
-                    <p>During the forward pass, the neural network processes the input data to produce an output. This
-                        involves several steps:</p>
-                    <ol>
-                        <li><strong>Input Layer:</strong> The input data is fed into the network. In the provided code
-                            example, the input data is a matrix where each row represents a different training sample,
-                            and each column represents a different input feature.</li>
-                            <p></p>
-                        <li><strong>Weighted Sum (Dot Product):</strong> Each input feature is multiplied by its
-                            corresponding weight, and the results are summed to produce a weighted sum for each neuron
-                            in the next layer. Mathematically, this is represented as the dot product of the input
-                            matrix and the weight matrix.
-                            <p>
-                                \[
-                                \text{weighted_sum} = \text{input} \cdot \text{weights}
-                                \]
-                            </p>
-                            In the code:
-                            <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
-                        </li>
-                        <li><strong>Activation Function:</strong> The weighted sum is passed through an activation
-                            function to introduce non-linearity into the model. In this case, the sigmoid activation
-                            function is used, which maps the weighted sum to a value between 0 and 1.
-                            <p>The sigmoid function \(\sigma(x)\) is defined as:</p>
-                            \[
-                            \sigma(x) = \frac{1}{1 + e^{-x}}
-                            \]
-                            <p>Applying the sigmoid function to the weighted sum:</p>
-                            \[
-                            \text{output} = \sigma(\text{weighted_sum}) = \frac{1}{1 + e^{-\text{weighted_sum}}}
-                            \]
-                            In the code:
-                            <pre><code>output = 1 / (1 + exp(-output))</code></pre>
-                        </li>
-                    </ol>
-                </li>
-                <li><strong>Loss Calculation:</strong> Compute the error by subtracting the predicted output from the
-                    actual output.</li>
-                <li><strong>Gradient Calculation:</strong> Compute the gradient of the loss function. For the sigmoid
-                    activation function, the gradient is:
-                    \[
-                    \sigma'(x) = \sigma(x) \cdot (1 - \sigma(x))
-                    \]
-                </li>
-                <li><strong>Weight Adjustment:</strong> Adjust the weights in the direction that minimizes the error.
-                    The adjustment for each weight is:
-                    \[
-                    \Delta w = \eta \cdot \text{input} \cdot \text{error} \cdot \sigma'(output)
-                    \]
-                    where \(\eta\) is the learning rate.
-                </li>
-                <li><strong>Gradient Descent:</strong> Update the weights by subtracting the gradients multiplied by the
-                    learning rate from the current weights:
-                    \[
-                    w := w - \eta \cdot \Delta w
-                    \]
-                </li>
+                <li><strong>Probability Estimation:</strong> A bigram model predicts the likelihood of a word given the
+                    previous word, estimating the probability of any given word sequence.</li>
+                <li><strong>Predictive Text:</strong> Bigram models are straightforward yet powerful tools for tasks
+                    like predictive text input.</li>
             </ul>
         </section>
         <section>
-            <p>Backpropagation and gradient descent are foundational algorithms in training neural networks, allowing
-                them to learn complex patterns and make accurate predictions. By iteratively adjusting weights to
-                minimize error, these algorithms enable neural networks to improve their performance over time.</p>
+            <h3>Example Calculation</h3>
+            <p>To calculate the probability of a word following another, use the formula
+                \( P(W_n | W_{n-1}) = \frac{\text{Count}(W_{n-1}, W_n)}{\text{Count}(W_{n-1})} \),
+                where \( W_n \) is the current word and \( W_{n-1} \) is the previous word.</p>
         </section>
         <section>
-            <h3>4. Matrix Representation:</h3>
-            <p>The following diagram illustrates the input matrix, weight matrix, and the resulting output matrix in a
-                simple neural network:</p>
-            <p>
-                \[
-                \begin{bmatrix}
-                x_{11} & x_{12} & x_{13} \\
-                x_{21} & x_{22} & x_{23} \\
-                x_{31} & x_{32} & x_{33} \\
-                x_{41} & x_{42} & x_{43}
-                \end{bmatrix}
-                \cdot
-                \begin{bmatrix}
-                w_{1} \\
-                w_{2} \\
-                w_{3}
-                \end{bmatrix}
-                =
-                \begin{bmatrix}
-                y_{1} \\
-                y_{2} \\
-                y_{3} \\
-                y_{4}
-                \end{bmatrix}
-                \]
-            </p>
-            <p>Where:</p>
+            <h2>Bigrams in Other Sequences</h2>
             <ul>
-                <li>\( x_{ij} \) represents the input feature \( j \) for training sample \( i \).</li>
-                <li>\( w_{j} \) represents the weight associated with input feature \( j \).</li>
-                <li>\( y_{i} \) represents the output for training sample \( i \).</li>
+                <li><strong>Music Generation:</strong> In music, bigrams can model the probability of one note following
+                    another.</li>
+                <li><strong>Bioinformatics:</strong> In genetic sequences, bigrams could help predict the likelihood of
+                    nucleotide sequences.</li>
+                <li><strong>Behavioral Sequences:</strong> Patterns in behavior or movement could potentially be
+                    predicted with bigram analysis.</li>
             </ul>
         </section>
         <section>
-            <h2>Dot Product Calculation</h2>
-            <p>The dot product of two vectors is calculated by multiplying corresponding elements and summing the results. Here's a simple example:</p>
-            
-            <p>Let's consider two vectors:</p>
-            <p>
-                \[
-                \mathbf{a} = \begin{bmatrix}
-                a_1 \\
-                a_2 \\
-                a_3 \\
-                \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
-                b_1 \\
-                b_2 \\
-                b_3 \\
-                \end{bmatrix}
-                \]
-            </p>
-            
-            <p>The dot product of \(\mathbf{a}\) and \(\mathbf{b}\) is given by:</p>
-            <p>
-                \[
-                \mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + a_3 b_3
-                \]
-            </p>
-            
-            <p>For example, if we have:</p>
-            <p>
-                \[
-                \mathbf{a} = \begin{bmatrix}
-                1 \\
-                2 \\
-                3 \\
-                \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
-                4 \\
-                5 \\
-                6 \\
-                \end{bmatrix}
-                \]
-            </p>
-            
-            <p>Then the dot product is:</p>
-            <p>
-                \[
-                \mathbf{a} \cdot \mathbf{b} = (1 \times 4) + (2 \times 5) + (3 \times 6) = 4 + 10 + 18 = 32
-                \]
-            </p>
+            <h2>Limitations</h2>
+            <ul>
+                <li><strong>Context Ignorance:</strong> Bigrams consider only immediate predecessors, ignoring the
+                    broader context.</li>
+                <li><strong>Sparsity:</strong> Many possible bigrams may never occur in the training data, leading to
+                    zero probabilities without smoothing techniques.</li>
+                <li><strong>Simplicity:</strong> For complex patterns, higher-order n-grams or more complex models might
+                    be more effective.</li>
+            </ul>
         </section>
         <section>
-            <p>Let's consider an input vector from the training set and the synaptic weights:</p>
-            <p>
-                \[
-                \mathbf{input} = \begin{bmatrix}
-                0 \\
-                0 \\
-                1 \\
-                \end{bmatrix}, \quad \mathbf{weights} = \begin{bmatrix}
-                -0.16595599 \\
-                0.44064899 \\
-                -0.99977125 \\
-                \end{bmatrix}
-                \]
-            </p>
-            
-            <p>The dot product of \(\mathbf{input}\) and \(\mathbf{weights}\) is given by:</p>
-            <p>
-                \[
-                \mathbf{input} \cdot \mathbf{weights} = (0 \times -0.16595599) + (0 \times 0.44064899) + (1 \times -0.99977125) = 0 + 0 + -0.99977125 = -0.99977125
-                \]
-            </p>
-            
-            <p>Let's take another input vector from the training set and the same synaptic weights:</p>
-            <p>
-                \[
-                \mathbf{input} = \begin{bmatrix}
-                1 \\
-                1 \\
-                1 \\
-                \end{bmatrix}, \quad \mathbf{weights} = \begin{bmatrix}
-                -0.16595599 \\
-                0.44064899 \\
-                -0.99977125 \\
-                \end{bmatrix}
-                \]
-            </p>
-            
-            <p>The dot product of \(\mathbf{input}\) and \(\mathbf{weights}\) is given by:</p>
-            <p>
-                \[
-                \mathbf{input} \cdot \mathbf{weights} = (1 \times -0.16595599) + (1 \times 0.44064899) + (1 \times -0.99977125) = -0.16595599 + 0.44064899 + -0.99977125 = -0.72507825
-                \]
-            </p>
-            
-            <p>Thus, for each input vector in the training set, the weighted sum (dot product) can be calculated similarly.</p>
+            <h2>Conclusion</h2>
+            <p>Bigrams are a fundamental tool in predictive modeling for sequences, particularly effective in
+                text-related tasks within natural language processing. They provide a balance between simplicity and
+                effectiveness, making them a popular choice in situations where complex dependencies are less critical,
+                or computational resources are limited. However, for tasks requiring a deeper understanding of context
+                or longer-range dependencies, more sophisticated approaches may be required.</p>
         </section>
-            <section>       
-                <h3>Training Data</h3>
-                <p>The input data <code>training_set_inputs</code> is given by:</p>
-                <p>
-                    \[
-                    \text{training_set_inputs} = \begin{bmatrix}
-                    0 & 0 & 1 \\
-                    1 & 1 & 1 \\
-                    1 & 0 & 1 \\
-                    0 & 1 & 1 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-        
-                <p>The corresponding expected outputs <code>training_set_outputs</code> are:</p>
-                <p>
-                    \[
-                    \text{training_set_outputs} = \begin{bmatrix}
-                    0 \\
-                    1 \\
-                    1 \\
-                    0 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-        
-                <h3>Initial Weights</h3>
-                <p>The initial weights <code>synaptic_weights</code> are initialized randomly. For example, we have:</p>
-                <p>
-                    \[
-                    \text{synaptic_weights} = \begin{bmatrix}
-                    -0.16595599 \\
-                    0.44064899 \\
-                    -0.99977125 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-        
-                <h3>Weighted Sum Calculation</h3>
-                <p>The weighted sum (dot product) for each input sample is calculated as:</p>
-                <p>
-                    \[
-                    \text{weighted_sum} = \text{training_set_inputs} \cdot \text{synaptic_weights}
-                    \]
-                </p>
-        
-                <p>The weighted sum for each input sample is:</p>
-                <ul>
-                    <li>For the first input \([0, 0, 1]\):
-                        \[
-                        \text{weighted_sum}_1 = \begin{bmatrix} 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -0.99977125
-                        \]
-                    </li>
-                    <li>For the second input \([1, 1, 1]\):
-                        \[
-                        \text{weighted_sum}_2 = \begin{bmatrix} 1 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -0.72507825
-                        \]
-                    </li>
-                    <li>For the third input \([1, 0, 1]\):
-                        \[
-                        \text{weighted_sum}_3 = \begin{bmatrix} 1 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -1.16572724
-                        \]
-                    </li>
-                    <li>For the fourth input \([0, 1, 1]\):
-                        \[
-                        \text{weighted_sum}_4 = \begin{bmatrix} 0 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -0.55912226
-                        \]
-                    </li>
-                </ul>
-        
-                <h3>Matrix Representation</h3>
-                <p>
-                    \[
-                    \begin{bmatrix}
-                    0 & 0 & 1 \\
-                    1 & 1 & 1 \\
-                    1 & 0 & 1 \\
-                    0 & 1 & 1 \\
-                    \end{bmatrix}
-                    \cdot
-                    \begin{bmatrix}
-                    -0.16595599 \\
-                    0.44064899 \\
-                    -0.99977125 \\
-                    \end{bmatrix}
-                    =
-                    \begin{bmatrix}
-                    -0.99977125 \\
-                    -0.72507825 \\
-                    -1.16572724 \\
-                    -0.55912226 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-                In the code this is where we get the weighted sum iof the first pass:
-                <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
-            </section>
+        <div class="images-section">
+            <img src="./images/thenextdogname.png" alt="AI imagined graph 2" class="lecture-image">
+        </div>
+        <section>
+            <h1>Dog Name Generator Using Bigrams</h1>
+            <p>This webpage explains a Python script that generates dog names based on the concept of bigrams. Bigrams
+                are pairs of consecutive characters used to predict the next character in a sequence.</p>
+            <p>The code is hosted at: </p>
+            <a href="https://github.com/michaelkernaghan/Machine-learning-lectures/blob/main/scripts/dog_name_predictor.py"
+                class="text-blue-400 hover:text-blue-700" target="_blank">dog_name_predictor.py</a>
+            <p>Try it on a website: </p>
+            <a href="https://arcane-woodland-29255-3c8c871eb38d.herokuapp.com/ "
+                class="text-blue-400 hover:text-blue-700" target="_blank">Dog Name Generator</a>
 
-        
+            <h2>Python Script Components Explained</h2>
+            <h3>1. Importing Libraries</h3>
+            <p>The script starts by importing necessary Python libraries:</p>
+            <ul>
+                <li><code>random</code>: For random selections.</li>
+                <li><code>json</code>: To load JSON files containing dog names.</li>
+                <li><code>collections.defaultdict</code> and <code>collections.Counter</code>: For managing the bigram
+                    model easily.</li>
+            </ul>
+
+            <h3>2. Loading Dog Names</h3>
+            <p>The function <code>load_dog_names</code> reads names from a JSON file:</p>
+            <pre><code>def load_dog_names(filename):
+                with open(filename, 'r') as file:
+                    data = json.load(file)
+                return data</code></pre>
+            <p>This function opens a JSON file, loads the names into a list, and returns this list.</p>
+
+            <h3>3. Creating Bigrams</h3>
+            <p>The <code>create_bigrams</code> function generates bigrams from the list of names:</p>
+            <pre><code>def create_bigrams(names):
+                bigrams = []
+                for name in names:
+                    name = "*" + name + "#"
+                    for i in range(len(name) - 1):
+                        bigrams.append((name[i], name[i+1]))
+                return bigrams</code></pre>
+            <p>It adds a special character at the beginning and end of each name to signify boundaries, then pairs
+                adjacent characters.</p>
+
+            <h3>4. Building the Bigram Model</h3>
+            <p>The <code>build_bigram_model</code> constructs a probabilistic model from bigrams:</p>
+            <pre><code>def build_bigram_model(bigrams):
+                model = defaultdict(Counter)
+                for bigram in bigrams:
+                    model[bigram[0]][bigram[1]] += 1
+                return model</code></pre>
+            <p>This model uses the frequency of each bigram to predict the likelihood of the next character.</p>
+
+            <h3>5. Generating a Dog Name</h3>
+            <p>The <code>generate_name</code> function creates a new dog name using the bigram model:</p>
+            <pre><code>def generate_name(model, max_length=12):
+                name = '*'
+                while True:
+                    next_char = random.choices(list(model[name[-1]].keys()), weights=model[name[-1]].values())[0]
+                    if next_char == '#' or len(name) - 1 == max_length:
+                        break
+                    name += next_char
+                return name[1:]</code></pre>
+            <p>It begins with a starting character and iteratively selects the next character based on the model until
+                it reaches a stopping condition.</p>
+        </section>
     </main>
+
     <footer class="bg-gray-800 text-white p-4 text-center">
+
     </footer>
 </body>
 
