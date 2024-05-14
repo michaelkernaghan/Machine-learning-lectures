@@ -36,8 +36,8 @@
             <p>The following <a
                     href="https://medium.com/technology-invention-and-more/how-to-build-a-simple-neural-network-in-9-lines-of-python-code-cc8f23647ca1"
                     class="text-blue-400">python code</a>
-                    demonstrates how to train a simple neural network using a sigmoid activation function and
-                    backpropagation.</p>
+                demonstrates how to train a simple neural network using a sigmoid activation function and
+                backpropagation.</p>
             <pre>
 <code>
 from numpy import exp, array, random, dot
@@ -105,7 +105,7 @@ print(test_output)
                         <li><strong>Input Layer:</strong> The input data is fed into the network. In the provided code
                             example, the input data is a matrix where each row represents a different training sample,
                             and each column represents a different input feature.</li>
-                            <p></p>
+                        <p></p>
                         <li><strong>Weighted Sum (Dot Product):</strong> Each input feature is multiplied by its
                             corresponding weight, and the results are summed to produce a weighted sum for each neuron
                             in the next layer. Mathematically, this is represented as the dot product of the input
@@ -136,6 +136,7 @@ print(test_output)
                 </li>
                 <li><strong>Loss Calculation:</strong> Compute the error by subtracting the predicted output from the
                     actual output.</li>
+                <p></p>
                 <li><strong>Gradient Calculation:</strong> Compute the gradient of the loss function. For the sigmoid
                     activation function, the gradient is:
                     \[
@@ -148,6 +149,7 @@ print(test_output)
                     \Delta w = \eta \cdot \text{input} \cdot \text{error} \cdot \sigma'(output)
                     \]
                     where \(\eta\) is the learning rate.
+                    <p></p>
                 </li>
                 <li><strong>Gradient Descent:</strong> Update the weights by subtracting the gradients multiplied by the
                     learning rate from the current weights:
@@ -198,8 +200,9 @@ print(test_output)
         </section>
         <section>
             <h2>Dot Product Calculation</h2>
-            <p>The dot product of two vectors is calculated by multiplying corresponding elements and summing the results. Here's a simple example:</p>
-            
+            <p>The dot product of two vectors is calculated by multiplying corresponding elements and summing the
+                results. Here's a simple example:</p>
+
             <p>Let's consider two vectors:</p>
             <p>
                 \[
@@ -214,14 +217,14 @@ print(test_output)
                 \end{bmatrix}
                 \]
             </p>
-            
+
             <p>The dot product of \(\mathbf{a}\) and \(\mathbf{b}\) is given by:</p>
             <p>
                 \[
                 \mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + a_3 b_3
                 \]
             </p>
-            
+
             <p>For example, if we have:</p>
             <p>
                 \[
@@ -236,7 +239,7 @@ print(test_output)
                 \end{bmatrix}
                 \]
             </p>
-            
+
             <p>Then the dot product is:</p>
             <p>
                 \[
@@ -259,14 +262,15 @@ print(test_output)
                 \end{bmatrix}
                 \]
             </p>
-            
+
             <p>The dot product of \(\mathbf{input}\) and \(\mathbf{weights}\) is given by:</p>
             <p>
                 \[
-                \mathbf{input} \cdot \mathbf{weights} = (0 \times -0.16595599) + (0 \times 0.44064899) + (1 \times -0.99977125) = 0 + 0 + -0.99977125 = -0.99977125
+                \mathbf{input} \cdot \mathbf{weights} = (0 \times -0.16595599) + (0 \times 0.44064899) + (1 \times
+                -0.99977125) = 0 + 0 + -0.99977125 = -0.99977125
                 \]
             </p>
-            
+
             <p>Let's take another input vector from the training set and the same synaptic weights:</p>
             <p>
                 \[
@@ -281,115 +285,128 @@ print(test_output)
                 \end{bmatrix}
                 \]
             </p>
-            
+
             <p>The dot product of \(\mathbf{input}\) and \(\mathbf{weights}\) is given by:</p>
             <p>
                 \[
-                \mathbf{input} \cdot \mathbf{weights} = (1 \times -0.16595599) + (1 \times 0.44064899) + (1 \times -0.99977125) = -0.16595599 + 0.44064899 + -0.99977125 = -0.72507825
+                \mathbf{input} \cdot \mathbf{weights} = (1 \times -0.16595599) + (1 \times 0.44064899) + (1 \times
+                -0.99977125) = -0.16595599 + 0.44064899 + -0.99977125 = -0.72507825
                 \]
             </p>
-            
-            <p>Thus, for each input vector in the training set, the weighted sum (dot product) can be calculated similarly.</p>
-        </section>
-            <section>       
-                <h3>Training Data</h3>
-                <p>The input data <code>training_set_inputs</code> is given by:</p>
-                <p>
-                    \[
-                    \text{training_set_inputs} = \begin{bmatrix}
-                    0 & 0 & 1 \\
-                    1 & 1 & 1 \\
-                    1 & 0 & 1 \\
-                    0 & 1 & 1 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-        
-                <p>The corresponding expected outputs <code>training_set_outputs</code> are:</p>
-                <p>
-                    \[
-                    \text{training_set_outputs} = \begin{bmatrix}
-                    0 \\
-                    1 \\
-                    1 \\
-                    0 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-        
-                <h3>Initial Weights</h3>
-                <p>The initial weights <code>synaptic_weights</code> are initialized randomly. For example, we have:</p>
-                <p>
-                    \[
-                    \text{synaptic_weights} = \begin{bmatrix}
-                    -0.16595599 \\
-                    0.44064899 \\
-                    -0.99977125 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-        
-                <h3>Weighted Sum Calculation</h3>
-                <p>The weighted sum (dot product) for each input sample is calculated as:</p>
-                <p>
-                    \[
-                    \text{weighted_sum} = \text{training_set_inputs} \cdot \text{synaptic_weights}
-                    \]
-                </p>
-        
-                <p>The weighted sum for each input sample is:</p>
-                <ul>
-                    <li>For the first input \([0, 0, 1]\):
-                        \[
-                        \text{weighted_sum}_1 = \begin{bmatrix} 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -0.99977125
-                        \]
-                    </li>
-                    <li>For the second input \([1, 1, 1]\):
-                        \[
-                        \text{weighted_sum}_2 = \begin{bmatrix} 1 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -0.72507825
-                        \]
-                    </li>
-                    <li>For the third input \([1, 0, 1]\):
-                        \[
-                        \text{weighted_sum}_3 = \begin{bmatrix} 1 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -1.16572724
-                        \]
-                    </li>
-                    <li>For the fourth input \([0, 1, 1]\):
-                        \[
-                        \text{weighted_sum}_4 = \begin{bmatrix} 0 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\ 0.44064899 \\ -0.99977125 \end{bmatrix} = -0.55912226
-                        \]
-                    </li>
-                </ul>
-        
-                <h3>Matrix Representation</h3>
-                <p>
-                    \[
-                    \begin{bmatrix}
-                    0 & 0 & 1 \\
-                    1 & 1 & 1 \\
-                    1 & 0 & 1 \\
-                    0 & 1 & 1 \\
-                    \end{bmatrix}
-                    \cdot
-                    \begin{bmatrix}
-                    -0.16595599 \\
-                    0.44064899 \\
-                    -0.99977125 \\
-                    \end{bmatrix}
-                    =
-                    \begin{bmatrix}
-                    -0.99977125 \\
-                    -0.72507825 \\
-                    -1.16572724 \\
-                    -0.55912226 \\
-                    \end{bmatrix}
-                    \]
-                </p>
-                In the code this is where we get the weighted sum iof the first pass:
-                <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
-            </section>
 
-        
+            <p>Thus, for each input vector in the training set, the weighted sum (dot product) can be calculated
+                similarly.</p>
+        </section>
+        <section>
+            <h3>Training Data</h3>
+            <p>The input data <code>training_set_inputs</code> is given by:</p>
+            <p>
+                \[
+                \text{training_set_inputs} = \begin{bmatrix}
+                0 & 0 & 1 \\
+                1 & 1 & 1 \\
+                1 & 0 & 1 \\
+                0 & 1 & 1 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <p>The corresponding expected outputs <code>training_set_outputs</code> are:</p>
+            <p>
+                \[
+                \text{training_set_outputs} = \begin{bmatrix}
+                0 \\
+                1 \\
+                1 \\
+                0 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <h3>Initial Weights</h3>
+            <p>The initial weights <code>synaptic_weights</code> are initialized randomly. For example, we have:</p>
+            <p>
+                \[
+                \text{synaptic_weights} = \begin{bmatrix}
+                -0.16595599 \\
+                0.44064899 \\
+                -0.99977125 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <h3>Weighted Sum Calculation</h3>
+            <p>The weighted sum (dot product) for each input sample is calculated as:</p>
+            <p>
+                \[
+                \text{weighted_sum} = \text{training_set_inputs} \cdot \text{synaptic_weights}
+                \]
+            </p>
+
+            <p>The weighted sum for each input sample is:</p>
+            <ul>
+                <li>For the first input \([0, 0, 1]\):
+                    \[
+                    \text{weighted_sum}_1 = \begin{bmatrix} 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -0.99977125
+                    \]
+                </li>
+                <li>For the second input \([1, 1, 1]\):
+                    \[
+                    \text{weighted_sum}_2 = \begin{bmatrix} 1 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -0.72507825
+                    \]
+                </li>
+                <li>For the third input \([1, 0, 1]\):
+                    \[
+                    \text{weighted_sum}_3 = \begin{bmatrix} 1 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -1.16572724
+                    \]
+                </li>
+                <li>For the fourth input \([0, 1, 1]\):
+                    \[
+                    \text{weighted_sum}_4 = \begin{bmatrix} 0 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -0.55912226
+                    \]
+                </li>
+            </ul>
+
+            <h3>Matrix Representation of the initial weighted sum</h3>
+            <p>
+                \[
+                \begin{bmatrix}
+                0 & 0 & 1 \\
+                1 & 1 & 1 \\
+                1 & 0 & 1 \\
+                0 & 1 & 1 \\
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
+                -0.16595599 \\
+                0.44064899 \\
+                -0.99977125 \\
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                -0.99977125 \\
+                -0.72507825 \\
+                -1.16572724 \\
+                -0.55912226 \\
+                \end{bmatrix}
+                \]
+            </p>
+            In the code this is where we get the weighted sum iof the first pass:
+            <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
+        </section>
+        <h3>Diagram of the Simple Neural Net</h3>
+        <section>
+            <!-- Images Section -->
+            <img src="./images/simple-neural-net.png" alt="Simple Neural Net" class="lecture-image">
+            <p> The input layer has 4 features, there is one hidden layer, and the output layer responds to a unique
+                result.</p>
+        </section>
+
+
     </main>
     <footer>
         <nav>
