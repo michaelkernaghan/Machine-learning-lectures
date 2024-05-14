@@ -32,6 +32,14 @@
             <h3>1. Introduction:</h3>
             <p>Neural networks are a class of machine learning models inspired by the human brain. They consist of
                 layers of interconnected nodes (neurons) that can learn to recognize patterns in data.</p>
+            </section>
+            <h3>Diagram of the Simple Neural Net</h3>
+            <section>
+                <!-- Images Section -->
+                <img src="./images/simple-neural-net.png" alt="Simple Neural Net" class="lecture-image">
+                <p> The input layer has 4 features, there is one hidden layer, and the output layer responds to a unique
+                    result.</p>
+            </section>
             <h3>2. Training a Simple Neural Network:</h3>
             <p>The following <a
                     href="https://medium.com/technology-invention-and-more/how-to-build-a-simple-neural-network-in-9-lines-of-python-code-cc8f23647ca1"
@@ -94,9 +102,27 @@ print(test_output)
 </pre>
         </section>
         <section>
+            <h2>Overview of Backpropagation</h2>
+            <p class="description">Backpropagation is a fundamental algorithm used to train various types of neural
+                networks, including those underlying large language models. It works by calculating the gradient (or
+                change needed) of the loss function of the network with respect to its weights.</p>
+            <ul>
+                <li><strong>Forward Pass:</strong> Input data is passed through the network to generate predictions.
+                </li>
+                <li><strong>Loss Calculation:</strong> A loss function computes the error between the predictions and
+                    the true values.</li>
+                <li><strong>Backward Pass:</strong> The gradient of the loss function is calculated with respect to each
+                    weight in the network by applying the chain rule, working backwards from the output layer to the
+                    input layer.</li>
+                <li><strong>Weight Update:</strong> The weights are then updated using these calculated gradients,
+                    typically with an optimizer like stochastic gradient descent.</li>
+            </ul>
+            <p class="description">This process allows the model to learn from vast amounts of data by iteratively
+                improving its predictions.</p>
+        </section>
+        <section>
             <h3>3. Mathematical Details of Backpropagation and Gradient Descent:</h3>
-            <p>The backpropagation algorithm involves calculating the gradient of the loss function with respect to each
-                weight by the chain rule, iterating backward from the output layer to the input layer.</p>
+            <p> We will first present a summary of the neural net algorithm, and then review it again in mathematical terms.</p>
             <ul>
                 <li><strong>Forward Pass:</strong> Calculate the output of the network using the current weights.
                     <p>During the forward pass, the neural network processes the input data to produce an output. This
@@ -397,14 +423,52 @@ print(test_output)
             </p>
             In the code this is where we get the weighted sum iof the first pass:
             <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
-        </section>
-        <h3>Diagram of the Simple Neural Net</h3>
-        <section>
-            <!-- Images Section -->
-            <img src="./images/simple-neural-net.png" alt="Simple Neural Net" class="lecture-image">
-            <p> The input layer has 4 features, there is one hidden layer, and the output layer responds to a unique
-                result.</p>
-        </section>
+            and here are the last two iterations:
+            <div class="iteration">
+                <h2 class="heading">Iteration 998</h2>
+                <p><strong>Output:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    0.03146414 \\
+                    0.97435121 \\
+                    0.97899611 \\
+                    0.02579398
+                    \end{bmatrix} \)
+                </p>
+                <p><strong>Synaptic Weights:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    7.26982993 \\
+                    -0.20455192 \\
+                    -3.42747099
+                    \end{bmatrix} \)
+                </p>
+            </div>
+            <div class="iteration">
+                <h2 class="heading">Iteration 999</h2>
+                <p><strong>Output:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    0.03144787 \\
+                    0.97436449 \\
+                    0.97900719 \\
+                    0.02578038
+                    \end{bmatrix} \)
+                </p>
+                <p><strong>Synaptic Weights:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    7.27090171 \\
+                    -0.20455908 \\
+                    -3.42800458
+                    \end{bmatrix} \)
+                </p>
+            </div>
+            <div class="iteration">
+                <h2 class="heading">Final Prediction</h2>
+                <p><strong>Prediction:</strong> \( 0.999305 \)</p>
+            </div>
+
 
 
     </main>
