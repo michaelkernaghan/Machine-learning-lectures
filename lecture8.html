@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Using Machine Learning to Generate Accounting Entries from Ethereum Transaction Data</title>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+            </ul>
+        </nav>
+        <h1>Using Machine Learning to Generate Accounting Entries from Ethereum Transaction Data</h1>
+    </header>
+    <main class="p-4">
+        <h3>1. Data Collection</h3>
+        <h4>Ethereum Node Setup</h4>
+        <ul>
+            <li><strong>Ethereum Nodes:</strong> Set up an Ethereum node (using Geth or Infura) to access blockchain
+                data.</li>
+            <li><strong>APIs:</strong> Use Ethereum APIs to query transaction data. Infura, Alchemy, and Etherscan offer
+                robust APIs for accessing Ethereum transaction data.</li>
+        </ul>
+        <h4>Transaction Data Extraction</h4>
+        <ul>
+            <li><strong>Web3.js:</strong> Use Web3.js (JavaScript library) to interact with Ethereum nodes. This can be
+                done with Python using Web3.py as well.</li>
+            <li><strong>Event Logs:</strong> Extract transaction data, including smart contract events, logs, and block
+                data.</li>
+        </ul>
+        <pre><code>const Web3 = require('web3');
+const web3 = new Web3('https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID');
+
+async function getTransaction(txHash) {
+  return await web3.eth.getTransaction(txHash);
+}
+        </code></pre>
+        <h3>2. Data Preprocessing</h3>
+        <h4>Data Transformation</h4>
+        <ul>
+            <li><strong>JSON Parsing:</strong> Parse the JSON response from the Ethereum node to extract relevant
+                fields.</li>
+            <li><strong>Normalization:</strong> Normalize data to a consistent format. Ensure fields like
+                <code>from</code>, <code>to</code>, <code>value</code>, <code>gas</code>, <code>gasPrice</code>, and
+                <code>timestamp</code> are included.</li>
+        </ul>
+        <h4>Storage</h4>
+        <ul>
+            <li><strong>Database:</strong> Store the parsed and normalized data in a database (e.g., PostgreSQL,
+                MongoDB) for easy retrieval and processing.</li>
+        </ul>
+        <h3>3. Feature Engineering</h3>
+        <h4>Transaction Features</h4>
+        <ul>
+            <li><strong>Categorization:</strong> Categorize transactions based on <code>to</code> addresses (e.g., known
+                exchanges, DeFi protocols, wallets).</li>
+            <li><strong>Time-Series Features:</strong> Create features like transaction frequency, average transaction
+                value, and time-of-day activity.</li>
+        </ul>
+        <h3>4. Machine Learning Model</h3>
+        <h4>Model Selection</h4>
+        <ul>
+            <li><strong>Supervised Learning:</strong> Use supervised learning models (e.g., Random Forest, Gradient
+                Boosting, Neural Networks) if labeled data is available.</li>
+            <li><strong>Unsupervised Learning:</strong> Use clustering techniques (e.g., K-Means, DBSCAN) to identify
+                patterns and categorize transactions if labels are not available.</li>
+        </ul>
+        <h4>Model Training</h4>
+        <pre><code>from sklearn.ensemble import RandomForestClassifier
+
+# Example feature vector: [transaction_value, gas_used, timestamp, ...]
+X = [...]  # Features
+y = [...]  # Labels
+
+model = RandomForestClassifier()
+model.fit(X, y)
+        </code></pre>
+        <h3>5. Generating Accounting Entries</h3>
+        <h4>Mapping Transactions to Accounting Entries</h4>
+        <ul>
+            <li><strong>Rules Engine:</strong> Implement a rules engine to map transaction types to accounting entries.
+                For example, a <code>purchase</code> transaction might be mapped to a <code>debit</code> in the asset
+                account and a <code>credit</code> in the cash account.</li>
+            <li><strong>ML Predictions:</strong> Use the trained model to predict transaction types and apply the rules
+                engine to generate corresponding accounting entries.</li>
+        </ul>
+        <pre><code>predictions = model.predict(new_transactions_features)
+
+for tx, pred in zip(new_transactions, predictions):
+    if pred == 'purchase':
+        create_accounting_entry(tx, 'debit', 'asset', tx['value'])
+        create_accounting_entry(tx, 'credit', 'cash', tx['value'])
+        </code></pre>
+        <h3>6. Integration with Financial Software</h3>
+        <h4>API Integration</h4>
+        <ul>
+            <li><strong>Financial Software API:</strong> Use APIs provided by financial software (e.g., QuickBooks,
+                Xero) to automate the creation of accounting entries.</li>
+            <li><strong>Batch Processing:</strong> Implement batch processing to handle multiple transactions and reduce
+                API call overhead.</li>
+        </ul>
+        <pre><code>import requests
+
+def create_accounting_entry(transaction, type, account, amount):
+    payload = {
+        "transaction_id": transaction['hash'],
+        "type": type,
+        "account": account,
+        "amount": amount,
+        "timestamp": transaction['timestamp']
+    }
+    response = requests.post('https://api.financialsoftware.com/entries', json=payload)
+    return response.json()
+        </code></pre>
+        <h3>7. Monitoring and Maintenance</h3>
+        <h4>Monitoring</h4>
+        <ul>
+            <li><strong>Dashboards:</strong> Create monitoring dashboards to track the performance of the machine
+                learning model and the correctness of the accounting entries.</li>
+            <li><strong>Alerts:</strong> Set up alerts for any anomalies or errors in transaction processing.</li>
+        </ul>
+        <h4>Maintenance</h4>
+        <ul>
+            <li><strong>Model Retraining:</strong> Periodically retrain the machine learning model with new data to
+                maintain accuracy.</li>
+            <li><strong>Data Pipeline:</strong> Ensure the data pipeline is robust and handles edge cases effectively.
+            </li>
+        </ul>
+        <p>By following these steps, you can effectively use machine learning to automate the process of generating
+            accounting entries from Ethereum transaction data, thus integrating blockchain transactions seamlessly into
+            financial software applications.</p>
+    </main>
+    <footer>
+        <nav>
+            <ul class="bg-gray-800 text-white p-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">End</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>
