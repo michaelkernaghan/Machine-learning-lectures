@@ -47,6 +47,8 @@ async function getTransaction(txHash) {
   return await web3.eth.getTransaction(txHash);
 }
         </code></pre>
+
+
         <h3>2. Data Preprocessing</h3>
         <h4>Data Transformation</h4>
         <ul>
@@ -54,7 +56,8 @@ async function getTransaction(txHash) {
                 fields.</li>
             <li><strong>Normalization:</strong> Normalize data to a consistent format. Ensure fields like
                 <code>from</code>, <code>to</code>, <code>value</code>, <code>gas</code>, <code>gasPrice</code>, and
-                <code>timestamp</code> are included.</li>
+                <code>timestamp</code> are included.
+            </li>
         </ul>
         <h4>Storage</h4>
         <ul>
@@ -87,6 +90,10 @@ y = [...]  # Labels
 model = RandomForestClassifier()
 model.fit(X, y)
         </code></pre>
+        <ul>
+        <li><a href="https://builtin.com/data-science/random-forest-algorithm" class="text-blue-400">Random Forest: A Complete Guide for Machine Learning</a></li>
+        <li><a href="random-forest-model.html" class="text-blue-400">Random Forest Model Training Detailed</a></li>
+    </ul>
         <h3>5. Generating Accounting Entries</h3>
         <h4>Mapping Transactions to Accounting Entries</h4>
         <ul>
