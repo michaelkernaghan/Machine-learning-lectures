@@ -107,11 +107,14 @@ print(classification_report(y_test, y_pred, zero_division=0))
 # Feature Importances
 feature_importances = full_pipeline.named_steps['classifier'].feature_importances_
 
+# Plot top 10 feature importances
+top_n = 10
+top_features = np.argsort(feature_importances)[-top_n:]
 plt.figure(figsize=(10, 6))
-plt.barh(all_columns, feature_importances)
+plt.barh(np.array(all_columns)[top_features], feature_importances[top_features])
 plt.xlabel('Feature Importance')
 plt.ylabel('Feature')
-plt.title('Feature Importances from Random Forest')
+plt.title('Top 10 Feature Importances from Random Forest')
 plt.savefig('feature_importances.png')  # Save the plot as an image
 
 # Predict on New Data
