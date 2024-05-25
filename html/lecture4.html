@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <title>Exploration 4: Bigrams in Sequence Prediction</title>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+        <h1> 4: Bigrams in Sequence Prediction</h1>
+    </header>
+    <main class="p-4">
+        <section>
+            <h2>Introduction to Bigrams</h2>
+            <p>Bigrams can be used to predict elements in a sequence, particularly in the context of language
+                processing. A <strong>bigram</strong> is a sequence of two adjacent elements from a string of tokens,
+                which can be letters, syllables, or words. Bigrams are a basic form of n-gram, where "n" refers to the
+                number of combined elements.</p>
+        </section>
+        <section>
+            <h2>Bigrams in Language Processing</h2>
+            <h3>Statistical Language Models</h3>
+            <ul>
+                <li><strong>Probability Estimation:</strong> A bigram model predicts the likelihood of a word given the
+                    previous word, estimating the probability of any given word sequence.</li>
+                <li><strong>Predictive Text:</strong> Bigram models are straightforward yet powerful tools for tasks
+                    like predictive text input.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Example Calculation</h3>
+            <p>To calculate the probability of a word following another, use the formula
+                \( P(W_n | W_{n-1}) = \frac{\text{Count}(W_{n-1}, W_n)}{\text{Count}(W_{n-1})} \),
+                where \( W_n \) is the current word and \( W_{n-1} \) is the previous word.</p>
+        </section>
+        <section>
+            <h2>Bigrams in Other Sequences</h2>
+            <ul>
+                <li><strong>Music Generation:</strong> In music, bigrams can model the probability of one note following
+                    another.</li>
+                <li><strong>Bioinformatics:</strong> In genetic sequences, bigrams could help predict the likelihood of
+                    nucleotide sequences.</li>
+                <li><strong>Behavioral Sequences:</strong> Patterns in behavior or movement could potentially be
+                    predicted with bigram analysis.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Limitations</h2>
+            <ul>
+                <li><strong>Context Ignorance:</strong> Bigrams consider only immediate predecessors, ignoring the
+                    broader context.</li>
+                <li><strong>Sparsity:</strong> Many possible bigrams may never occur in the training data, leading to
+                    zero probabilities without smoothing techniques.</li>
+                <li><strong>Simplicity:</strong> For complex patterns, higher-order n-grams or more complex models might
+                    be more effective.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Conclusion</h2>
+            <p>Bigrams are a fundamental tool in predictive modeling for sequences, particularly effective in
+                text-related tasks within natural language processing. They provide a balance between simplicity and
+                effectiveness, making them a popular choice in situations where complex dependencies are less critical,
+                or computational resources are limited. However, for tasks requiring a deeper understanding of context
+                or longer-range dependencies, more sophisticated approaches may be required.</p>
+        </section>
+        <div class="images-section">
+            <img src="../images/misc/thenextdogname.png" alt="AI imagined graph 2" class="lecture-image">
+        </div>
+        <section>
+            <h1>Dog Name Generator Using Bigrams</h1>
+            <p>This webpage explains a Python script that generates dog names based on the concept of bigrams. Bigrams
+                are pairs of consecutive characters used to predict the next character in a sequence.</p>
+            <p>The code is hosted at: </p>
+            <a href="https://github.com/michaelkernaghan/Machine-learning-lectures/blob/main/scripts/dog_name_predictor.py"
+                class="text-blue-400 hover:text-blue-700" target="_blank">dog_name_predictor.py</a>
+            <p>Try it on a website: </p>
+            <a href="https://arcane-woodland-29255-3c8c871eb38d.herokuapp.com/ "
+                class="text-blue-400 hover:text-blue-700" target="_blank">Dog Name Generator</a>
+
+            <h2>Python Script Components Explained</h2>
+            <h3>1. Importing Libraries</h3>
+            <p>The script starts by importing necessary Python libraries:</p>
+            <ul>
+                <li><code>random</code>: For random selections.</li>
+                <li><code>json</code>: To load JSON files containing dog names.</li>
+                <li><code>collections.defaultdict</code> and <code>collections.Counter</code>: For managing the bigram
+                    model easily.</li>
+            </ul>
+
+            <h3>2. Loading Dog Names</h3>
+            <p>The function <code>load_dog_names</code> reads names from a JSON file:</p>
+            <pre><code>def load_dog_names(filename):
+                with open(filename, 'r') as file:
+                    data = json.load(file)
+                return data</code></pre>
+            <p>This function opens a JSON file, loads the names into a list, and returns this list.</p>
+
+            <h3>3. Creating Bigrams</h3>
+            <p>The <code>create_bigrams</code> function generates bigrams from the list of names:</p>
+            <pre><code>def create_bigrams(names):
+                bigrams = []
+                for name in names:
+                    name = "*" + name + "#"
+                    for i in range(len(name) - 1):
+                        bigrams.append((name[i], name[i+1]))
+                return bigrams</code></pre>
+            <p>It adds a special character at the beginning and end of each name to signify boundaries, then pairs
+                adjacent characters.</p>
+
+            <h3>4. Building the Bigram Model</h3>
+            <p>The <code>build_bigram_model</code> constructs a probabilistic model from bigrams:</p>
+            <pre><code>def build_bigram_model(bigrams):
+                model = defaultdict(Counter)
+                for bigram in bigrams:
+                    model[bigram[0]][bigram[1]] += 1
+                return model</code></pre>
+            <p>This model uses the frequency of each bigram to predict the likelihood of the next character.</p>
+
+            <h3>5. Generating a Dog Name</h3>
+            <p>The <code>generate_name</code> function creates a new dog name using the bigram model:</p>
+            <pre><code>def generate_name(model, max_length=12):
+                name = '*'
+                while True:
+                    next_char = random.choices(list(model[name[-1]].keys()), weights=model[name[-1]].values())[0]
+                    if next_char == '#' or len(name) - 1 == max_length:
+                        break
+                    name += next_char
+                return name[1:]</code></pre>
+            <p>It begins with a starting character and iteratively selects the next character based on the model until
+                it reaches a stopping condition.</p>
+        </section>
+    </main>
+
+    <footer>
+        <nav>
+            <ul class="bg-gray-800 text-white p-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Introduction to Vectors and Matrices</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+        <h1>6: Introduction to Text Embeddings in Vector Spaces</h1>
+    </header>
+
+    <main class="p-4">
+        <section>
+            <h2>Comparison: Neural Network Weights and Word2Vec</h2>
+
+            <h3>Neural Network Weights as Vectors</h3>
+            <p>In neural networks, the weights can be interpreted as vectors in a high-dimensional feature space. Here’s
+                how:</p>
+            <h4>Weights in a Neural Network</h4>
+            <ul>
+                <li>In a neural network, each connection between neurons has an associated weight.</li>
+                <li>For a layer with \(n\) input neurons and \(m\) output neurons, the weights can be represented as a
+                    matrix of size \(n \times m\).</li>
+            </ul>
+
+            <h4>High-Dimensional Feature Space</h4>
+            <ul>
+                <li>Each set of weights connecting the input layer to a neuron in the hidden layer can be thought of as
+                    a vector in an \(n\)-dimensional space (where \(n\) is the number of input features).</li>
+                <li>For example, if there are three input features, the weights for a single neuron might be represented
+                    as a vector \(\mathbf{w} = [w_1, w_2, w_3]\).</li>
+            </ul>
+
+            <h4>Vectors in Feature Space</h4>
+            <ul>
+                <li>These weight vectors represent directions and magnitudes in the feature space.</li>
+                <li>The feature space itself is high-dimensional, with each dimension corresponding to one of the input
+                    features.</li>
+            </ul>
+
+            <h4>Interpretation</h4>
+            <ul>
+                <li><strong>Direction of the Weight Vector:</strong> The direction of a weight vector indicates the
+                    importance of each feature in determining the output. Features with larger weights in a particular
+                    direction have a greater influence on the neuron's activation.</li>
+                <li><strong>Magnitude of the Weight Vector:</strong> The magnitude (length) of the weight vector can be
+                    interpreted as the strength of the neuron's response to input patterns. Larger magnitudes indicate
+                    stronger responses, as the inputs will be scaled more significantly.</li>
+            </ul>
+
+            <h4>Example</h4>
+            <p>Consider a simple neural network with 3 input features and 2 output neurons. The weight matrix might look
+                like this:</p>
+            <p>
+                \[
+                \mathbf{W} = \begin{bmatrix}
+                w_{11} & w_{12} \\
+                w_{21} & w_{22} \\
+                w_{31} & w_{32}
+                \end{bmatrix}
+                \]
+            </p>
+            <ul>
+                <li>Here, \(\mathbf{W}\) is a \(3 \times 2\) matrix, where each column represents the weight vector for
+                    one of the output neurons.</li>
+                <li>The first output neuron has the weight vector \(\mathbf{w}_1 = [w_{11}, w_{21}, w_{31}]\).</li>
+                <li>The second output neuron has the weight vector \(\mathbf{w}_2 = [w_{12}, w_{22}, w_{32}]\).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Word2Vec</h2>
+            <p>Word2Vec is a specific type of neural network model designed to learn word embeddings, which are vector
+                representations of words in a continuous vector space.</p>
+            <h4>Concept</h4>
+            <ul>
+                <li>Each word is mapped to a vector in such a way that words with similar meanings are located close to
+                    each other in this vector space.</li>
+            </ul>
+
+            <h4>Function</h4>
+            <ul>
+                <li>The primary function of Word2Vec is to convert words into vectors of real numbers. This is achieved
+                    by training the model on a large corpus of text to predict word contexts.</li>
+                <li>Word2Vec uses two main architectures: Continuous Bag of Words (CBOW) and Skip-gram. CBOW predicts a
+                    target word from its context, while Skip-gram predicts the context from a target word.</li>
+            </ul>
+
+            <h4>Context</h4>
+            <ul>
+                <li>Used specifically in natural language processing (NLP) tasks to provide meaningful numerical
+                    representations of words.</li>
+                <li>These embeddings can be used for various downstream NLP tasks like sentiment analysis, machine
+                    translation, named entity recognition, etc.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Similarities and Differences</h2>
+            <h4>Similarities</h4>
+            <ul>
+                <li>Both concepts involve representing entities as vectors in a high-dimensional space.</li>
+                <li>These vectors can capture relationships and similarities between the entities they represent (e.g.,
+                    features in neural networks, words in Word2Vec).</li>
+                <li>Both use optimization techniques to learn the vectors. In neural networks, weights are learned via
+                    backpropagation. In Word2Vec, word vectors are learned by maximizing the likelihood of context words
+                    given a target word or vice versa.</li>
+            </ul>
+
+            <h4>Differences</h4>
+            <ul>
+                <li><strong>Purpose:</strong> Weight vectors in neural networks are used to transform input data through
+                    the network to make predictions. Word2Vec vectors (word embeddings) are used to represent words in a
+                    way that captures semantic meaning and relationships between words.</li>
+                <li><strong>Context and Application:</strong> Weight vectors are a general concept used in all types of
+                    neural networks across various domains. Word2Vec is specifically designed for NLP to create word
+                    embeddings.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Do LLMs Use Word2Vec?</h2>
+            <p>Large Language Models (LLMs) do not use Word2Vec directly, but they build on similar foundational
+                concepts and have advanced beyond the capabilities of Word2Vec. Here’s a detailed explanation:</p>
+
+            <h3>Word2Vec</h3>
+            <ul>
+                <li><strong>Concept:</strong> Word2Vec is a shallow, two-layer neural network that produces word
+                    embeddings. It represents words in a continuous vector space where semantically similar words are
+                    close to each other.</li>
+                <li><strong>Training:</strong> It uses two main architectures: Continuous Bag of Words (CBOW) and
+                    Skip-gram.
+                    <ul>
+                        <li><strong>CBOW:</strong> Predicts the current word from a window of surrounding context words.
+                        </li>
+                        <li><strong>Skip-gram:</strong> Predicts surrounding context words given the current word.</li>
+                    </ul>
+                </li>
+                <li><strong>Output:</strong> Produces a fixed-size vector for each word, capturing semantic
+                    relationships.</li>
+            </ul>
+
+            <h3>Large Language Models (LLMs)</h3>
+            <ul>
+                <li><strong>Concept:</strong> LLMs like GPT-3, BERT, and T5 are deep neural networks, often based on the
+                    Transformer architecture. They are designed to understand and generate human language with a high
+                    degree of sophistication.</li>
+                <li><strong>Training:</strong> LLMs are trained on vast corpora of text data using self-supervised
+                    learning techniques. They learn to predict words or tokens based on context, similar to the
+                    principles behind Word2Vec, but on a much larger and more complex scale.
+                    <ul>
+                        <li><strong>Transformer Architecture:</strong> LLMs use this architecture to handle the
+                            complexity of language understanding and generation. It allows them to process and generate
+                            text efficiently by attending to different parts of the input sequence.</li>
+                    </ul>
+                </li>
+                <li><strong>Output:</strong> Produces context-dependent embeddings for words, sentences, or even longer
+                    text segments, allowing for more nuanced understanding and generation of language.</li>
+            </ul>
+
+            <h3>Key Differences</h3>
+            <ul>
+                <li><strong>Model Complexity:</strong>
+                    <ul>
+                        <li><strong>Word2Vec:</strong> Simple neural network with a single hidden layer.</li>
+                        <li><strong>LLMs:</strong> Deep neural networks with multiple layers and attention mechanisms
+                            (Transformers).</li>
+                    </ul>
+                </li>
+                <li><strong>Contextual Understanding:</strong>
+                    <ul>
+                        <li><strong>Word2Vec:</strong> Produces static embeddings that do not change with context.</li>
+                        <li><strong>LLMs:</strong> Produce dynamic embeddings that vary based on the context in which
+                            words appear.</li>
+                    </ul>
+                </li>
+                <li><strong>Training Data:</strong>
+                    <ul>
+                        <li><strong>Word2Vec:</strong> Typically trained on smaller datasets relative to LLMs.</li>
+                        <li><strong>LLMs:</strong> Trained on massive datasets, sometimes encompassing the entire
+                            internet or large curated corpora.</li>
+                    </ul>
+                </li>
+                <li><strong>Capabilities:</strong>
+                    <ul>
+                        <li><strong>Word2Vec:</strong> Useful for capturing basic semantic relationships between words.
+                        </li>
+                        <li><strong>LLMs:</strong> Capable of complex language tasks such as translation, summarization,
+                            question answering, and more.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Conclusion</h3>
+            <p>LLMs do not use Word2Vec directly, but they build upon the foundational idea of word embeddings
+                introduced by Word2Vec. Instead of static embeddings, LLMs use dynamic, context-dependent embeddings
+                generated by deep learning models, particularly Transformers. This allows LLMs to achieve a much higher
+                level of language understanding and generation.</p>
+        </section>
+    </main>
+
+    <footer>
+        <nav>
+            <ul class="bg-gray-800 text-white p-4 flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

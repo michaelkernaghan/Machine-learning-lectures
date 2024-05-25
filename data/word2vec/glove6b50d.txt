@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>glove.6B.50d.txt | Kaggle</title>
+  <meta charset="utf-8" />
+    <meta name="robots" content="index, follow" />
+  <meta name="description" content="Kaggle is the world&#x2019;s largest data science community with powerful tools and resources to help you achieve your data science goals." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta name="theme-color" content="#008ABC" />
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" type="text/javascript">
+    window["pageRequestStartTime"] = 1716606186204;
+    window["pageRequestEndTime"] = 1716606186286;
+    window["initialPageLoadStartTime"] = new Date().getTime();
+  </script>
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" id="gsi-client" src="https://accounts.google.com/gsi/client" async defer></script>
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==">window.KAGGLE_JUPYTERLAB_PATH = "/static/assets/jupyterlab/jupyterlab-index-d32950cd4d890b8757ac.html";</script>
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin="anonymous" /><link rel="preconnect" href="https://stats.g.doubleclick.net" /><link rel="preconnect" href="https://storage.googleapis.com" /><link rel="preconnect" href="https://apis.google.com" />
+  <link href="/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <link rel="manifest" href="/static/json/manifest.json" crossorigin="use-credentials">
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i&display=swap"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Symbols:FILL@0..1&display=block"
+    rel="preload" as="style" />
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,400i,500,500i,600,600i,700,700i&display=swap"
+    rel="stylesheet" media="print" id="async-google-font-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Google+Symbols:FILL@0..1&display=block"
+    rel="stylesheet" media="print" id="async-google-font-2" />
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" type="text/javascript">
+    const styleSheetIds = ["async-google-font-1", "async-google-font-2"];
+    styleSheetIds.forEach(function (id) {
+      document.getElementById(id).addEventListener("load", function() {
+        this.media = "all";
+      });
+    });
+  </script>
+
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" src="https://www.google.com/recaptcha/enterprise.js?render=6LcW02cpAAAAAJlaJemsQQEwAiTEYB4aR6FYE_rD&waf=session" async defer></script>
+   <style>.grecaptcha-badge { visibility: hidden; }</style>
+
+    <link rel="canonical" href="https://www.kaggle.com/datasets/watts2/glove6b50dtxt" />
+    <link rel="stylesheet" type="text/css" href="/static/assets/vendor.css?v=dne" />
+    <link rel="stylesheet" type="text/css" href="/static/assets/app.css?v=62d595175a876550f3e6" />
+
+  
+    
+ 
+      <script nonce="kxdJ7md7eTQjCF6I5cCA5A==">
+        try{(function(a,s,y,n,c,h,i,d,e){d=s.createElement("style");
+        d.appendChild(s.createTextNode(""));s.head.appendChild(d);d=d.sheet;
+        y=y.map(x => d.insertRule(x + "{ opacity: 0 !important }"));
+        h.start=1*new Date;h.end=i=function(){y.forEach(x => x<d.cssRules.length ? d.deleteRule(x) : {})};
+        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
+        })(window,document,['.site-header-react__nav'],'dataLayer',2000,{'GTM-52LNT9S':true});}catch(ex){}
+    </script>
+    <script nonce="kxdJ7md7eTQjCF6I5cCA5A==">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-T7QHS60L4Q', {
+            'optimize_id': 'GTM-52LNT9S',
+            'displayFeaturesTask': null,
+            'send_page_view': false,
+            'content_group1': 'Datasets'
+        });
+    </script>
+    <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" async src="https://www.googletagmanager.com/gtag/js?id=G-T7QHS60L4Q"></script>
+
+  
+    
+    <meta property="og:url" content="https://www.kaggle.com/datasets/watts2/glove6b50dtxt" />
+    <meta property="og:title" content="glove.6B.50d.txt" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-28.png-601447/dataset-card.png" />
+    <meta property="fb:app_id" content="2665027677054710" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kaggledatasets" />
+
+
+  <meta name="twitter:site" content="@Kaggle" /> 
+  
+    
+            <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" type="application/ld+json">{"@context":"http://schema.org/","@type":"Dataset","name":"glove.6B.50d.txt","description":"# Dataset\nThis dataset was created by Ashish Lal\n\nReleased under CC0: Public Domain\n\n# Contents\n","url":"https://www.kaggle.com/watts2/glove6b50dtxt","version":1,"keywords":[],"license":{"@type":"CreativeWork","name":"CC0: Public Domain","url":"https://creativecommons.org/publicdomain/zero/1.0/"},"identifier":["8542"],"includedInDataCatalog":{"@type":"DataCatalog","name":"Kaggle","url":"https://www.kaggle.com"},"creator":{"@type":"Person","name":"Ashish Lal","url":"https://www.kaggle.com/watts2","image":"https://storage.googleapis.com/kaggle-avatars/thumbnails/601447-kg.jpeg"},"distribution":[{"@type":"DataDownload","requiresSubscription":true,"encodingFormat":"zip","fileFormat":"zip","contentUrl":"https://www.kaggle.com/datasets/watts2/glove6b50dtxt/download?datasetVersionNumber=1","contentSize":"70948798 bytes"}],"commentCount":1,"dateModified":"2018-01-03T20:04:12.25Z","discussionUrl":"https://www.kaggle.com/watts2/glove6b50dtxt/discussion","alternateName":"","isAccessibleForFree":true,"thumbnailUrl":"https://storage.googleapis.com/kaggle-datasets-images/new-version-temp-images/default-backgrounds-28.png-601447/dataset-card.png","interactionStatistic":[{"@type":"InteractionCounter","interactionType":"http://schema.org/CommentAction","userInteractionCount":1},{"@type":"InteractionCounter","interactionType":"http://schema.org/DownloadAction","userInteractionCount":25626},{"@type":"InteractionCounter","interactionType":"http://schema.org/ViewAction","userInteractionCount":84138},{"@type":"InteractionCounter","interactionType":"http://schema.org/LikeAction","userInteractionCount":121}]}</script>
+        
+
+  
+    
+
+  
+    
+
+
+    <script nonce="kxdJ7md7eTQjCF6I5cCA5A==">window['useKaggleAnalytics'] = true;</script>
+
+  <script id="gapi-target" nonce="kxdJ7md7eTQjCF6I5cCA5A==" src="https://apis.google.com/js/api.js" defer
+    async></script>
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" src="/static/assets/runtime.js?v=64742785203dcebf2689"></script>
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" src="/static/assets/vendor.js?v=b8b8264f6e81e19fa5f4"></script>
+  <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" src="/static/assets/app.js?v=df20c80090fe55dc6bde"></script>
+    <script nonce="kxdJ7md7eTQjCF6I5cCA5A==" type="text/javascript">
+      window.kaggleStackdriverConfig = {
+        key: 'AIzaSyA4eNqUdRRskJsCZWVz-qL655Xa5JEMreE',
+        projectId: 'kaggle-161607',
+        service: 'web-fe',
+        version: 'ci',
+        userId: '0'
+      }
+    </script>
+</head>
+<body>
+
+  <main>
+    
+
+
+
+
+
+<div id="site-container"></div>
+
+<div id="site-body" class="hide">
+    
+
+
+<script nonce="kxdJ7md7eTQjCF6I5cCA5A==" type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+    preferredFont: "TeX",
+    availableFonts: ["STIX", "TeX"],
+    linebreaks: {
+    automatic: true
+    },
+    EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+    inlineMath: [["\\(", "\\)"], ["\\\\(", "\\\\)"]],
+    displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+    processEscapes: true,
+    ignoreClass: "tex2jax_ignore|dno"
+    },
+    TeX: {
+    noUndefined: {
+    attributes: {
+    mathcolor: "red",
+    mathbackground: "#FFEEEE",
+    mathsize: "90%"
+    }
+    }
+    },
+    Macros: {
+    href: "{}"
+    },
+    skipStartupTypeset: true,
+    messageStyle: "none",
+    extensions: ["Safe.js"],
+    });
+</script>
+<script type="text/javascript" nonce="kxdJ7md7eTQjCF6I5cCA5A==">
+  window.addEventListener("DOMContentLoaded", () => {
+    const head = document.getElementsByTagName("head")[0];
+    const lib = document.createElement("script");
+    lib.type = "text/javascript";
+    // Always use the production asset in local dev, which is served from GCS. We tried to proxy and / or serve this
+    // in a better way in localhost, but it didn't work out. See b/328073416#comment8 for details.
+    const forceProdHost = window.location.hostname === "localhost";
+    lib.src = `${forceProdHost ? "https://www.kaggle.com" : ""}/static/mathjax/2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML`;
+    head.appendChild(lib);
+  });
+</script>
+
+
+
+
+
+
+</div>
+
+
+
+
+  </main>
+</body>
+
+</html>
