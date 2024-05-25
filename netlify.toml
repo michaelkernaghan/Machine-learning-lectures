@@ -1,10 +1,9 @@
 [build]
   base = ""
   publish = "html"
-  command = "npm run build" # Only if you have a build step, otherwise omit this line
 
 [build.environment]
-  NODE_VERSION = "14"  # Or the specific version you're using
+  NODE_VERSION = "18"  # Or the specific version you're using
 
 [functions]
   directory = "netlify/functions"
