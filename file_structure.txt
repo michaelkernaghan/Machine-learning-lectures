@@ -4,17 +4,21 @@
 │   ├── slide-syles.css
 │   └── styles.css
 ├── data
-│   └── transactions
-│       ├── anomalous_transactions.csv
-│       ├── anomalous_transactions_detailed.csv
-│       ├── ethereum_transactions.csv
-│       ├── google-ethereum-transactions.csv
-│       ├── labeled_google-ethereum-transactions.csv
-│       ├── normal_transactions_detailed.csv
-│       └── updated_ethereum_transactions.csv
+│   ├── transactions
+│   │   ├── anomalous_transactions.csv
+│   │   ├── anomalous_transactions_detailed.csv
+│   │   ├── ethereum_transactions.csv
+│   │   ├── google-ethereum-transactions.csv
+│   │   ├── labeled_google-ethereum-transactions.csv
+│   │   ├── normal_transactions_detailed.csv
+│   │   └── updated_ethereum_transactions.csv
+│   └── word2vec
+│       └── glove6b50d.txt
 ├── docs
 │   ├── CONTRIBUTING.md
 │   ├── INSTALL.md
+│   ├── PDFs
+│   │   └── survey.pdf
 │   └── README.md
 ├── file_structure.txt
 ├── html
@@ -31,7 +35,8 @@
 │   ├── markmap.html
 │   ├── perceptron.html
 │   ├── random-forest-model.html
-│   └── schedule.html
+│   ├── schedule.html
+│   └── syllabus.html
 ├── images
 │   ├── graphs
 │   │   ├── confusion_matrix.png
@@ -99,8 +104,14 @@
 │   │   ├── plot_output.png
 │   │   └── README.md
 │   ├── data-processing
+│   │   ├── confusion_matrix.png
+│   │   ├── count_of_credits_and_debits.png
+│   │   ├── distribution_of_transaction_values.png
 │   │   ├── eda.py
+│   │   ├── feature_importances.png
+│   │   ├── gas_vs_transaction_value.png
 │   │   ├── google-ethereum-transactions.py
+│   │   ├── labeled_google-ethereum-transactions.csv
 │   │   ├── rules-engine.py
 │   │   └── tranformers.py
 │   ├── model-training
@@ -120,4 +131,4 @@
 │   └── README.md
 └── thimble-ai.py
 
-17 directories, 103 files
+19 directories, 112 files
