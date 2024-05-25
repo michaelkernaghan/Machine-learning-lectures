@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Exploration 5: How Neural Networks Work</title>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+        <h1>5: How Neural Networks Work</h1>
+    </header>
+    <main class="p-4">
+        <section>
+            <h2>Understanding Neural Networks</h2>
+            <h3>1. Introduction:</h3>
+            <p>Neural networks are a class of machine learning models inspired by the human brain. They consist of
+                layers of interconnected nodes (neurons) that can learn to recognize patterns in data.</p>
+            </section>
+            <h3>Diagram of the Simple Neural Net</h3>
+            <section>
+                <!-- Images Section -->
+                <img src="../images/models/simple-neural-net.png" alt="Simple Neural Net" class="lecture-image">
+                <p> The input layer has 4 features, there is one hidden layer, and the output layer responds to a unique
+                    result.</p>
+            </section>
+            <h3>2. Training a Simple Neural Network:</h3>
+            <p>The following <a
+                    href="https://medium.com/technology-invention-and-more/how-to-build-a-simple-neural-network-in-9-lines-of-python-code-cc8f23647ca1"
+                    class="text-blue-400">python code</a>
+                demonstrates how to train a simple neural network using a sigmoid activation function and
+                backpropagation.</p>
+            <pre>
+<code>
+from numpy import exp, array, random, dot
+
+# Setting up the training data
+# Here we have 4 training samples, each with 3 input features.
+# These inputs can be thought of as features in a simple binary classification problem.
+training_set_inputs = array([[0, 0, 1], [1, 1, 1], [1, 0, 1], [0, 1, 1]])
+
+# The expected outputs corresponding to the inputs above.
+# It's a column vector (due to the .T transpose operation), suitable for matrix multiplication with input features.
+training_set_outputs = array([[0, 1, 1, 0]]).T
+
+# Seed the random number generator to make the results reproducible.
+# The seed ensures that the random numbers generated are the same every time the program is run.
+random.seed(1)
+
+# Initialize synaptic weights with random values.
+# Weights are initialized randomly but are scaled to range between -1 and 1.
+# There are 3 weights for 3 input features, shaped as a 3x1 matrix.
+synaptic_weights = 2 * random.random((3, 1)) - 1
+
+# Train the neural network using a sigmoid activation function
+# Loop over 10,000 iterations to perform the gradient descent optimization.
+for iteration in range(10000):
+    # Forward pass: Calculate the output of the neural network using the sigmoid activation function.
+    # `dot` is used for matrix multiplication between inputs and weights.
+    # The sigmoid function transforms the dot product into a probability-like output between 0 and 1.
+    output = 1 / (1 + exp(-(dot(training_set_inputs, synaptic_weights))))
+    
+    # Backpropagation step:
+    # 1. Calculate the error by subtracting the output from the expected output.
+    error = training_set_outputs - output
+    
+    # 2. Calculate the gradient of the sigmoid function.
+    # The gradient is the derivative of the sigmoid function.
+    sigmoid_derivative = output * (1 - output)
+    
+    # 3. Adjust synaptic weights based on the error and the gradient.
+    # The adjustment is the dot product of the input features and the product of the error and the sigmoid derivative.
+    adjustment = dot(training_set_inputs.T, error * sigmoid_derivative)
+    
+    # Update the synaptic weights by adding the adjustment to the current weights.
+    synaptic_weights += adjustment
+
+# Testing the neural network with a new input after training
+# This tests how the trained model predicts a new input.
+# The input [1, 0, 0] is fed into the neural network, and the output is calculated.
+test_output = 1 / (1 + exp(-(dot(array([1, 0, 0]), synaptic_weights))))
+
+# Print the output of the neural network for the new input.
+print(test_output)
+</code>
+</pre>
+        </section>
+        <section>
+            <h2>Overview of Backpropagation</h2>
+            <p class="description">Backpropagation is a fundamental algorithm used to train various types of neural
+                networks, including those underlying large language models. It works by calculating the gradient (or
+                change needed) of the loss function of the network with respect to its weights.</p>
+            <ul>
+                <li><strong>Forward Pass:</strong> Input data is passed through the network to generate predictions.
+                </li>
+                <li><strong>Loss Calculation:</strong> A loss function computes the error between the predictions and
+                    the true values.</li>
+                <li><strong>Backward Pass:</strong> The gradient of the loss function is calculated with respect to each
+                    weight in the network by applying the chain rule, working backwards from the output layer to the
+                    input layer.</li>
+                <li><strong>Weight Update:</strong> The weights are then updated using these calculated gradients,
+                    typically with an optimizer like stochastic gradient descent.</li>
+            </ul>
+            <p class="description">This process allows the model to learn from vast amounts of data by iteratively
+                improving its predictions.</p>
+        </section>
+        <section>
+            <h3>3. Mathematical Details of Backpropagation and Gradient Descent:</h3>
+            <p> We will first present a summary of the neural net algorithm, and then review it again in mathematical terms.</p>
+            <ul>
+                <li><strong>Forward Pass:</strong> Calculate the output of the network using the current weights.
+                    <p>During the forward pass, the neural network processes the input data to produce an output. This
+                        involves several steps:</p>
+                    <ol>
+                        <li><strong>Input Layer:</strong> The input data is fed into the network. In the provided code
+                            example, the input data is a matrix where each row represents a different training sample,
+                            and each column represents a different input feature.</li>
+                        <p></p>
+                        <li><strong>Weighted Sum (Dot Product):</strong> Each input feature is multiplied by its
+                            corresponding weight, and the results are summed to produce a weighted sum for each neuron
+                            in the next layer. Mathematically, this is represented as the dot product of the input
+                            matrix and the weight matrix.
+                            <p>
+                                \[
+                                \text{weighted_sum} = \text{input} \cdot \text{weights}
+                                \]
+                            </p>
+                            In the code:
+                            <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
+                        </li>
+                        <li><strong>Activation Function:</strong> The weighted sum is passed through an activation
+                            function to introduce non-linearity into the model. In this case, the sigmoid activation
+                            function is used, which maps the weighted sum to a value between 0 and 1.
+                            <p>The sigmoid function \(\sigma(x)\) is defined as:</p>
+                            \[
+                            \sigma(x) = \frac{1}{1 + e^{-x}}
+                            \]
+                            <p>Applying the sigmoid function to the weighted sum:</p>
+                            \[
+                            \text{output} = \sigma(\text{weighted_sum}) = \frac{1}{1 + e^{-\text{weighted_sum}}}
+                            \]
+                            In the code:
+                            <pre><code>output = 1 / (1 + exp(-output))</code></pre>
+                        </li>
+                    </ol>
+                </li>
+                <li><strong>Loss Calculation:</strong> Compute the error by subtracting the predicted output from the
+                    actual output.</li>
+                <p></p>
+                <li><strong>Gradient Calculation:</strong> Compute the gradient of the loss function. For the sigmoid
+                    activation function, the gradient is:
+                    \[
+                    \sigma'(x) = \sigma(x) \cdot (1 - \sigma(x))
+                    \]
+                </li>
+                <li><strong>Weight Adjustment:</strong> Adjust the weights in the direction that minimizes the error.
+                    The adjustment for each weight is:
+                    \[
+                    \Delta w = \eta \cdot \text{input} \cdot \text{error} \cdot \sigma'(output)
+                    \]
+                    where \(\eta\) is the learning rate.
+                    <p></p>
+                </li>
+                <li><strong>Gradient Descent:</strong> Update the weights by subtracting the gradients multiplied by the
+                    learning rate from the current weights:
+                    \[
+                    w := w - \eta \cdot \Delta w
+                    \]
+                </li>
+            </ul>
+        </section>
+        <section>
+            <p>Backpropagation and gradient descent are foundational algorithms in training neural networks, allowing
+                them to learn complex patterns and make accurate predictions. By iteratively adjusting weights to
+                minimize error, these algorithms enable neural networks to improve their performance over time.</p>
+        </section>
+        <section>
+            <h3>4. Matrix Representation:</h3>
+            <p>The following diagram illustrates the input matrix, weight matrix, and the resulting output matrix in a
+                simple neural network:</p>
+            <p>
+                \[
+                \begin{bmatrix}
+                x_{11} & x_{12} & x_{13} \\
+                x_{21} & x_{22} & x_{23} \\
+                x_{31} & x_{32} & x_{33} \\
+                x_{41} & x_{42} & x_{43}
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
+                w_{1} \\
+                w_{2} \\
+                w_{3}
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                y_{1} \\
+                y_{2} \\
+                y_{3} \\
+                y_{4}
+                \end{bmatrix}
+                \]
+            </p>
+            <p>Where:</p>
+            <ul>
+                <li>\( x_{ij} \) represents the input feature \( j \) for training sample \( i \).</li>
+                <li>\( w_{j} \) represents the weight associated with input feature \( j \).</li>
+                <li>\( y_{i} \) represents the output for training sample \( i \).</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Dot Product Calculation</h2>
+            <p>The dot product of two vectors is calculated by multiplying corresponding elements and summing the
+                results. Here's a simple example:</p>
+
+            <p>Let's consider two vectors:</p>
+            <p>
+                \[
+                \mathbf{a} = \begin{bmatrix}
+                a_1 \\
+                a_2 \\
+                a_3 \\
+                \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
+                b_1 \\
+                b_2 \\
+                b_3 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <p>The dot product of \(\mathbf{a}\) and \(\mathbf{b}\) is given by:</p>
+            <p>
+                \[
+                \mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + a_3 b_3
+                \]
+            </p>
+
+            <p>For example, if we have:</p>
+            <p>
+                \[
+                \mathbf{a} = \begin{bmatrix}
+                1 \\
+                2 \\
+                3 \\
+                \end{bmatrix}, \quad \mathbf{b} = \begin{bmatrix}
+                4 \\
+                5 \\
+                6 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <p>Then the dot product is:</p>
+            <p>
+                \[
+                \mathbf{a} \cdot \mathbf{b} = (1 \times 4) + (2 \times 5) + (3 \times 6) = 4 + 10 + 18 = 32
+                \]
+            </p>
+        </section>
+        <section>
+            <p>Let's consider an input vector from the training set and the synaptic weights:</p>
+            <p>
+                \[
+                \mathbf{input} = \begin{bmatrix}
+                0 \\
+                0 \\
+                1 \\
+                \end{bmatrix}, \quad \mathbf{weights} = \begin{bmatrix}
+                -0.16595599 \\
+                0.44064899 \\
+                -0.99977125 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <p>The dot product of \(\mathbf{input}\) and \(\mathbf{weights}\) is given by:</p>
+            <p>
+                \[
+                \mathbf{input} \cdot \mathbf{weights} = (0 \times -0.16595599) + (0 \times 0.44064899) + (1 \times
+                -0.99977125) = 0 + 0 + -0.99977125 = -0.99977125
+                \]
+            </p>
+
+            <p>Let's take another input vector from the training set and the same synaptic weights:</p>
+            <p>
+                \[
+                \mathbf{input} = \begin{bmatrix}
+                1 \\
+                1 \\
+                1 \\
+                \end{bmatrix}, \quad \mathbf{weights} = \begin{bmatrix}
+                -0.16595599 \\
+                0.44064899 \\
+                -0.99977125 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <p>The dot product of \(\mathbf{input}\) and \(\mathbf{weights}\) is given by:</p>
+            <p>
+                \[
+                \mathbf{input} \cdot \mathbf{weights} = (1 \times -0.16595599) + (1 \times 0.44064899) + (1 \times
+                -0.99977125) = -0.16595599 + 0.44064899 + -0.99977125 = -0.72507825
+                \]
+            </p>
+
+            <p>Thus, for each input vector in the training set, the weighted sum (dot product) can be calculated
+                similarly.</p>
+        </section>
+        <section>
+            <h3>Training Data</h3>
+            <p>The input data <code>training_set_inputs</code> is given by:</p>
+            <p>
+                \[
+                \text{training_set_inputs} = \begin{bmatrix}
+                0 & 0 & 1 \\
+                1 & 1 & 1 \\
+                1 & 0 & 1 \\
+                0 & 1 & 1 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <p>The corresponding expected outputs <code>training_set_outputs</code> are:</p>
+            <p>
+                \[
+                \text{training_set_outputs} = \begin{bmatrix}
+                0 \\
+                1 \\
+                1 \\
+                0 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <h3>Initial Weights</h3>
+            <p>The initial weights <code>synaptic_weights</code> are initialized randomly. For example, we have:</p>
+            <p>
+                \[
+                \text{synaptic_weights} = \begin{bmatrix}
+                -0.16595599 \\
+                0.44064899 \\
+                -0.99977125 \\
+                \end{bmatrix}
+                \]
+            </p>
+
+            <h3>Weighted Sum Calculation</h3>
+            <p>The weighted sum (dot product) for each input sample is calculated as:</p>
+            <p>
+                \[
+                \text{weighted_sum} = \text{training_set_inputs} \cdot \text{synaptic_weights}
+                \]
+            </p>
+
+            <p>The weighted sum for each input sample is:</p>
+            <ul>
+                <li>For the first input \([0, 0, 1]\):
+                    \[
+                    \text{weighted_sum}_1 = \begin{bmatrix} 0 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -0.99977125
+                    \]
+                </li>
+                <li>For the second input \([1, 1, 1]\):
+                    \[
+                    \text{weighted_sum}_2 = \begin{bmatrix} 1 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -0.72507825
+                    \]
+                </li>
+                <li>For the third input \([1, 0, 1]\):
+                    \[
+                    \text{weighted_sum}_3 = \begin{bmatrix} 1 & 0 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -1.16572724
+                    \]
+                </li>
+                <li>For the fourth input \([0, 1, 1]\):
+                    \[
+                    \text{weighted_sum}_4 = \begin{bmatrix} 0 & 1 & 1 \end{bmatrix} \cdot \begin{bmatrix} -0.16595599 \\
+                    0.44064899 \\ -0.99977125 \end{bmatrix} = -0.55912226
+                    \]
+                </li>
+            </ul>
+
+            <h3>Matrix Representation of the initial weighted sum</h3>
+            <p>
+                \[
+                \begin{bmatrix}
+                0 & 0 & 1 \\
+                1 & 1 & 1 \\
+                1 & 0 & 1 \\
+                0 & 1 & 1 \\
+                \end{bmatrix}
+                \cdot
+                \begin{bmatrix}
+                -0.16595599 \\
+                0.44064899 \\
+                -0.99977125 \\
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                -0.99977125 \\
+                -0.72507825 \\
+                -1.16572724 \\
+                -0.55912226 \\
+                \end{bmatrix}
+                \]
+            </p>
+            In the code this is where we get the weighted sum iof the first pass:
+            <pre><code>output = dot(training_set_inputs, synaptic_weights)</code></pre>
+            and here are the last two iterations:
+            <div class="iteration">
+                <h2 class="heading">Iteration 998</h2>
+                <p><strong>Output:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    0.03146414 \\
+                    0.97435121 \\
+                    0.97899611 \\
+                    0.02579398
+                    \end{bmatrix} \)
+                </p>
+                <p><strong>Synaptic Weights:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    7.26982993 \\
+                    -0.20455192 \\
+                    -3.42747099
+                    \end{bmatrix} \)
+                </p>
+            </div>
+            <div class="iteration">
+                <h2 class="heading">Iteration 999</h2>
+                <p><strong>Output:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    0.03144787 \\
+                    0.97436449 \\
+                    0.97900719 \\
+                    0.02578038
+                    \end{bmatrix} \)
+                </p>
+                <p><strong>Synaptic Weights:</strong></p>
+                <p>
+                    \( \begin{bmatrix}
+                    7.27090171 \\
+                    -0.20455908 \\
+                    -3.42800458
+                    \end{bmatrix} \)
+                </p>
+            </div>
+            <div class="iteration">
+                <h2 class="heading">Final Prediction</h2>
+                <p><strong>Prediction:</strong> \( 0.999305 \)</p>
+            </div>
+
+
+
+    </main>
+    <footer>
+        <nav>
+            <ul class="bg-gray-800 text-white p-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>

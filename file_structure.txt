@@ -1,0 +1,123 @@
+.
+├── config
+├── css
+│   ├── slide-syles.css
+│   └── styles.css
+├── data
+│   └── transactions
+│       ├── anomalous_transactions.csv
+│       ├── anomalous_transactions_detailed.csv
+│       ├── ethereum_transactions.csv
+│       ├── google-ethereum-transactions.csv
+│       ├── labeled_google-ethereum-transactions.csv
+│       ├── normal_transactions_detailed.csv
+│       └── updated_ethereum_transactions.csv
+├── docs
+│   ├── CONTRIBUTING.md
+│   ├── INSTALL.md
+│   └── README.md
+├── file_structure.txt
+├── html
+│   ├── index.html
+│   ├── lecture1.html
+│   ├── lecture2.html
+│   ├── lecture3.html
+│   ├── lecture4.html
+│   ├── lecture5.html
+│   ├── lecture6.html
+│   ├── lecture7.html
+│   ├── lecture8.html
+│   ├── links.html
+│   ├── markmap.html
+│   ├── perceptron.html
+│   ├── random-forest-model.html
+│   └── schedule.html
+├── images
+│   ├── graphs
+│   │   ├── confusion_matrix.png
+│   │   ├── correlation_matrix.png
+│   │   ├── count_of_credits_and_debits.png
+│   │   ├── day_of_week_transaction_volume.png
+│   │   ├── distribution_of_transaction_values.png
+│   │   ├── feature_importances.png
+│   │   ├── gas_distribution_by_transaction_type.png
+│   │   ├── gas_distribution_comparison.png
+│   │   ├── gas_distribution.png
+│   │   ├── gas_price_anomalies.png
+│   │   ├── gas_price_distribution_by_transaction_type.png
+│   │   ├── gas_price_distribution_comparison.png
+│   │   ├── gas_price_distribution.png
+│   │   ├── gas_price_scatter_comparison.png
+│   │   ├── gas_vs_transaction_value.png
+│   │   ├── gradient_descent.png
+│   │   ├── hourly_transaction_volume.png
+│   │   ├── learning_curves.png
+│   │   ├── loss_curves.png
+│   │   ├── name_vectors.png
+│   │   ├── number_vectors2.png
+│   │   ├── number_vectors.png
+│   │   ├── perceptron-1961.png
+│   │   ├── perceptron2.png
+│   │   ├── perceptron3.png
+│   │   ├── perceptron.png
+│   │   ├── reconstruction_error_distribution.png
+│   │   ├── roc_curve.png
+│   │   ├── test_data_results.png
+│   │   ├── text_embeddings.png
+│   │   ├── transaction_type_confusion_matrix.png
+│   │   ├── transaction_type_distribution_comparison.png
+│   │   ├── transaction_value_distribution_by_transaction_type.png
+│   │   ├── transaction_value_distribution.png
+│   │   ├── transformer-2017.png
+│   │   ├── transformer-architecture.png
+│   │   └── value_distribution_comparison.png
+│   ├── misc
+│   │   ├── grahs-1.png
+│   │   └── grahs-2.png
+│   └── models
+│       ├── autonomous-vehicles.png
+│       ├── customer-service-chatbots.png
+│       ├── dog_name_predictor.png
+│       ├── facial-recognition-systems.png
+│       ├── healthcare-diagnostics.png
+│       ├── personalized-2024.png
+│       ├── recomendation-systems.png
+│       ├── recommendation-systems.png
+│       ├── sentiment-analysis.png
+│       ├── simple-neural-net.png
+│       ├── smart-personal-assistants.png
+│       ├── social-media-feeds.png
+│       ├── spam-detection.png
+│       ├── svms-1990s.png
+│       ├── thenextdogname.png
+│       └── voice-to-text-services.png
+├── js
+│   └── script.js
+├── python
+│   ├── cs224
+│   │   ├── exploring-word-vectors-1.py
+│   │   ├── plot_output.png
+│   │   └── README.md
+│   ├── data-processing
+│   │   ├── eda.py
+│   │   ├── google-ethereum-transactions.py
+│   │   ├── rules-engine.py
+│   │   └── tranformers.py
+│   ├── model-training
+│   │   ├── bag_of_words.py
+│   │   ├── classifier.py
+│   │   ├── dog_name_predictor.py
+│   │   ├── gas-price-anomaly.py
+│   │   ├── gensim-word-vectors-demo.py
+│   │   ├── model.py
+│   │   ├── neural-net.py
+│   │   └── variational-encoder.py
+│   ├── README.md
+│   └── utils
+│       ├── dog_names.json
+│       └── test_data_with_predictions.csv
+├── tests
+│   └── README.md
+└── thimble-ai.py
+
+17 directories, 103 files
