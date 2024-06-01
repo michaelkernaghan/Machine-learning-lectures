@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Long Short-Term Memory (LSTM)</title>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+        <h1>Long Short-Term Memory (LSTM)</h1>
+    </header>
+
+    <main class="p-4">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold mb-4">Long Short-Term Memory (LSTM)</h1>
+            <p>Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) architecture. It was designed to model temporal sequences and their long-range dependencies more accurately than conventional RNNs. LSTMs are well-suited for tasks where data is sequential and the order of data points matters.</p>
+            
+            <h2 class="text-2xl font-semibold mt-6">Key Features</h2>
+            <ul class="list-disc list-inside ml-4">
+                <li><strong>Memory Cell:</strong> LSTMs have a memory cell that can maintain its state over long periods.</li>
+                <li><strong>Gates:</strong> LSTMs have three gates – input gate, output gate, and forget gate – that control the flow of information.</li>
+                <li><strong>Vanishing Gradient Problem:</strong> LSTMs address the vanishing gradient problem, which makes them capable of learning long-term dependencies.</li>
+            </ul>
+            
+            <h2 class="text-2xl font-semibold mt-6">Architecture</h2>
+            <p>The architecture of an LSTM consists of several components:</p>
+            <ul class="list-disc list-inside ml-4">
+                <li><strong>Input Gate:</strong> Controls the extent to which a new value flows into the memory cell.</li>
+                <li><strong>Forget Gate:</strong> Controls the extent to which a value remains in the memory cell.</li>
+                <li><strong>Output Gate:</strong> Controls the extent to which the value in the memory cell is used to compute the output activation of the LSTM unit.</li>
+            </ul>
+            
+            <h2 class="text-2xl font-semibold mt-6">Applications</h2>
+            <p>LSTMs are used in a variety of applications:</p>
+            <ul class="list-disc list-inside ml-4">
+                <li>Time series prediction</li>
+                <li>Natural language processing (NLP)</li>
+                <li>Speech recognition</li>
+                <li>Music composition</li>
+                <li>Stock market prediction</li>
+            </ul>
+            
+            <h2 class="text-2xl font-semibold mt-6">Example Code</h2>
+            <p>Here is an example of how to create an LSTM model using Python and Keras:</p>
+            <div class="bg-gray-100 p-4 border-l-4 border-gray-400">
+                <pre><code class="language-python">
+import numpy as np
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
+
+# Generate dummy data
+data = np.random.random((1000, 10, 64))
+labels = np.random.randint(2, size=(1000, 1))
+
+# Define LSTM model
+model = Sequential()
+model.add(LSTM(32, input_shape=(10, 64)))
+model.add(Dense(1, activation='sigmoid'))
+
+# Compile and train the model
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(data, labels, epochs=10, batch_size=32)
+                </code></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>
