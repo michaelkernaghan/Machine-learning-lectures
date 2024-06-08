@@ -30,37 +30,50 @@
 
     <main class="p-4">
         <h2>Understanding Curve Fitting</h2>
-        <p>Curve fitting is a process of finding a mathematical function that closely fits a series of data points. It's a fundamental concept in machine learning and statistics, enabling predictions and understanding of underlying patterns in data.</p>
+        <p>Curve fitting is a process of finding a mathematical function that closely fits a series of data points. It's
+            a fundamental concept in machine learning and statistics, enabling predictions and understanding of
+            underlying patterns in data.</p>
 
         <h3>Traditional Curve Fitting Techniques</h3>
-        <p>Traditional techniques involve fitting a curve to data points using functions like polynomials, exponentials, or logarithms. One of the simplest methods is polynomial fitting, where the data is approximated using a polynomial of a given degree.</p>
+        <p>Traditional techniques involve fitting a curve to data points using functions like polynomials, exponentials,
+            or logarithms. One of the simplest methods is polynomial fitting, where the data is approximated using a
+            polynomial of a given degree.</p>
 
         <h3>Example: Polynomial Curve Fitting</h3>
-        <p>Given a set of data points, polynomial curve fitting finds the coefficients of a polynomial that minimizes the error between the polynomial's predictions and the actual data points.</p>
+        <p>Given a set of data points, polynomial curve fitting finds the coefficients of a polynomial that minimizes
+            the error between the polynomial's predictions and the actual data points.</p>
 
         <section>
             <h2>Neural Networks for Curve Fitting</h2>
-            <p>Neural networks, particularly deep learning models, have revolutionized curve fitting by allowing the fitting of highly complex and high-dimensional data. Unlike traditional methods, neural networks can model non-linear relationships without explicitly defining the form of the curve.</p>
+            <p>Neural networks, particularly deep learning models, have revolutionized curve fitting by allowing the
+                fitting of highly complex and high-dimensional data. Unlike traditional methods, neural networks can
+                model non-linear relationships without explicitly defining the form of the curve.</p>
 
             <h3>How Neural Networks Fit Curves</h3>
-            <p>Neural networks fit curves by learning the parameters (weights) of a network that minimize the error between the network's predictions and the actual data points. The network's architecture, activation functions, and optimization algorithms contribute to its ability to fit complex curves.</p>
+            <p>Neural networks fit curves by learning the parameters (weights) of a network that minimize the error
+                between the network's predictions and the actual data points. The network's architecture, activation
+                functions, and optimization algorithms contribute to its ability to fit complex curves.</p>
 
             <h3>Advantages of Neural Networks</h3>
             <ul>
                 <li><strong>Flexibility:</strong> Capable of fitting a wide range of functional forms.</li>
                 <li><strong>Scalability:</strong> Can handle large datasets and high-dimensional spaces.</li>
-                <li><strong>Non-linearity:</strong> Can model non-linear relationships through multiple layers and non-linear activation functions.</li>
+                <li><strong>Non-linearity:</strong> Can model non-linear relationships through multiple layers and
+                    non-linear activation functions.</li>
             </ul>
 
             <img src="./neural-networks-curve-fitting.png" alt="Neural Networks Curve Fitting" class="section-image">
 
             <h3>Example: Neural Network Curve Fitting</h3>
-            <p>A neural network can be trained to fit a complex curve by adjusting its weights using backpropagation and gradient descent. This process involves feeding the network input data, computing the output, calculating the error, and iteratively adjusting the weights to minimize the error.</p>
+            <p>A neural network can be trained to fit a complex curve by adjusting its weights using backpropagation and
+                gradient descent. This process involves feeding the network input data, computing the output,
+                calculating the error, and iteratively adjusting the weights to minimize the error.</p>
         </section>
 
         <section>
             <h2>Comparison with Taylor Series</h2>
-            <p>The Taylor series is a mathematical method for approximating functions using polynomials. It expresses a function as an infinite sum of terms calculated from the function's derivatives at a single point.</p>
+            <p>The Taylor series is a mathematical method for approximating functions using polynomials. It expresses a
+                function as an infinite sum of terms calculated from the function's derivatives at a single point.</p>
 
             <h3>How Taylor Series Fits Curves</h3>
             <p>The Taylor series approximates a function \( f(x) \) around a point \( a \) using the formula:</p>
@@ -69,41 +82,82 @@
                 f(x) \approx f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \cdots
                 \]
             </p>
-            <p>where \( f^{(n)}(a) \) is the \( n \)-th derivative of \( f \) at \( a \), and \( n! \) is the factorial of \( n \).</p>
+            <p>where \( f^{(n)}(a) \) is the \( n \)-th derivative of \( f \) at \( a \), and \( n! \) is the factorial
+                of \( n \).</p>
             <img src="./taylor-series.png" alt="Taylor Series Formula" class="section-image">
 
             <h3>Comparison</h3>
             <ul>
-                <li><strong>Function Form:</strong> Taylor series explicitly defines the polynomial form, while neural networks implicitly learn the function form.</li>
-                <li><strong>Flexibility:</strong> Neural networks are more flexible and can fit a broader range of functions compared to Taylor series.</li>
-                <li><strong>Computational Complexity:</strong> Neural networks involve more computational complexity due to training and optimization, whereas Taylor series requires calculating derivatives and polynomial terms.</li>
-                <li><strong>Dimensionality:</strong> Neural networks handle high-dimensional spaces effectively, while Taylor series is typically used for functions of a single variable or low-dimensional spaces.</li>
+                <li><strong>Function Form:</strong> Taylor series explicitly defines the polynomial form, while neural
+                    networks implicitly learn the function form.</li>
+                <li><strong>Flexibility:</strong> Neural networks are more flexible and can fit a broader range of
+                    functions compared to Taylor series.</li>
+                <li><strong>Computational Complexity:</strong> Neural networks involve more computational complexity due
+                    to training and optimization, whereas Taylor series requires calculating derivatives and polynomial
+                    terms.</li>
+                <li><strong>Dimensionality:</strong> Neural networks handle high-dimensional spaces effectively, while
+                    Taylor series is typically used for functions of a single variable or low-dimensional spaces.</li>
             </ul>
 
             <h3>Illustrative Example</h3>
             <p>Consider fitting the function \( \sin(x) \) using both methods:</p>
             <ul>
-                <li><strong>Taylor Series:</strong> Approximates \( \sin(x) \) around 0 as \( x - \frac{x^3}{6} + \frac{x^5}{120} - \cdots \)</li>
-                <li><strong>Neural Network:</strong> Trains on data points of \( \sin(x) \) to learn the underlying function without explicitly defining the polynomial terms.</li>
+                <li><strong>Taylor Series:</strong> Approximates \( \sin(x) \) around 0 as \( x - \frac{x^3}{6} +
+                    \frac{x^5}{120} - \cdots \)</li>
+                <li><strong>Neural Network:</strong> Trains on data points of \( \sin(x) \) to learn the underlying
+                    function without explicitly defining the polynomial terms.</li>
             </ul>
             <img src="./taylor-vs-neural-network.png" alt="Taylor Series vs Neural Network" class="section-image">
         </section>
-    </main>
 
-    <footer class="bg-gray-800 text-white p-4">
-        <nav>
-            <ul class="flex space-x-4">
-                <li><a href="index.html" class="text-blue-400">Home</a></li>
-                <li><a href="lecture2.html" class="text-blue-400">2</a></li>
-                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
-                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
-                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
-                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
-                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
-                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
-            </ul>
-        </nav>
-    </footer>
+        <h1>Overfitting and Underfitting in Machine Learning</h1>
+
+        <h2>Introduction</h2>
+        <p>Overfitting and underfitting are two common problems in machine learning models. Understanding these concepts
+            is crucial for developing models that generalize well to new data.</p>
+
+        <h2>Overfitting</h2>
+        <p>Overfitting occurs when a model learns the training data too well, capturing noise and details that do not
+            generalize to new data. This leads to high accuracy on the training data but poor performance on the
+            validation or test data.</p>
+        <div class="example">
+            <h3>Example of Overfitting</h3>
+            <p>Consider a complex polynomial model that fits the training data perfectly. While it has low training
+                error, it fails to predict new data accurately because it has learned the noise in the training data.
+            </p>
+        </div>
+
+        <h2>Underfitting</h2>
+        <p>Underfitting occurs when a model is too simple to capture the underlying patterns in the data. This leads to
+            high errors on both the training and validation/test datasets because the model fails to learn the
+            relationships in the data.</p>
+        <div class="example">
+            <h3>Example of Underfitting</h3>
+            <p>Consider a linear model trying to fit a complex, non-linear relationship in the data. The model will have
+                high error rates because it cannot capture the complexity of the data.</p>
+        </div>
+
+        <h2>Balancing Model Complexity</h2>
+        <p>To achieve a good balance between overfitting and underfitting, it is important to choose an appropriate
+            model complexity. Techniques such as cross-validation, regularization, and pruning can help in finding the
+            right balance.</p>
+</body>
+</main>
+
+<footer class="bg-gray-800 text-white p-4">
+    <nav>
+        <ul class="flex space-x-4">
+            <li><a href="index.html" class="text-blue-400">Home</a></li>
+            <li><a href="lecture2.html" class="text-blue-400">2</a></li>
+            <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+            <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+            <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+            <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+            <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+            <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 
 </html>
