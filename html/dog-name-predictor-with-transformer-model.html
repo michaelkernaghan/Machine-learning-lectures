@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dog Name Predictor with Transformer Model</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+        <h1>Dog Name Predictor with Transformer Model</h1>
+    </header>
+
+    <main class="p-4">
+        <section>
+            <h2>Features</h2>
+            <ul class="list-disc ml-6">
+                <li>Loads dog names from a CSV file.</li>
+                <li>Uses a Transformer model to learn the patterns in dog names.</li>
+                <li>Generates new dog names based on the learned patterns.</li>
+                <li>Saves and loads tokenization mappings and model state to avoid retraining from scratch.</li>
+                <li>Filters out names that are more than one word and longer than eight characters.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Installation</h2>
+            <p>1. Ensure you have Python 3.10 and the necessary packages installed. You can install the required packages using pip:</p>
+            <pre><code>pip install torch</code></pre>
+            <p>2. Clone this repository or download the script to your local machine.</p>
+        </section>
+
+        <section>
+            <h2>Usage</h2>
+            <p>1. Prepare the dataset:</p>
+            <ul class="list-disc ml-6">
+                <li>Ensure you have a CSV file named <code>kaggle-dog-name-frequencies.csv</code> with the dog names. The script assumes that the names are in the second column of the CSV file.</li>
+            </ul>
+            <p>2. Run the script to train the model and generate a dog name:</p>
+            <pre><code>python dog-names-saved-tokens.py</code></pre>
+            <p>3. The script will train the model and generate a new dog name based on the learned patterns.</p>
+        </section>
+
+        <section>
+            <h2>File Descriptions</h2>
+            <ul class="list-disc ml-6">
+                <li><code>dog-names-saved-tokens.py</code>: The main script that trains the Transformer model and generates dog names. This script saves the tokenization mappings and the model state to avoid retraining from scratch.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Example Output</h2>
+            <pre><code>
+Character to Index Mapping: {'#': 0, '*': 1, 'A': 2, 'B': 3, 'C': 4, 'D': 5, 'E': 6, 'F': 7, 'G': 8, 'H': 9, 'I': 10, 'J': 11, 'K': 12, 'L': 13, 'M': 14, 'N': 15, 'O': 16, 'P': 17, 'R': 18, 'S': 19, 'T': 20, 'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25, 'Z': 26}
+No saved model or parameters found at transformer_model.pth and model_params.json
+/home/mike/.local/lib/python3.10/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
+  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
+Epoch 1, Loss: 2.6400351524353027
+Epoch 2, Loss: 2.246021270751953
+Epoch 3, Loss: 1.6805933713912964
+Epoch 4, Loss: 1.263124704360962
+Epoch 5, Loss: 0.5068111419677734
+Epoch 6, Loss: 0.47074735164642334
+Epoch 7, Loss: 0.1940685361623764
+Epoch 8, Loss: 0.5533576011657715
+Epoch 9, Loss: 0.1791338175535202
+Epoch 10, Loss: 0.19112113118171692
+Generated Dog Name: FRODO
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Limitations and Recommendations</h2>
+            <h3>Limitations</h3>
+            <ul class="list-disc ml-6">
+                <li><strong>Computational Power</strong>: Training a Transformer model can be computationally intensive, and running this on a home computer with a CPU might be slow and inefficient. For large datasets and more complex models, using a GPU is recommended.</li>
+            </ul>
+            <h3>Recommendations for Cloud-Based Deployment</h3>
+            <p>1. <strong>Use Cloud Services</strong>: Utilize cloud services like AWS, Google Cloud, or Azure, which provide powerful GPUs that can significantly speed up training.</p>
+            <p>2. <strong>Use Managed ML Services</strong>: Consider using managed machine learning services like Google AI Platform, AWS SageMaker, or Azure Machine Learning, which offer tools for easy deployment, scaling, and management of machine learning models.</p>
+            <p>To deploy on a cloud service:</p>
+            <ul class="list-decimal ml-6">
+                <li>Set up a cloud account: Create an account on a cloud platform of your choice.</li>
+                <li>Provision a GPU instance: Create and configure a virtual machine with a GPU.</li>
+                <li>Transfer the script and dataset: Upload your script and dataset to the virtual machine.</li>
+                <li>Run the script: Execute the script on the virtual machine to train the model and generate names.</li>
+                <li>Save the model state: Ensure the model state and tokenization mappings are saved for future use.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contributing</h2>
+            <p>Contributions are welcome! If you have any suggestions, please create an issue or submit a pull request.</p>
+        </section>
+
+        <section>
+            <h2>License</h2>
+            <p>This project is licensed under the MIT License.</p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>
