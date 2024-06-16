@@ -15,7 +15,7 @@ def load_dog_names_from_csv(filename, limit=None):
         next(reader)  # Skip the header row
         for row in reader:
             if len(row) > 1:
-                name = row[1].strip()
+                name = row[1].strip().lower()  # Convert to lowercase for consistency
                 if len(name) <= 8 and ' ' not in name:  # Filter out long or multi-word names
                     names.append(name)
             if limit and len(names) >= limit:
@@ -42,7 +42,6 @@ class NameDataset(Dataset):
         if tokenization_file and os.path.exists(tokenization_file):
             self.char_to_idx, self.idx_to_char = load_tokenization(tokenization_file)
         else:
-            # Build the character set dynamically
             char_set = set('*#')
             for name in names:
                 char_set.update(name)
@@ -50,9 +49,7 @@ class NameDataset(Dataset):
             self.idx_to_char = {idx: ch for ch, idx in self.char_to_idx.items()}
             if tokenization_file:
                 save_tokenization(self.char_to_idx, self.idx_to_char, tokenization_file)
-        self.pad_idx = self.char_to_idx.get(" ", 0)  # Padding index, using 0 for unknown
-
-        print("Character to Index Mapping:", self.char_to_idx)
+        self.pad_idx = self.char_to_idx.get(" ", 0)
 
     def __len__(self):
         return len(self.names)
@@ -60,9 +57,9 @@ class NameDataset(Dataset):
     def __getitem__(self, idx):
         name = self.names[idx]
         name = "*" + name + "#"
-        name_idx = [self.char_to_idx.get(ch, self.pad_idx) for ch in name]  # Use pad_idx for unknown characters
-        name_idx += [self.pad_idx] * (self.max_length + 2 - len(name_idx))  # Pad to max_length
-        return torch.tensor(name_idx[:-1]), torch.tensor(name_idx[1:])  # Input and target
+        name_idx = [self.char_to_idx.get(ch, self.pad_idx) for ch in name]
+        name_idx += [self.pad_idx] * (self.max_length + 2 - len(name_idx))
+        return torch.tensor(name_idx[:-1]), torch.tensor(name_idx[1:])
 
 # Define the custom Transformer Model with batch_first=True
 class CustomTransformerModel(nn.Module):
@@ -77,13 +74,13 @@ class CustomTransformerModel(nn.Module):
         self.fc_out = nn.Linear(d_model, vocab_size)
         self.max_length = max_length
         self.vocab_size = vocab_size
-        self.pad_idx = pad_idx  # Ensure pad_idx is an attribute of TransformerModel
+        self.pad_idx = pad_idx  # Ensure pad_idx is set correctly
         self.dropout_value = dropout  # Store dropout value
 
     def forward(self, src, tgt):
         if torch.max(src) >= self.vocab_size or torch.max(tgt) >= self.vocab_size:
-            print(f"Index out of range: src max {torch.max(src)}, tgt max {torch.max(tgt)}, vocab_size {self.vocab_size}")
-            raise ValueError(f"Index out of range: src max {torch.max(src)}, tgt max {torch.max(tgt)}, vocab_size {self.vocab_size}")
+            print(f"Index out of range")
+            raise ValueError(f"Index out of range")
         src = self.embedding(src) + self.pos_encoder(torch.arange(0, src.size(1)).unsqueeze(0).repeat(src.size(0), 1).to(src.device))
         tgt = self.embedding(tgt) + self.pos_encoder(torch.arange(0, tgt.size(1)).unsqueeze(0).repeat(tgt.size(0), 1).to(tgt.device))
         memory = self.transformer_encoder(src)
@@ -92,8 +89,8 @@ class CustomTransformerModel(nn.Module):
 
     def generate(self, src, start_token_idx, end_token_idx, idx_to_char, temperature=1.0, max_repeats=2):
         if torch.max(src) >= self.vocab_size:
-            print(f"Index out of range in generate: src max {torch.max(src)}, vocab_size {self.vocab_size}")
-            raise ValueError(f"Index out of range in generate: src max {torch.max(src)}, vocab_size {self.vocab_size}")
+            print(f"Index out of range in generate")
+            raise ValueError(f"Index out of range in generate")
         src = self.embedding(src) + self.pos_encoder(torch.arange(0, src.size(1)).unsqueeze(0).repeat(src.size(0), 1).to(src.device))
         memory = self.transformer_encoder(src)
 
@@ -132,21 +129,26 @@ def collate_fn(batch):
 
 # Training the model
 def train_model(model, dataloader, epochs=20, model_save_path='transformer_model.pth', params_save_path='model_params.json'):
-    criterion = nn.CrossEntropyLoss(ignore_index=dataset.pad_idx)
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    criterion = nn.CrossEntropyLoss(ignore_index=model.pad_idx)
+    optimizer = optim.Adam(model.parameters(), lr=0.0001)  # Reduced learning rate
 
     for epoch in range(epochs):
         model.train()
         for src, tgt in dataloader:
             if torch.max(src) >= model.vocab_size or torch.max(tgt) >= model.vocab_size:
-                print(f"Index out of range during training: src max {torch.max(src)}, tgt max {torch.max(tgt)}, vocab_size {model.vocab_size}")
+                print(f"Index out of range during training")
                 continue  # Skip this batch
             optimizer.zero_grad()
             output = model(src, tgt[:, :-1])
             loss = criterion(output.view(-1, model.vocab_size), tgt[:, 1:].contiguous().view(-1))
+            if torch.isnan(loss) or torch.isinf(loss):
+                print(f"Loss is NaN or Inf, skipping this batch")
+                print(f"src: {src}, tgt: {tgt}")
+                continue  # Skip this batch if loss is NaN or Inf
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)  # Gradient clipping
             optimizer.step()
-        print(f"Epoch {epoch+1}, Loss: {loss.item()}")
+        print(f"Epoch {epoch + 1}, Loss: {loss.item()}")
 
     # Save the model state and parameters
     torch.save(model.state_dict(), model_save_path)
@@ -159,7 +161,7 @@ def train_model(model, dataloader, epochs=20, model_save_path='transformer_model
         'num_decoder_layers': len(model.transformer_decoder.layers),
         'dim_feedforward': model.transformer_encoder.layers[0].linear1.out_features,
         'max_length': model.max_length,
-        'dropout': model.dropout_value,  # Use the stored dropout value
+        'dropout': model.dropout_value,
     }
     with open(params_save_path, 'w') as f:
         json.dump(model_params, f)

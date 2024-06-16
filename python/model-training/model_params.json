@@ -1,1 +1,1 @@
-{"vocab_size": 27, "pad_idx": 0, "d_model": 64, "nhead": 4, "num_encoder_layers": 2, "num_decoder_layers": 2, "dim_feedforward": 128, "max_length": 12, "dropout": 0.1}
+{"vocab_size": 29, "pad_idx": 0, "d_model": 128, "nhead": 8, "num_layers": 4, "dim_feedforward": 512, "max_length": 12, "dropout": 0.1}

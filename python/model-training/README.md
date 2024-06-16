@@ -1,86 +1,88 @@
-# Dog Name Predictor with Transformer Model
+# Dog Name Generator with GPT
 
-This project is designed to generate dog names using a Transformer model. The script trains a Transformer model on a dataset of dog names and generates new names based on learned patterns.
+This project uses a Generative Pre-trained Transformer (GPT) model to generate dog names. The GPT model is trained on a dataset of dog names and can generate new, creative names based on the patterns it has learned.
 
-## Features
+## Requirements
 
-- Loads dog names from a CSV file.
-- Uses a Transformer model to learn the patterns in dog names.
-- Generates new dog names based on the learned patterns.
-- Saves and loads tokenization mappings and model state to avoid retraining from scratch.
-- Filters out names that are more than one word and longer than eight characters.
+- Python 3.7+
+- PyTorch
+- NumPy
+- Pandas
 
 ## Installation
 
-1. Ensure you have Python 3.10 and the necessary packages installed. You can install the required packages using pip:
-
-    ```bash
-    pip install torch
+1. Clone this repository:
+    ```sh
+    git clone https://github.com/yourusername/dog-name-generator.git
+    cd dog-name-generator
     ```
 
-2. Clone this repository or download the script to your local machine.
-
-## Usage
-
-1. Prepare the dataset:
-   - Ensure you have a CSV file named `kaggle-dog-name-frequencies.csv` with the dog names. The script assumes that the names are in the second column of the CSV file.
-
-2. Run the script to train the model and generate a dog name:
-
-    ```bash
-    python dog-names-saved-tokens.py
+2. Install the required packages:
+    ```sh
+    pip install torch numpy pandas
     ```
 
-3. The script will train the model and generate a new dog name based on the learned patterns.
+## Dataset
 
-## File Descriptions
+The dataset used for training the model is a CSV file containing dog names. The file should be named `kaggle-dog-name-frequencies.csv` and should be placed in the root directory of this project.
 
-- `dog-names-saved-tokens.py`: The main script that trains the Transformer model and generates dog names. This script saves the tokenization mappings and the model state to avoid retraining from scratch.
+## Training the Model
 
-## Example Output
+To train the GPT model, run the following command:
 
-```bash
-Character to Index Mapping: {'#': 0, '*': 1, 'A': 2, 'B': 3, 'C': 4, 'D': 5, 'E': 6, 'F': 7, 'G': 8, 'H': 9, 'I': 10, 'J': 11, 'K': 12, 'L': 13, 'M': 14, 'N': 15, 'O': 16, 'P': 17, 'R': 18, 'S': 19, 'T': 20, 'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25, 'Z': 26}
-No saved model or parameters found at transformer_model.pth and model_params.json
-/home/mike/.local/lib/python3.10/site-packages/torch/nn/modules/transformer.py:306: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.self_attn.batch_first was not True(use batch_first for better inference performance)
-  warnings.warn(f"enable_nested_tensor is True, but self.use_nested_tensor is False because {why_not_sparsity_fast_path}")
-Epoch 1, Loss: 2.6400351524353027
-Epoch 2, Loss: 2.246021270751953
-Epoch 3, Loss: 1.6805933713912964
-Epoch 4, Loss: 1.263124704360962
-Epoch 5, Loss: 0.5068111419677734
-Epoch 6, Loss: 0.47074735164642334
-Epoch 7, Loss: 0.1940685361623764
-Epoch 8, Loss: 0.5533576011657715
-Epoch 9, Loss: 0.1791338175535202
-Epoch 10, Loss: 0.19112113118171692
-Generated Dog Name: FRODO
+```sh
+python dog-name-GPT.py
 ```
 
-## Limitations and Recommendations
+The script will:
+1. Load the dog names from the CSV file.
+2. Tokenize the names and save the tokenization mappings.
+3. Train the GPT model on the dataset.
+4. Save the trained model and the tokenization mappings.
 
-### Limitations
+### Tokenization
 
-- **Computational Power**: Training a Transformer model can be computationally intensive, and running this on a home computer with a CPU might be slow and inefficient. For large datasets and more complex models, using a GPU is recommended.
+The tokenization process converts the dog names into a format that can be fed into the GPT model. The tokenization mappings are saved to a file named `tokenization.json` to avoid redundant processing in future runs.
 
-### Recommendations for Cloud-Based Deployment
+### Model Training
 
-1. **Use Cloud Services**: Utilize cloud services like AWS, Google Cloud, or Azure, which provide powerful GPUs that can significantly speed up training.
-2. **Use Managed ML Services**: Consider using managed machine learning services like Google AI Platform, AWS SageMaker, or Azure Machine Learning, which offer tools for easy deployment, scaling, and management of machine learning models.
+The model is trained for a specified number of epochs. If a saved model with the correct vocabulary size exists, it will be loaded; otherwise, a new model will be trained.
 
-To deploy on a cloud service:
-1. **Set up a cloud account**: Create an account on a cloud platform of your choice.
-2. **Provision a GPU instance**: Create and configure a virtual machine with a GPU.
-3. **Transfer the script and dataset**: Upload your script and dataset to the virtual machine.
-4. **Run the script**: Execute the script on the virtual machine to train the model and generate names.
-5. **Save the model state**: Ensure the model state and tokenization mappings are saved for future use.
+### Generating Names
+
+After training, the model can generate new dog names based on the patterns it has learned. The generated names will be displayed in the console.
+
+## Using Cloud Resources
+
+Training deep learning models like GPT can be resource-intensive. It is recommended to use cloud-based resources for faster training and better performance. Here are a few options:
+
+- **Google Colab**: Provides free access to GPUs. You can upload your project to Google Colab and train the model there.
+- **AWS SageMaker**: A managed service that provides every developer and data scientist with the ability to build, train, and deploy machine learning models quickly.
+- **Microsoft Azure ML**: An end-to-end cloud service for building, training, and deploying machine learning models.
+
+### Running on Google Colab
+
+1. Upload your project files to Google Drive.
+2. Open a new notebook in Google Colab.
+3. Mount your Google Drive:
+    ```python
+    from google.colab import drive
+    drive.mount('/content/drive')
+    ```
+4. Navigate to your project directory:
+    ```python
+    %cd /content/drive/MyDrive/path_to_your_project/
+    ```
+5. Run the training script:
+    ```python
+    !python dog-name-GPT.py
+    ```
 
 ## Contributing
 
-Contributions are welcome! If you have any suggestions, please create an issue or submit a pull request.
+Contributions are welcome! Please open an issue or submit a pull request for any bugs, improvements, or feature requests.
 
 ## License
 
 This project is licensed under the MIT License.
-
----
+```
