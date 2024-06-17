@@ -12,7 +12,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 
 # Load the CSV file
-file_path = '/home/mike/Machine-learning-lectures/data/google-ethereum-transactions.csv'
+file_path = 'google-ethereum-transactions.csv'
 data = pd.read_csv(file_path)
 
 # Fill missing values (for simplicity, we'll fill numeric columns with 0)

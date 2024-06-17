@@ -4,6 +4,9 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+# This script classifies documents into different themes using a Naive Bayes classifier.
+# It includes steps for text preprocessing, model training, evaluation, and displaying results.
+
 # Define the documents with different themes for classification
 documents = [
     "I see many people die because they judge that life is not worth living. I see others paradoxically gettin killed for the ideas or illusions that give them a reason for living (what is called a reason for living is also an excellent reason for dying). I therefore conclude that the meaning of life is the most urgent of questions.",

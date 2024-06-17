@@ -7,6 +7,10 @@ from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# This script analyzes Ethereum transaction data, performs feature engineering,
+# and trains a Random Forest classifier to identify anomalies in the transactions.
+# It includes data preprocessing, model training, evaluation, and visualization steps.
+
 # Load the CSV file
 file_path =  os.path.join('..', '..', 'data', 'transactions', 'google-ethereum-transactions.csv') 
 data = pd.read_csv(file_path)
