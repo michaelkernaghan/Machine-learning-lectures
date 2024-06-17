@@ -7,7 +7,7 @@ import json
 import os
 import string
 
-# Load dog names from CSV file
+# Load dog names from the second column of the CSV file
 def load_dog_names_from_csv(filename, limit=None):
     names = []
     with open(filename, 'r') as file:
@@ -45,10 +45,6 @@ class NameDataset(Dataset):
             char_set = set(string.ascii_lowercase + '*# ')  # Only include lowercase alphabetic characters, start token, end token, and space
             self.char_to_idx = {ch: idx for idx, ch in enumerate(sorted(char_set))}
             self.idx_to_char = {idx: ch for ch, idx in self.char_to_idx.items()}
-            self.pad_idx = self.char_to_idx[" "]
-            self.start_token_idx = self.char_to_idx.get("*")
-            self.end_token_idx = self.char_to_idx.get("#")
-            self.vocab_size = len(self.char_to_idx)  # Update vocab_size to include the padding index
             if tokenization_file:
                 save_tokenization(self.char_to_idx, self.idx_to_char, tokenization_file)
 
@@ -88,7 +84,7 @@ class GPTModel(nn.Module):
     def __init__(self, vocab_size, pad_idx, d_model=128, nhead=8, num_layers=4, dim_feedforward=512, max_length=12, dropout=0.1):
         super(GPTModel, self).__init__()
         self.embedding = nn.Embedding(vocab_size, d_model, padding_idx=pad_idx)
-        self.pos_encoder = nn.Embedding(max_length, d_model)
+        self.pos_encoder = nn.Embedding(max_length + 2, d_model)  # +2 for start and end tokens
         transformer_layer = nn.TransformerDecoderLayer(d_model, nhead, dim_feedforward, dropout)
         self.transformer_decoder = nn.TransformerDecoder(transformer_layer, num_layers)
         self.fc_out = nn.Linear(d_model, vocab_size)
@@ -98,16 +94,29 @@ class GPTModel(nn.Module):
         self.vocab_size = vocab_size  # Add vocab_size attribute
 
     def forward(self, src, tgt):
-        src = self.embedding(src) + self.pos_encoder(torch.arange(src.size(1)).to(src.device))
-        tgt = self.embedding(tgt) + self.pos_encoder(torch.arange(tgt.size(1)).to(tgt.device))
+        batch_size, seq_len_src = src.size()
+        batch_size, seq_len_tgt = tgt.size()
+
+        # Ensure src and tgt have the same sequence length
+        max_seq_len = max(seq_len_src, seq_len_tgt)
+        if seq_len_src < max_seq_len:
+            src = torch.cat([src, torch.full((batch_size, max_seq_len - seq_len_src), self.pad_idx, dtype=torch.long, device=src.device)], dim=1)
+        if seq_len_tgt < max_seq_len:
+            tgt = torch.cat([tgt, torch.full((batch_size, max_seq_len - seq_len_tgt), self.pad_idx, dtype=torch.long, device=tgt.device)], dim=1)
+
+        src = self.embedding(src) + self.pos_encoder(torch.arange(max_seq_len, device=src.device)).unsqueeze(0).repeat(batch_size, 1, 1)
+        tgt = self.embedding(tgt) + self.pos_encoder(torch.arange(max_seq_len, device=tgt.device)).unsqueeze(0).repeat(batch_size, 1, 1)
+
         memory = self.transformer_decoder(tgt, src)
         output = self.fc_out(memory)
+
         return output
 
-    def generate(self, start_token_idx, end_token_idx, idx_to_char, max_length=12, temperature=1.0):
+    def generate(self, start_token_idx, end_token_idx, max_length=12, temperature=1.0):
         generated = torch.tensor([[start_token_idx]]).to(next(self.parameters()).device)
         for _ in range(max_length):
-            tgt = self.embedding(generated) + self.pos_encoder(torch.arange(generated.size(1)).to(generated.device))
+            seq_len = generated.size(1)
+            tgt = self.embedding(generated) + self.pos_encoder(torch.arange(seq_len, device=generated.device)).unsqueeze(0).repeat(generated.size(0), 1, 1)
             memory = self.transformer_decoder(tgt, tgt)
             logits = self.fc_out(memory[:, -1, :]) / temperature
             next_token_probs = torch.nn.functional.softmax(logits, dim=-1)
@@ -130,14 +139,13 @@ def train_model(model, dataloader, epochs=20, learning_rate=0.001, model_save_pa
             if torch.max(src) >= model.vocab_size or torch.max(tgt) >= model.vocab_size:
                 continue
             optimizer.zero_grad()
-            try:
-                output = model(src, tgt[:, :-1])
-                loss = criterion(output.view(-1, model.vocab_size), tgt[:, 1:].contiguous().view(-1))
-                loss.backward()
-                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-                optimizer.step()
-            except IndexError as e:
-                continue
+            output = model(src, tgt[:, :-1])
+            # Ensure that output and tgt[:, 1:] have the same shape
+            output = output[:, :tgt.size(1) - 1, :]
+            loss = criterion(output.reshape(-1, model.vocab_size), tgt[:, 1:].contiguous().reshape(-1))
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            optimizer.step()
 
     torch.save(model.state_dict(), model_save_path)
     model_params = {
@@ -147,7 +155,7 @@ def train_model(model, dataloader, epochs=20, learning_rate=0.001, model_save_pa
         'nhead': model.transformer_decoder.layers[0].self_attn.num_heads,
         'num_layers': len(model.transformer_decoder.layers),
         'dim_feedforward': model.transformer_decoder.layers[0].linear1.out_features,
-        'max_length': model.max_length,
+        'max_length': model.max_length + 2,  # +2 for start and end tokens
         'dropout': model.transformer_decoder.layers[0].dropout.p,
     }
     with open(params_save_path, 'w') as f:
@@ -157,9 +165,9 @@ def train_model(model, dataloader, epochs=20, learning_rate=0.001, model_save_pa
 def generate_name(model, start_token_idx, end_token_idx, idx_to_char, temperature=1.0):
     model.eval()
     with torch.no_grad():
-        generated_name_idx = model.generate(start_token_idx, end_token_idx, idx_to_char, temperature=temperature)
-        generated_name = "".join([idx_to_char[idx.item()] for idx in generated_name_idx[0][1:-1] if idx.item() != model.pad_idx and idx.item() < model.vocab_size])
-        return generated_name
+        generated_name_idx = model.generate(start_token_idx, end_token_idx, max_length=dataset.max_length, temperature=temperature)
+        generated_name = "".join([idx_to_char[idx.item()] for idx in generated_name_idx[0][1:] if idx.item() != model.pad_idx and idx.item() != end_token_idx])
+        return generated_name.capitalize()
 
 if __name__ == "__main__":
     # Load names and create dataset
@@ -184,18 +192,24 @@ if __name__ == "__main__":
 
     # Load or create the model
     vocab_size = dataset.vocab_size  # Use the correct vocab size from the dataset
-    model = GPTModel(vocab_size=vocab_size, pad_idx=dataset.pad_idx, max_length=dataset.max_length)
+    model = GPTModel(vocab_size=vocab_size, pad_idx=dataset.pad_idx, max_length=dataset.max_length + 2)  # +2 for start and end tokens
 
     # Load the model if it exists and matches the vocabulary size
-    if os.path.exists('gpt_model.pth'):
+    model_exists = os.path.exists('gpt_model.pth')
+    params_exists = os.path.exists('model_params.json')
+
+    if model_exists and params_exists:
         state_dict = torch.load('gpt_model.pth')
-        if state_dict['embedding.weight'].shape[0] == vocab_size:
+        with open('model_params.json', 'r') as f:
+            saved_params = json.load(f)
+        if (state_dict['embedding.weight'].shape[0] == saved_params['vocab_size'] 
+                and state_dict['pos_encoder.weight'].shape[0] == saved_params['max_length']):
             model.load_state_dict(state_dict)
         else:
-            print("Saved model vocabulary size does not match the current vocabulary size. Training a new model.")
-
-    # Train the model
-    train_model(model, dataloader)
+            print("Saved model vocabulary size or position encoding size does not match the current model. Training a new model.")
+            train_model(model, dataloader)
+    else:
+        train_model(model, dataloader)
 
     # Generate a new name
     generated_name = generate_name(model, dataset.start_token_idx, dataset.end_token_idx, idx_to_char=dataset.idx_to_char, temperature=0.8)
