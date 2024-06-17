@@ -11,10 +11,9 @@ This project uses a Generative Pre-trained Transformer (GPT) model to generate d
 
 ## Installation
 
-1. Clone this repository:
+1. copy this Python script:
     ```sh
-    git clone https://github.com/yourusername/dog-name-generator.git
-    cd dog-name-generator
+    git clone https://github.com/michaelkernaghan/Machine-learning-lectures/blob/main/python/model-training/dog-name-GPT.py
     ```
 
 2. Install the required packages:

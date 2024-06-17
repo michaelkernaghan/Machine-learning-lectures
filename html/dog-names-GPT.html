@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Comprehensive Learning Path for Machine Learning and Deep Learning</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+        <h1>2: Learning Path for Machine Learning and Deep Learning</h1>
+    </header>
+
+    <main class="p-4">
+        <h2>Generating Dog Names Using GPT Architecture</h2>
+        <p>
+            This Python script leverages a Generative Pre-trained Transformer (GPT) architecture to generate dog names.
+            The model is trained on a dataset of dog names and can generate new, unique names based on the learned patterns.
+        </p>
+        <h3>Overview</h3>
+        <p>
+            The script performs the following steps:
+        </p>
+        <ul>
+            <li>Loads dog names from a CSV file.</li>
+            <li>Creates a dataset for training.</li>
+            <li>Defines a GPT model with transformer layers.</li>
+            <li>Trains the model on the dataset.</li>
+            <li>Generates new dog names using the trained model.</li>
+        </ul>
+        <h3>Key Components</h3>
+        <h4>1. Data Loading</h4>
+        <p>
+            The script loads dog names from a CSV file and processes them to create a dataset suitable for training the GPT model.
+        </p>
+        <h4>2. Dataset Creation</h4>
+        <p>
+            A custom dataset class is defined to handle the dog names. The class includes methods for tokenizing the names and padding them to ensure uniform length.
+        </p>
+        <h4>3. Model Definition</h4>
+        <p>
+            The GPT model is defined using PyTorch's transformer decoder layers. The model includes embedding layers, positional encoding, and a linear output layer.
+        </p>
+        <h4>4. Training</h4>
+        <p>
+            The model is trained using the cross-entropy loss function and the Adam optimizer. The training loop iterates over the dataset, updating the model's parameters to minimize the loss.
+        </p>
+        <h4>5. Name Generation</h4>
+        <p>
+            After training, the model can generate new dog names by sampling from the learned distribution of characters. The generated names are constructed character by character until an end token is produced or the maximum length is reached.
+        </p>
+        <h3>Script Repository</h3>
+        <p>
+            The full Python script can be found in the GitHub repository:
+            <a href="https://github.com/michaelkernaghan/Machine-learning-lectures/blob/main/python/model-training/dog-name-GPT.py" class="text-blue-400">dog-name-GPT.py</a>
+        </p>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4">
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
+                <li><a href="lecture3.html" class="text-blue-400">3</a></li>
+                <li><a href="lecture4.html" class="text-blue-400">4</a></li>
+                <li><a href="lecture5.html" class="text-blue-400">5</a></li>
+                <li><a href="lecture6.html" class="text-blue-400">6</a></li>
+                <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+
+</html>
