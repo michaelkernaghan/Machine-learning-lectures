@@ -101,7 +101,7 @@ The primary purpose of this script is to:
 
 1. **Run the script:**
     ```sh
-    python3 your_script_name.py
+    python3 neural-net.py
     ```
 
 2. **Expected Output:**
