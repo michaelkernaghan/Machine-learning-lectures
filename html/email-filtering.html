@@ -51,6 +51,9 @@
             details are validated and processed through mock ERP and accounting systems. The primary motivation is to
             streamline the workflow for companies handling numerous shipment notifications, reducing manual data entry
             and potential errors.</p>
+        <p>
+            The code can be cloned from https://github.com/michaelkernaghan/email-parser-llm
+        </p>
 
         <h3>Introduction to spaCy and Named Entity Recognition (NER)</h3>
 
@@ -187,10 +190,11 @@
             notifications. This targeted approach ensures high accuracy and reliability in extracting the necessary
             information, in contrast with the more flexible but generalized capabilities of the LLM.</p>
 
-            <h3>Code Example: Training a Custom NER Model Using spaCy</h3>
-            <p>The following code examples demonstrates how to train and use a custom NER model using spaCy. This first script prepares the
-                training data in a format spaCy will read.</p>
-            <pre><code>
+        <h3>Code Example: Training a Custom NER Model Using spaCy</h3>
+        <p>The following code examples demonstrates how to train and use a custom NER model using spaCy. This first
+            script prepares the
+            training data in a format spaCy will read.</p>
+        <pre><code>
             import json
             import spacy
             from spacy.tokens import DocBin
