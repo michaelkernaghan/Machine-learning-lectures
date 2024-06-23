@@ -44,87 +44,59 @@
     </header>
 
     <main class="p-4">
-        <h2>Email Parsing with LLM Integration</h2>
+        <h2>Email Parsing with <a href="https://en.wikipedia.org/wiki/Language_model">LLM</a> Integration</h2>
         <h3>Project Overview</h3>
-        <p>This project provides an automated solution to parse shipment notification emails and extract relevant
-            details using a Large Language Model (LLM) and a custom Named Entity Recognition (NER) model. The extracted
-            details are validated and processed through mock ERP and accounting systems. The primary motivation is to
-            streamline the workflow for companies handling numerous shipment notifications, reducing manual data entry
-            and potential errors.</p>
+        <p>This project provides an automated solution to parse shipment notification emails and extract relevant details using a <a href="https://en.wikipedia.org/wiki/Language_model">Large Language Model (LLM)</a> and a custom <a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a> model. The extracted details can be validated and processed through mock <a href="https://en.wikipedia.org/wiki/Enterprise_resource_planning">ERP</a> and <a href="https://en.wikipedia.org/wiki/Accounting_software">accounting systems</a>. The primary motivation is to streamline the workflow for companies handling numerous shipment notifications, reducing manual data entry and potential errors.</p>
         <p>
-            The code can be cloned from https://github.com/michaelkernaghan/email-parser-llm
+            The code can be cloned from <a href="https://github.com/michaelkernaghan/email-parser-llm.git">here.</a>
         </p>
 
-        <h3>Introduction to spaCy and Named Entity Recognition (NER)</h3>
+        <h3>Introduction to <a href="https://spacy.io/">spaCy</a> and Named Entity Recognition (NER)</h3>
 
-        <h4>spaCy</h4>
+        <h4><a href="https://spacy.io/">spaCy</a></h4>
 
         <h5>History and Overview</h5>
-        <p>spaCy is an open-source library for Natural Language Processing (NLP) in Python, developed by Explosion AI.
-            It was first released in 2015 and has since become one of the most popular NLP libraries due to its
-            efficiency and ease of use. spaCy is designed specifically for production use and provides a robust
-            framework for processing large volumes of text quickly.</p>
+        <p><a href="https://spacy.io/">spaCy</a> is an open-source library for <a href="https://en.wikipedia.org/wiki/Natural_language_processing">Natural Language Processing (NLP)</a> in Python, developed by Explosion AI. It was first released in 2015 and has since become one of the most popular NLP libraries due to its efficiency and ease of use. spaCy is designed specifically for production use and provides a robust framework for processing large volumes of text quickly.</p>
 
         <h5>Capabilities</h5>
         <ul>
-            <li>Tokenization: Breaking down text into individual words and punctuation.</li>
-            <li>Part-of-Speech Tagging: Identifying the grammatical parts of speech for each token.</li>
-            <li>Dependency Parsing: Analyzing the grammatical structure of a sentence.</li>
-            <li>Named Entity Recognition (NER): Identifying and classifying named entities in text.</li>
-            <li>Text Classification: Categorizing text into predefined categories.</li>
-            <li>Lemmatization: Reducing words to their base or root form.</li>
+            <li><a href="https://en.wikipedia.org/wiki/Tokenization_(lexical_analysis)">Tokenization</a>: Breaking down text into individual words and punctuation.</li>
+            <li><a href="https://en.wikipedia.org/wiki/Part-of-speech_tagging">Part-of-Speech Tagging</a>: Identifying the grammatical parts of speech for each token.</li>
+            <li><a href="https://en.wikipedia.org/wiki/Dependency_grammar">Dependency Parsing</a>: Analyzing the grammatical structure of a sentence.</li>
+            <li><a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a>: Identifying and classifying named entities in text.</li>
+            <li><a href="https://en.wikipedia.org/wiki/Text_classification">Text Classification</a>: Categorizing text into predefined categories.</li>
+            <li><a href="https://en.wikipedia.org/wiki/Lemmatisation">Lemmatization</a>: Reducing words to their base or root form.</li>
         </ul>
 
         <h5>Why spaCy?</h5>
-        <p>spaCy is chosen for this project because of its high performance, extensive functionality, and ease of
-            integration. It provides pre-trained models for various languages and tasks, which can be fine-tuned for
-            specific needs. Additionally, spaCy's pipeline design allows for easy customization and extension, making it
-            ideal for building and deploying NLP solutions in production environments.</p>
+        <p>spaCy is chosen for this project because of its high performance, extensive functionality, and ease of integration. It provides pre-trained models for various languages and tasks, which can be fine-tuned for specific needs. Additionally, spaCy's pipeline design allows for easy customization and extension, making it ideal for building and deploying NLP solutions in production environments.</p>
 
         <h4>Named Entity Recognition (NER)</h4>
 
         <h5>What is NER?</h5>
-        <p>Named Entity Recognition (NER) is a subtask of information extraction that seeks to locate and classify named
-            entities in text into predefined categories such as names of persons, organizations, locations, dates, and
-            other entities. NER is crucial for understanding the context and extracting meaningful information from
-            text.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a> is a subtask of information extraction that seeks to locate and classify named entities in text into predefined categories such as names of persons, organizations, locations, dates, and other entities. NER is crucial for understanding the context and extracting meaningful information from text.</p>
 
         <h5>History and Development</h5>
-        <p>NER has been a significant focus in NLP research since the 1990s, with early systems relying on handcrafted
-            rules and dictionaries. The development of machine learning algorithms, particularly Conditional Random
-            Fields (CRFs) and deep learning methods, has significantly improved the accuracy and robustness of NER
-            systems. Modern NER models leverage large annotated corpora and advanced neural network architectures to
-            achieve state-of-the-art performance.</p>
+        <p>NER has been a significant focus in NLP research since the 1990s, with early systems relying on handcrafted rules and dictionaries. The development of machine learning algorithms, particularly <a href="https://en.wikipedia.org/wiki/Conditional_random_field">Conditional Random Fields (CRFs)</a> and deep learning methods, has significantly improved the accuracy and robustness of NER systems.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Conditional_random_field">Conditional Random Fields (CRFs)</a> are a type of probabilistic graphical model used to model sequence data. They are particularly useful for tasks where the goal is to assign labels to a sequence of inputs, such as part-of-speech tagging, named entity recognition, and other natural language processing (NLP) applications.</p>
+            
+        <p>Modern NER models leverage large annotated corpora and advanced neural network architectures to achieve state-of-the-art performance.</p>
 
         <h5>Why Use NER in This Project?</h5>
-        <p>In the context of this project, NER is used to identify and extract entities relevant to shipment
-            notifications, such as purchase order (PO) numbers, part numbers, quantities, and tracking numbers.
-            Automating this extraction process reduces manual data entry, minimizes errors, and improves operational
-            efficiency.</p>
+        <p>In the context of this project, NER is used to identify and extract entities relevant to shipment notifications, such as purchase order (PO) numbers, part numbers, quantities, and tracking numbers. Automating this extraction process reduces manual data entry, minimizes errors, and improves operational efficiency.</p>
 
         <h5>Comparison with Other Machine Learning Solutions</h5>
         <ul>
-            <li><strong>Rule-Based Systems</strong>: While rule-based systems can be highly accurate for specific tasks,
-                they lack the flexibility and scalability of machine learning models. They require extensive manual
-                effort to create and maintain rules, making them less suitable for dynamic and diverse datasets.</li>
-            <li><strong>Traditional Machine Learning Models</strong>: Models such as CRFs and Support Vector Machines
-                (SVMs) have been widely used for NER. However, they often require extensive feature engineering and may
-                not perform as well as modern deep learning approaches.</li>
-            <li><strong>Deep Learning Models</strong>: Recent advancements in deep learning, particularly models like
-                BERT and GPT, have significantly improved NER performance. These models can capture complex patterns and
-                dependencies in text without the need for extensive feature engineering. spaCy supports integration with
-                deep learning frameworks, making it a versatile choice for NER tasks.</li>
+            <li><strong><a href="https://en.wikipedia.org/wiki/Rule-based_system">Rule-Based Systems</a></strong>: While rule-based systems can be highly accurate for specific tasks, they lack the flexibility and scalability of machine learning models. They require extensive manual effort to create and maintain rules, making them less suitable for dynamic and diverse datasets.</li>
+            <li><strong><a href="https://en.wikipedia.org/wiki/Support_vector_machine">Traditional Machine Learning Models</a></strong>: Models such as <a href="https://en.wikipedia.org/wiki/Conditional_random_field">CRFs</a> and <a href="https://en.wikipedia.org/wiki/Support_vector_machine">Support Vector Machines (SVMs)</a> have been widely used for NER. However, they often require extensive feature engineering and may not perform as well as modern deep learning approaches.</li>
+            <li><strong><a href="https://en.wikipedia.org/wiki/Deep_learning">Deep Learning Models</a></strong>: Recent advancements in deep learning, particularly models like <a href="https://en.wikipedia.org/wiki/BERT_(language_model)">BERT</a> and <a href="https://en.wikipedia.org/wiki/GPT-3">GPT</a>, have significantly improved NER performance. These models can capture complex patterns and dependencies in text without the need for extensive feature engineering. spaCy supports integration with deep learning frameworks, making it a versatile choice for NER tasks.</li>
         </ul>
 
-        <p>Overall, spaCy and NER are chosen for their robustness, performance, and ease of use, providing a
-            comprehensive solution for extracting and processing critical information from shipment notification emails.
-        </p>
+        <p>Overall, spaCy and NER are chosen for their robustness, performance, and ease of use, providing a comprehensive solution for extracting and processing critical information from shipment notification emails.</p>
 
         <h3>Prompt Engineering Example</h3>
 
-        <p>Prompt engineering involves crafting inputs (prompts) to large language models (LLMs) like GPT-4 to achieve
-            desired outputs. Effective prompt engineering can significantly enhance the performance and reliability of
-            LLMs in various tasks, including text extraction, summarization, and more.</p>
+        <p><a href="https://en.wikipedia.org/wiki/Prompt_engineering">Prompt engineering</a> involves crafting inputs (prompts) to large language models (LLMs) like <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> to achieve desired outputs. Effective prompt engineering can significantly enhance the performance and reliability of LLMs in various tasks, including text extraction, summarization, and more.</p>
 
         <h4>Why Prompt Engineering?</h4>
         <ul>
@@ -144,56 +116,35 @@
         <ul>
             <li>Rapid Development: Quickly develop and test the email parsing functionality.</li>
             <li>Adaptability: Easily adjust prompts to handle different email formats and content variations.</li>
-            <li>Reduced Complexity: Simplifies the integration of advanced NLP capabilities without extensive custom
-                coding.</li>
+            <li>Reduced Complexity: Simplifies the integration of advanced NLP capabilities without extensive custom coding.</li>
         </ul>
 
         <h3>Learning Model</h3>
 
-        <h4>Current Approaches and Orchestration of Tasks with LLM Agents</h4>
-        <p>In the realm of modern AI, large language models (LLMs) like OpenAI's GPT-4 have become powerful tools for a
-            variety of NLP tasks. These models can perform tasks such as text generation, summarization, translation,
-            and more, with minimal coding required. This paradigm, often referred to as "no-code" or "low-code" AI,
-            enables users to orchestrate complex workflows using pre-trained models and APIs without needing to delve
-            deeply into the specifics of model training and feature engineering.</p>
+        <h4>Current Approaches and Orchestration of Tasks with <a href="https://en.wikipedia.org/wiki/Language_model">LLM Agents</a></h4>
+        <p>In the realm of modern AI, <a href="https://en.wikipedia.org/wiki/Language_model">large language models (LLMs)</a> like OpenAI's <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> have become powerful tools for a variety of NLP tasks. These models can perform tasks such as text generation, summarization, translation, and more, with minimal coding required. This paradigm, often referred to as "no-code" or "low-code" AI, enables users to orchestrate complex workflows using pre-trained models and APIs without needing to delve deeply into the specifics of model training and feature engineering.</p>
 
-        <p>In this project, the use of GPT-4 for parsing emails represents this modern, no-code approach. By leveraging
-            an LLM, we can quickly prototype and implement solutions that understand and extract relevant information
-            from text. The benefits of this approach include:</p>
+        <p>In this project, the use of <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> for parsing emails represents this modern, no-code approach. By leveraging an LLM, we can quickly prototype and implement solutions that understand and extract relevant information from text. The benefits of this approach include:</p>
         <ul>
-            <li><strong>Ease of Use</strong>: With pre-trained models, there's no need for extensive training or
-                hyperparameter tuning.</li>
-            <li><strong>Flexibility</strong>: LLMs can handle a wide range of tasks and can be adapted to different
-                contexts with minimal changes.</li>
-            <li><strong>Rapid Development</strong>: Solutions can be developed and deployed quickly, which is ideal for
-                projects with tight timelines or limited resources.</li>
+            <li><strong>Ease of Use</strong>: With pre-trained models, there's no need for extensive training or hyperparameter tuning.</li>
+            <li><strong>Flexibility</strong>: LLMs can handle a wide range of tasks and can be adapted to different contexts with minimal changes.</li>
+            <li><strong>Rapid Development</strong>: Solutions can be developed and deployed quickly, which is ideal for projects with tight timelines or limited resources.</li>
         </ul>
 
         <h4>Contrast with Custom NER Models</h4>
-        <p>While LLMs offer a flexible and general-purpose approach, custom Named Entity Recognition (NER) models like
-            those trained using spaCy provide a more targeted and specialized solution. NER models are specifically
-            designed to extract structured information from text, making them ideal for tasks where precision and
-            domain-specific knowledge are critical.</p>
+        <p>While LLMs offer a flexible and general-purpose approach, custom <a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a> models like those trained using <a href="https://spacy.io/">spaCy</a> provide a more targeted and specialized solution. NER models are specifically designed to extract structured information from text, making them ideal for tasks where precision and domain-specific knowledge are critical.</p>
 
         <h5>Custom NER Models</h5>
         <ul>
-            <li><strong>Specialization</strong>: Custom NER models can be fine-tuned to recognize specific entities
-                relevant to the task at hand, such as PO numbers, part numbers, quantities, and tracking numbers in
-                shipment emails.</li>
-            <li><strong>Efficiency</strong>: Once trained, NER models can be very efficient in terms of processing speed
-                and resource utilization.</li>
-            <li><strong>Control</strong>: Developers have more control over the training process, allowing for
-                optimization and adjustment based on specific needs and feedback.</li>
+            <li><strong>Specialization</strong>: Custom NER models can be fine-tuned to recognize specific entities relevant to the task at hand, such as PO numbers, part numbers, quantities, and tracking numbers in shipment emails.</li>
+            <li><strong>Efficiency</strong>: Once trained, NER models can be very efficient in terms of processing speed and resource utilization.</li>
+            <li><strong>Control</strong>: Developers have more control over the training process, allowing for optimization and adjustment based on specific needs and feedback.</li>
         </ul>
 
-        <p>In this project, the NER model is trained using labeled data to recognize entities specific to shipment
-            notifications. This targeted approach ensures high accuracy and reliability in extracting the necessary
-            information, in contrast with the more flexible but generalized capabilities of the LLM.</p>
+        <p>In this project, the NER model is trained using labeled data to recognize entities specific to shipment notifications. This targeted approach ensures high accuracy and reliability in extracting the necessary information, in contrast with the more flexible but generalized capabilities of the LLM.</p>
 
-        <h3>Code Example: Training a Custom NER Model Using spaCy</h3>
-        <p>The following code examples demonstrates how to train and use a custom NER model using spaCy. This first
-            script prepares the
-            training data in a format spaCy will read.</p>
+        <h3>Code Example: Training a Custom NER Model Using <a href="https://spacy.io/">spaCy</a></h3>
+        <p>The following code examples demonstrates how to train and use a custom NER model using <a href="https://spacy.io/">spaCy</a>. This first script prepares the training data in a format spaCy will read.</p>
         <pre><code>
             import json
             import spacy
@@ -262,10 +213,8 @@
             doc_bin.to_disk("./train.spacy")
         </code></pre>
 
-        <h3>Code Example: Training a Custom NER Model Using spaCy</h3>
-        <p>The following code example demonstrates how to train a custom NER model using spaCy. This script loads the
-            training data, creates a blank spaCy model, adds a new NER component, and trains the model with the provided
-            data.</p>
+        <h3>Code Example: Training a Custom NER Model Using <a href="https://spacy.io/">spaCy</a></h3>
+        <p>The following code example demonstrates how to train a custom NER model using <a href="https://spacy.io/">spaCy</a>. This script loads the training data, creates a blank spaCy model, adds a new NER component, and trains the model with the provided data.</p>
         <pre><code>import spacy
 from spacy.tokens import DocBin
 from spacy.training import Example
@@ -308,23 +257,16 @@ nlp.to_disk("./trained_model")
 
         <p>This script involves several steps:</p>
         <ul>
-            <li><strong>Loading the Training Data</strong>: The training data is loaded from a .spacy file and converted
-                into spaCy Doc objects.</li>
-            <li><strong>Creating Training Examples</strong>: Training examples are created from the loaded Doc objects,
-                including the entity annotations.</li>
-            <li><strong>Creating a Blank spaCy Model</strong>: A blank spaCy model is created, and a new NER component
-                is added to the model's pipeline.</li>
-            <li><strong>Adding Labels to the NER Component</strong>: The entity labels from the training data are added
-                to the NER component.</li>
-            <li><strong>Training the Model</strong>: The model is trained for 10 iterations, updating the model with the
-                training examples in batches.</li>
+            <li><strong>Loading the Training Data</strong>: The training data is loaded from a .spacy file and converted into spaCy Doc objects.</li>
+            <li><strong>Creating Training Examples</strong>: Training examples are created from the loaded Doc objects, including the entity annotations.</li>
+            <li><strong>Creating a Blank spaCy Model</strong>: A blank spaCy model is created, and a new NER component is added to the model's pipeline.</li>
+            <li><strong>Adding Labels to the NER Component</strong>: The entity labels from the training data are added to the NER component.</li>
+            <li><strong>Training the Model</strong>: The model is trained for 10 iterations, updating the model with the training examples in batches.</li>
             <li><strong>Saving the Trained Model</strong>: The trained model is saved to disk for later use.</li>
         </ul>
 
         <h3>Code Example: Using the Trained NER Model</h3>
-        <p>The following code example demonstrates how to use the trained NER model to extract entities from new emails.
-            This script loads the trained model, defines functions to process individual emails and a set of test
-            emails, and prints the extracted entities.</p>
+        <p>The following code example demonstrates how to use the trained NER model to extract entities from new emails. This script loads the trained model, defines functions to process individual emails and a set of test emails, and prints the extracted entities.</p>
         <pre><code>import spacy
 import json
 
@@ -375,13 +317,9 @@ print(json.dumps(all_extracted_entities, indent=2))
         <p>This script includes the following steps:</p>
         <ul>
             <li><strong>Loading the Trained Model</strong>: The trained spaCy model is loaded from disk.</li>
-            <li><strong>Defining a Function to Process a New Email</strong>: The process_email function takes the text
-                of an email, processes it with the NER model, and extracts the identified entities.</li>
-            <li><strong>Defining a Function to Process All Emails in the Test Email Set</strong>: The process_all_emails
-                function reads a JSON file containing test emails, processes each email to extract entities, and prints
-                the results.</li>
-            <li><strong>Processing and Printing Extracted Entities</strong>: The test emails are processed, and the
-                extracted entities are printed in a readable format.</li>
+            <li><strong>Defining a Function to Process a New Email</strong>: The process_email function takes the text of an email, processes it with the NER model, and extracts the identified entities.</li>
+            <li><strong>Defining a Function to Process All Emails in the Test Email Set</strong>: The process_all_emails function reads a JSON file containing test emails, processes each email to extract entities, and prints the results.</li>
+            <li><strong>Processing and Printing Extracted Entities</strong>: The test emails are processed, and the extracted entities are printed in a readable format.</li>
         </ul>
     </main>
 
