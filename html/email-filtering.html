@@ -44,12 +44,86 @@
     </header>
 
     <main class="p-4">
-        <h2>Email Parsing with <a href="https://en.wikipedia.org/wiki/Language_model">LLM</a> Integration</h2>
-        <h3>Project Overview</h3>
+        <h2>Project Overview</h2>
         <p>This project provides an automated solution to parse shipment notification emails and extract relevant details using a <a href="https://en.wikipedia.org/wiki/Language_model">Large Language Model (LLM)</a> and a custom <a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a> model. The extracted details can be validated and processed through mock <a href="https://en.wikipedia.org/wiki/Enterprise_resource_planning">ERP</a> and <a href="https://en.wikipedia.org/wiki/Accounting_software">accounting systems</a>. The primary motivation is to streamline the workflow for companies handling numerous shipment notifications, reducing manual data entry and potential errors.</p>
         <p>
             The code can be cloned from <a href="https://github.com/michaelkernaghan/email-parser-llm.git">here.</a>
         </p>
+
+        <h2>Prompt Engineering Example</h2>
+
+        <p><a href="https://en.wikipedia.org/wiki/Prompt_engineering">Prompt engineering</a> involves crafting inputs (prompts) to large language models (LLMs) like <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> to achieve desired outputs. Effective prompt engineering can significantly enhance the performance and reliability of LLMs in various tasks, including text extraction, summarization, and more.</p>
+
+        <h3>Why Prompt Engineering?</h3>
+        <ul>
+            <li>Flexibility: Allows you to adapt the model for a wide range of tasks without extensive retraining.</li>
+            <li>Ease of Use: Minimal coding required to implement complex tasks.</li>
+            <li>Efficiency: Quickly iterate and test different prompts to optimize performance.</li>
+        </ul>
+
+        <h3>Steps to Optimize Prompts</h3>
+        <ul>
+            <li>Define Clear Instructions: Ensure the prompt clearly states what information to extract.</li>
+            <li>Provide Context: Include necessary context to help the model understand the task.</li>
+            <li>Iterate and Test: Experiment with different phrasings and structures to improve accuracy.</li>
+        </ul>
+
+        <h3>Benefits of Prompt Engineering in This Project</h3>
+        <ul>
+            <li>Rapid Development: Quickly develop and test the email parsing functionality.</li>
+            <li>Adaptability: Easily adjust prompts to handle different email formats and content variations.</li>
+            <li>Reduced Complexity: Simplifies the integration of advanced NLP capabilities without extensive custom coding.</li>
+        </ul>
+        <section>
+                    
+            <h2>Are Named Entity Recognition (NER) Techniques Used?</h2>
+          
+            <h3>Explicit NER Usage:</h3>
+            <p>No, the code does not explicitly use a dedicated NER model or library like spaCy’s NER component to identify and extract entities from the text.</p>
+            <p>Instead, it relies on the GPT model to understand the context and extract the required details based on the instructions given in the prompt.</p>
+          
+            <h3>Implicit NER-Like Behavior:</h3>
+            <p>While the code does not use a traditional NER model, the GPT model can perform a similar function. It can recognize and extract entities from the text based on its training and the provided prompt.</p>
+          
+            <h2>Summary of Techniques Used</h2>
+            <ul>
+              <li><strong>Prompt Engineering:</strong> Constructing detailed and specific prompts to instruct the GPT model on what information to extract from the text.</li>
+              <li><strong>Natural Language Processing (NLP):</strong> Leveraging the capabilities of a large language model (GPT-4) to understand and process the text, effectively performing tasks that could be considered part of NER (identifying PO numbers, part numbers, etc.).</li>
+              <li><strong>Machine Learning:</strong> Using a pre-trained transformer-based model (GPT-4) for text understanding and information extraction.</li>
+            </ul>
+          
+            <h2>Explanation of Machine Learning or NLP Techniques Used (as per the prompt)</h2>
+            <blockquote>
+              <p>At the conclusion of the task, explain the machine learning or NLP techniques you used.</p>
+            </blockquote>
+          
+            <h3>Explanation:</h3>
+            <p><strong>Machine Learning Model:</strong> The script uses OpenAI's GPT-4, a state-of-the-art transformer-based language model pre-trained on a diverse corpus of text. This model leverages deep learning techniques to understand and generate human-like text.</p>
+            <p><strong>Prompt Engineering:</strong> By crafting specific prompts, we guide the GPT-4 model to extract structured information from unstructured email text. This approach utilizes the model's ability to comprehend and follow detailed instructions.</p>
+            <p><strong>NLP Techniques:</strong> The GPT-4 model implicitly performs several NLP tasks, such as entity recognition and text extraction, without explicitly using traditional NER methods. Its extensive training allows it to identify and extract relevant details based on contextual understanding.</p>
+          </section>
+          
+        <h3>Learning Model</h3>
+
+        <h4>Current Approaches and Orchestration of Tasks with <a href="https://en.wikipedia.org/wiki/Language_model">LLM Agents</a></h4>
+        <p>In the realm of modern AI, <a href="https://en.wikipedia.org/wiki/Language_model">large language models (LLMs)</a> like OpenAI's <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> have become powerful tools for a variety of NLP tasks. These models can perform tasks such as text generation, summarization, translation, and more, with minimal coding required. This paradigm, often referred to as "no-code" or "low-code" AI, enables users to orchestrate complex workflows using pre-trained models and APIs without needing to delve deeply into the specifics of model training and feature engineering.</p>
+
+        <p>In this project, the use of <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> for parsing emails represents this modern, no-code approach. By leveraging an LLM, we can quickly prototype and implement solutions that understand and extract relevant information from text. The benefits of this approach include:</p>
+        <ul>
+            <li><strong>Ease of Use</strong>: With pre-trained models, there's no need for extensive training or hyperparameter tuning.</li>
+            <li><strong>Flexibility</strong>: LLMs can handle a wide range of tasks and can be adapted to different contexts with minimal changes.</li>
+            <li><strong>Rapid Development</strong>: Solutions can be developed and deployed quickly, which is ideal for projects with tight timelines or limited resources.</li>
+        </ul>
+
+        <h4>Contrast with Custom NER Models</h4>
+        <p>While LLMs offer a flexible and general-purpose approach, custom <a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a> models like those trained using <a href="https://spacy.io/">spaCy</a> provide a more targeted and specialized solution. NER models are specifically designed to extract structured information from text, making them ideal for tasks where precision and domain-specific knowledge are critical.</p>
+
+        <h5>Custom NER Models</h5>
+        <ul>
+            <li><strong>Specialization</strong>: Custom NER models can be fine-tuned to recognize specific entities relevant to the task at hand, such as PO numbers, part numbers, quantities, and tracking numbers in shipment emails.</li>
+            <li><strong>Efficiency</strong>: Once trained, NER models can be very efficient in terms of processing speed and resource utilization.</li>
+            <li><strong>Control</strong>: Developers have more control over the training process, allowing for optimization and adjustment based on specific needs and feedback.</li>
+        </ul>
 
         <h3>Introduction to <a href="https://spacy.io/">spaCy</a> and Named Entity Recognition (NER)</h3>
 
@@ -94,52 +168,7 @@
 
         <p>Overall, spaCy and NER are chosen for their robustness, performance, and ease of use, providing a comprehensive solution for extracting and processing critical information from shipment notification emails.</p>
 
-        <h3>Prompt Engineering Example</h3>
-
-        <p><a href="https://en.wikipedia.org/wiki/Prompt_engineering">Prompt engineering</a> involves crafting inputs (prompts) to large language models (LLMs) like <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> to achieve desired outputs. Effective prompt engineering can significantly enhance the performance and reliability of LLMs in various tasks, including text extraction, summarization, and more.</p>
-
-        <h4>Why Prompt Engineering?</h4>
-        <ul>
-            <li>Flexibility: Allows you to adapt the model for a wide range of tasks without extensive retraining.</li>
-            <li>Ease of Use: Minimal coding required to implement complex tasks.</li>
-            <li>Efficiency: Quickly iterate and test different prompts to optimize performance.</li>
-        </ul>
-
-        <h4>Steps to Optimize Prompts</h4>
-        <ul>
-            <li>Define Clear Instructions: Ensure the prompt clearly states what information to extract.</li>
-            <li>Provide Context: Include necessary context to help the model understand the task.</li>
-            <li>Iterate and Test: Experiment with different phrasings and structures to improve accuracy.</li>
-        </ul>
-
-        <h4>Benefits of Prompt Engineering in This Project</h4>
-        <ul>
-            <li>Rapid Development: Quickly develop and test the email parsing functionality.</li>
-            <li>Adaptability: Easily adjust prompts to handle different email formats and content variations.</li>
-            <li>Reduced Complexity: Simplifies the integration of advanced NLP capabilities without extensive custom coding.</li>
-        </ul>
-
-        <h3>Learning Model</h3>
-
-        <h4>Current Approaches and Orchestration of Tasks with <a href="https://en.wikipedia.org/wiki/Language_model">LLM Agents</a></h4>
-        <p>In the realm of modern AI, <a href="https://en.wikipedia.org/wiki/Language_model">large language models (LLMs)</a> like OpenAI's <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> have become powerful tools for a variety of NLP tasks. These models can perform tasks such as text generation, summarization, translation, and more, with minimal coding required. This paradigm, often referred to as "no-code" or "low-code" AI, enables users to orchestrate complex workflows using pre-trained models and APIs without needing to delve deeply into the specifics of model training and feature engineering.</p>
-
-        <p>In this project, the use of <a href="https://en.wikipedia.org/wiki/GPT-4">GPT-4</a> for parsing emails represents this modern, no-code approach. By leveraging an LLM, we can quickly prototype and implement solutions that understand and extract relevant information from text. The benefits of this approach include:</p>
-        <ul>
-            <li><strong>Ease of Use</strong>: With pre-trained models, there's no need for extensive training or hyperparameter tuning.</li>
-            <li><strong>Flexibility</strong>: LLMs can handle a wide range of tasks and can be adapted to different contexts with minimal changes.</li>
-            <li><strong>Rapid Development</strong>: Solutions can be developed and deployed quickly, which is ideal for projects with tight timelines or limited resources.</li>
-        </ul>
-
-        <h4>Contrast with Custom NER Models</h4>
-        <p>While LLMs offer a flexible and general-purpose approach, custom <a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition (NER)</a> models like those trained using <a href="https://spacy.io/">spaCy</a> provide a more targeted and specialized solution. NER models are specifically designed to extract structured information from text, making them ideal for tasks where precision and domain-specific knowledge are critical.</p>
-
-        <h5>Custom NER Models</h5>
-        <ul>
-            <li><strong>Specialization</strong>: Custom NER models can be fine-tuned to recognize specific entities relevant to the task at hand, such as PO numbers, part numbers, quantities, and tracking numbers in shipment emails.</li>
-            <li><strong>Efficiency</strong>: Once trained, NER models can be very efficient in terms of processing speed and resource utilization.</li>
-            <li><strong>Control</strong>: Developers have more control over the training process, allowing for optimization and adjustment based on specific needs and feedback.</li>
-        </ul>
+       
 
         <p>In this project, the NER model is trained using labeled data to recognize entities specific to shipment notifications. This targeted approach ensures high accuracy and reliability in extracting the necessary information, in contrast with the more flexible but generalized capabilities of the LLM.</p>
 
@@ -321,6 +350,15 @@ print(json.dumps(all_extracted_entities, indent=2))
             <li><strong>Defining a Function to Process All Emails in the Test Email Set</strong>: The process_all_emails function reads a JSON file containing test emails, processes each email to extract entities, and prints the results.</li>
             <li><strong>Processing and Printing Extracted Entities</strong>: The test emails are processed, and the extracted entities are printed in a readable format.</li>
         </ul>
+        <section class="additional-materials">
+            <h2>Additional Materials</h2>
+            <ul>
+                <li><a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uuvuAXhYjV2lMEShq2UYSwX">Video Series - NLP Tutorial Python</a></li>
+            </ul>
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=h2kBNEShsiE&list=PLeo1K3hjS3uuvuAXhYjV2lMEShq2UYSwX&index=7">Video - Spacy vs NLTK</a></li>
+            </ul>
+        </section>
     </main>
 
     <footer class="bg-gray-800 text-white p-4">
