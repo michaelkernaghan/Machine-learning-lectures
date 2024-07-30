@@ -75,40 +75,17 @@
         <h1>Techniques for Improving LLM Accuracy and Performance</h1>
     </header>
     <main class="p-4">
-        <section>
-            <h2>Introduction</h2>
-            <p>Large Language Models (LLMs) have revolutionized natural language processing, but achieving high accuracy and performance requires careful optimization. Various techniques can be employed to enhance the capabilities of LLMs, making them more effective for specific tasks.</p>
-
-            <h3>Fine-Tuning</h3>
-            <p>Fine-tuning involves adjusting the weights of a pre-trained model on a specific dataset. This technique helps the model adapt to the nuances of the target data, improving its performance on specific tasks.</p>
-
-            <h3>Data Augmentation</h3>
-            <p>Data augmentation techniques, such as synonym replacement, back translation, and noise injection, can enhance the diversity of the training data. This helps the model generalize better to unseen data.</p>
-
-            <h3>Transfer Learning</h3>
-            <p>Transfer learning leverages the knowledge gained from one task to improve performance on another related task. This approach is particularly useful when the target dataset is small.</p>
-
-            <h3>Hyperparameter Tuning</h3>
-            <p>Hyperparameter tuning involves experimenting with different values for hyperparameters like learning rate, batch size, and dropout rate. This helps in finding the optimal settings for the model.</p>
-
-            <h3>Model Compression</h3>
-            <p>Model compression techniques, such as pruning, quantization, and knowledge distillation, reduce the model size and computational requirements without significantly affecting performance. This makes the models more efficient and easier to deploy.</p>
-
-            <h3>Ensemble Methods</h3>
-            <p>Ensemble methods combine the predictions of multiple models to improve accuracy. Techniques like bagging, boosting, and stacking can help in creating robust models.</p>
-
-            <h3>Regularization</h3>
-            <p>Regularization techniques, such as L2 regularization and dropout, prevent overfitting by penalizing large weights and randomly dropping units during training. This helps the model generalize better.</p>
-
-            <h3>Adversarial Training</h3>
-            <p>Adversarial training involves training the model with adversarial examples to make it more robust against malicious inputs. This enhances the model's reliability and security.</p>
-        </section>
+       
         <section>
             <h2>Introduction to PEFT</h2>
-            <p>Performance Enhanced Fine Tuning (PEFT) is an advanced method for improving the performance of large language models. It involves fine-tuning the model on specific tasks or datasets to achieve better results.</p>
-            
+            <p>Performance Enhanced Fine Tuning (PEFT) is an advanced method for improving the performance of large
+                language models. It involves fine-tuning the model on specific tasks or datasets to achieve better
+                results.</p>
+
             <h3>Why Use PEFT?</h3>
-            <p>PEFT allows for more precise and efficient training of models, leading to better performance on specific tasks. This is especially useful for large language models that require extensive computational resources.</p>
+            <p>PEFT allows for more precise and efficient training of models, leading to better performance on specific
+                tasks. This is especially useful for large language models that require extensive computational
+                resources.</p>
 
             <h3>Steps Involved in PEFT</h3>
             <ul>
@@ -119,42 +96,71 @@
             </ul>
 
             <h3>Example Applications of PEFT</h3>
-            <p>PEFT can be used in various applications such as natural language processing, computer vision, and more. It helps in improving the accuracy and efficiency of models in these domains.</p>
-
-            <h2>Quick Tour of PEFT with Hugging Face</h2>
-            <p>Below is a quick tour of using PEFT with Hugging Face, based on their official documentation.</p>
-
-            <h3>1. Installation</h3>
-            <pre><code>pip install peft</code></pre>
-
-            <h3>2. Importing Libraries</h3>
-            <pre><code>from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
-from peft import get_peft_config, get_peft_model, LoraConfig, TaskType</code></pre>
-
-            <h3>3. Loading the Model</h3>
-            <pre><code>model_name_or_path = "bert-base-uncased"
-model = AutoModelForSequenceClassification.from_pretrained(model_name_or_path, num_labels=2)</code></pre>
-
-            <h3>4. Setting Up PEFT Configuration</h3>
-            <pre><code>peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=8, lora_alpha=32, lora_dropout=0.1)</code></pre>
-
-            <h3>5. Applying PEFT to the Model</h3>
-            <pre><code>model = get_peft_model(model, peft_config)
-model.print_trainable_parameters()</code></pre>
-
-            <h3>6. Training the Model</h3>
-            <pre><code>trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=eval_dataset,
-    tokenizer=tokenizer,
-)
-trainer.train()</code></pre>
-
-            <h3>7. Evaluating the Model</h3>
-            <pre><code>trainer.evaluate()</code></pre>
+            <p>PEFT can be used in various applications such as natural language processing, computer vision, and more.
+                It helps in improving the accuracy and efficiency of models in these domains.</p>
         </section>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Technique</th>
+                        <th>Description</th>
+                        <th>Purpose</th>
+                        <th>Key Concepts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fine-Tuning</td>
+                        <td>Fine-tuning involves adjusting the weights of a pre-trained model on a specific dataset. This technique helps the model adapt to the nuances of the target data, improving its performance on specific tasks.</td>
+                        <td>Adapt model to specific tasks</td>
+                        <td>Adjusting weights, Pre-trained model, Target dataset</td>
+                    </tr>
+                    <tr>
+                        <td>Data Augmentation</td>
+                        <td>Data augmentation techniques, such as synonym replacement, back translation, and noise injection, can enhance the diversity of the training data. This helps the model generalize better to unseen data.</td>
+                        <td>Enhance training data diversity</td>
+                        <td>Synonym replacement, Back translation, Noise injection</td>
+                    </tr>
+                    <tr>
+                        <td>Transfer Learning</td>
+                        <td>Transfer learning leverages the knowledge gained from one task to improve performance on another related task. This approach is particularly useful when the target dataset is small.</td>
+                        <td>Improve performance on related tasks</td>
+                        <td>Knowledge transfer, Related tasks, Small dataset</td>
+                    </tr>
+                    <tr>
+                        <td>Hyperparameter Tuning</td>
+                        <td>Hyperparameter tuning involves experimenting with different values for hyperparameters like learning rate, batch size, and dropout rate. This helps in finding the optimal settings for the model.</td>
+                        <td>Find optimal model settings</td>
+                        <td>Learning rate, Batch size, Dropout rate</td>
+                    </tr>
+                    <tr>
+                        <td>Model Compression</td>
+                        <td>Model compression techniques, such as pruning, quantization, and knowledge distillation, reduce the model size and computational requirements without significantly affecting performance. This makes the models more efficient and easier to deploy.</td>
+                        <td>Reduce model size and computational requirements</td>
+                        <td>Pruning, Quantization, Knowledge distillation</td>
+                    </tr>
+                    <tr>
+                        <td>Ensemble Methods</td>
+                        <td>Ensemble methods combine the predictions of multiple models to improve accuracy. Techniques like bagging, boosting, and stacking can help in creating robust models.</td>
+                        <td>Improve model accuracy and robustness</td>
+                        <td>Bagging, Boosting, Stacking</td>
+                    </tr>
+                    <tr>
+                        <td>Regularization</td>
+                        <td>Regularization techniques, such as L2 regularization and dropout, prevent overfitting by penalizing large weights and randomly dropping units during training. This helps the model generalize better.</td>
+                        <td>Prevent overfitting, Improve generalization</td>
+                        <td>L2 regularization, Dropout</td>
+                    </tr>
+                    <tr>
+                        <td>Adversarial Training</td>
+                        <td>Adversarial training involves training the model with adversarial examples to make it more robust against malicious inputs. This enhances the model's reliability and security.</td>
+                        <td>Enhance model robustness and security</td>
+                        <td>Adversarial examples, Robustness, Security</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>        
     </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
         <nav>
