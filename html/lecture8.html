@@ -76,104 +76,133 @@
     </header>
     <main class="p-4">
        
-        <section>
-            <h2>Introduction to PEFT</h2>
-            <p>Performance Enhanced Fine Tuning (PEFT) is an advanced method for improving the performance of large
-                language models. It involves fine-tuning the model on specific tasks or datasets to achieve better
-                results.</p>
-
-            <h3>Why Use PEFT?</h3>
-            <p>PEFT allows for more precise and efficient training of models, leading to better performance on specific
-                tasks. This is especially useful for large language models that require extensive computational
-                resources.</p>
-
-            <h3>Steps Involved in PEFT</h3>
-            <ul>
-                <li>Preprocessing the data</li>
-                <li>Setting up the model</li>
-                <li>Fine-tuning the model</li>
-                <li>Evaluating the model's performance</li>
-            </ul>
-
-            <h3>Example Applications of PEFT</h3>
-            <p>PEFT can be used in various applications such as natural language processing, computer vision, and more.
-                It helps in improving the accuracy and efficiency of models in these domains.</p>
-        </section>
+       
         <section>
             <h3>Techniques for Improving LLM Accuracy and Performance</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Technique</th>
-                        <th>Description</th>
-                        <th>Purpose</th>
-                        <th>Key Concepts</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Fine-Tuning</td>
-                        <td>Fine-tuning involves adjusting the weights of a pre-trained model on a specific dataset. This technique helps the model adapt to the nuances of the target data, improving its performance on specific tasks.</td>
-                        <td>Adapt model to specific tasks</td>
-                        <td>Adjusting weights, Pre-trained model, Target dataset</td>
-                    </tr>
-                    <tr>
-                        <td>Parameter-Efficient Fine-Tuning (PEFT)</td>
-                        <td>PEFT focuses on tuning a smaller subset of parameters to reduce computational resources and time while still achieving high performance on specific tasks.</td>
-                        <td>Efficient fine-tuning with fewer resources</td>
-                        <td>Tuning fewer parameters, Computational efficiency, Task-specific fine-tuning</td>
-                    </tr>
-                    <tr>
-                        <td>Data Augmentation</td>
-                        <td>Data augmentation techniques, such as synonym replacement, back translation, and noise injection, can enhance the diversity of the training data. This helps the model generalize better to unseen data.</td>
-                        <td>Enhance training data diversity</td>
-                        <td>Synonym replacement, Back translation, Noise injection</td>
-                    </tr>
-                    <tr>
-                        <td>Transfer Learning</td>
-                        <td>Transfer learning leverages the knowledge gained from one task to improve performance on another related task. This approach is particularly useful when the target dataset is small.</td>
-                        <td>Improve performance on related tasks</td>
-                        <td>Knowledge transfer, Related tasks, Small dataset</td>
-                    </tr>
-                    <tr>
-                        <td>Hyperparameter Tuning</td>
-                        <td>Hyperparameter tuning involves experimenting with different values for hyperparameters like learning rate, batch size, and dropout rate. This helps in finding the optimal settings for the model.</td>
-                        <td>Find optimal model settings</td>
-                        <td>Learning rate, Batch size, Dropout rate</td>
-                    </tr>
-                    <tr>
-                        <td>Model Compression</td>
-                        <td>Model compression techniques, such as pruning, quantization, and knowledge distillation, reduce the model size and computational requirements without significantly affecting performance. This makes the models more efficient and easier to deploy.</td>
-                        <td>Reduce model size and computational requirements</td>
-                        <td>Pruning, Quantization, Knowledge distillation</td>
-                    </tr>
-                    <tr>
-                        <td>Ensemble Methods</td>
-                        <td>Ensemble methods combine the predictions of multiple models to improve accuracy. Techniques like bagging, boosting, and stacking can help in creating robust models.</td>
-                        <td>Improve model accuracy and robustness</td>
-                        <td>Bagging, Boosting, Stacking</td>
-                    </tr>
-                    <tr>
-                        <td>Regularization</td>
-                        <td>Regularization techniques, such as L2 regularization and dropout, prevent overfitting by penalizing large weights and randomly dropping units during training. This helps the model generalize better.</td>
-                        <td>Prevent overfitting, Improve generalization</td>
-                        <td>L2 regularization, Dropout</td>
-                    </tr>
-                    <tr>
-                        <td>Adversarial Training</td>
-                        <td>Adversarial training involves training the model with adversarial examples to make it more robust against malicious inputs. This enhances the model's reliability and security.</td>
-                        <td>Enhance model robustness and security</td>
-                        <td>Adversarial examples, Robustness, Security</td>
-                    </tr>
-                    <tr>
-                        <td>Prompt Engineering</td>
-                        <td>Prompt engineering involves crafting effective prompts to guide the model towards generating desired outputs. This technique can significantly impact the performance and accuracy of LLMs in various tasks.</td>
-                        <td>Improve model responses and accuracy</td>
-                        <td>Prompt crafting, Task-specific prompts, Contextual prompts</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+            <section>
+                <h3>Techniques for Improving LLM Accuracy and Performance</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Technique</th>
+                            <th>Description</th>
+                            <th>Purpose</th>
+                            <th>Key Concepts</th>
+                            <th>Difficulty and Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Prompt Engineering</td>
+                            <td>Prompt engineering involves crafting effective prompts to guide the model towards generating desired outputs. This technique can significantly impact the performance and accuracy of LLMs in various tasks.</td>
+                            <td>Improve model responses and accuracy</td>
+                            <td>Prompt crafting, Task-specific prompts, Contextual prompts</td>
+                            <td>Low</td>
+                        </tr>
+                        <tr>
+                            <td>Data Augmentation</td>
+                            <td>Data augmentation techniques, such as synonym replacement, back translation, and noise injection, can enhance the diversity of the training data. This helps the model generalize better to unseen data.</td>
+                            <td>Enhance training data diversity</td>
+                            <td>Synonym replacement, Back translation, Noise injection</td>
+                            <td>Low to Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Regularization</td>
+                            <td>Regularization techniques, such as L2 regularization and dropout, prevent overfitting by penalizing large weights and randomly dropping units during training. This helps the model generalize better.</td>
+                            <td>Prevent overfitting, Improve generalization</td>
+                            <td>L2 regularization, Dropout</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Transfer Learning</td>
+                            <td>Transfer learning leverages the knowledge gained from one task to improve performance on another related task. This approach is particularly useful when the target dataset is small.</td>
+                            <td>Improve performance on related tasks</td>
+                            <td>Knowledge transfer, Related tasks, Small dataset</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Hyperparameter Tuning</td>
+                            <td>Hyperparameter tuning involves experimenting with different values for hyperparameters like learning rate, batch size, and dropout rate. This helps in finding the optimal settings for the model.</td>
+                            <td>Find optimal model settings</td>
+                            <td>Learning rate, Batch size, Dropout rate</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Fine-Tuning</td>
+                            <td>Fine-tuning involves adjusting the weights of a pre-trained model on a specific dataset. This technique helps the model adapt to the nuances of the target data, improving its performance on specific tasks.</td>
+                            <td>Adapt model to specific tasks</td>
+                            <td>Adjusting weights, Pre-trained model, Target dataset</td>
+                            <td>Medium to High</td>
+                        </tr>
+                        <tr>
+                            <td>Parameter-Efficient Fine-Tuning (PEFT)</td>
+                            <td>PEFT focuses on tuning a smaller subset of parameters to reduce computational resources and time while still achieving high performance on specific tasks.</td>
+                            <td>Efficient fine-tuning with fewer resources</td>
+                            <td>Tuning fewer parameters, Computational efficiency, Task-specific fine-tuning</td>
+                            <td>Medium to High</td>
+                        </tr>
+                        <tr>
+                            <td>LoRA (Low-Rank Adaptation)</td>
+                            <td>LoRA reduces the number of trainable parameters by decomposing weight matrices into lower-rank matrices, making fine-tuning more efficient.</td>
+                            <td>Efficient fine-tuning</td>
+                            <td>Low-rank matrices, Efficient training</td>
+                            <td>Medium to High</td>
+                        </tr>
+                        <tr>
+                            <td>Model Compression</td>
+                            <td>Model compression techniques, such as pruning, quantization, and knowledge distillation, reduce the model size and computational requirements without significantly affecting performance. This makes the models more efficient and easier to deploy.</td>
+                            <td>Reduce model size and computational requirements</td>
+                            <td>Pruning, Quantization, Knowledge distillation</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>RAG (Retrieval-Augmented Generation)</td>
+                            <td>RAG combines retrieved documents with generative models to enhance the context and improve the accuracy of generated responses.</td>
+                            <td>Enhance context and accuracy</td>
+                            <td>Document retrieval, Generative models, Enhanced context</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Ensemble Methods</td>
+                            <td>Ensemble methods combine the predictions of multiple models to improve accuracy. Techniques like bagging, boosting, and stacking can help in creating robust models.</td>
+                            <td>Improve model accuracy and robustness</td>
+                            <td>Bagging, Boosting, Stacking</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Adversarial Training</td>
+                            <td>Adversarial training involves training the model with adversarial examples to make it more robust against malicious inputs. This enhances the model's reliability and security.</td>
+                            <td>Enhance model robustness and security</td>
+                            <td>Adversarial examples, Robustness, Security</td>
+                            <td>High</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2>Introduction to PEFT</h2>
+                <p>Performance Enhanced Fine Tuning (PEFT) is an advanced method for improving the performance of large
+                    language models. It involves fine-tuning the model on specific tasks or datasets to achieve better
+                    results.</p>
+    
+                <h3>Why Use PEFT?</h3>
+                <p>PEFT allows for more precise and efficient training of models, leading to better performance on specific
+                    tasks. This is especially useful for large language models that require extensive computational
+                    resources.</p>
+    
+                <h3>Steps Involved in PEFT</h3>
+                <ul>
+                    <li>Preprocessing the data</li>
+                    <li>Setting up the model</li>
+                    <li>Fine-tuning the model</li>
+                    <li>Evaluating the model's performance</li>
+                </ul>
+    
+                <h3>Example Applications of PEFT</h3>
+                <p>PEFT can be used in various applications such as natural language processing, computer vision, and more.
+                    It helps in improving the accuracy and efficiency of models in these domains.</p>
+            </section>
+            
         
     </main>
     <footer class="bg-gray-800 text-white p-4 text-center">
