@@ -5,137 +5,169 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <title>Using Machine Learning to Generate Accounting Entries from Ethereum Transaction Data</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Performance Enhanced Fine Tuning (PEFT)</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-left: 3px solid #f36d33;
+            color: #666;
+            page-break-inside: avoid;
+            font-family: monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 1.6em;
+            max-width: 100%;
+            overflow: auto;
+            padding: 1em 1.5em;
+            display: block;
+            word-wrap: break-word;
+        }
+
+        code {
+            color: #555;
+            word-break: normal;
+        }
+    </style>
 </head>
 
 <body>
     <header class="bg-gray-800 text-white p-4">
         <nav>
-            <ul class="flex space-x-4">
+            <ul class="bg-gray-800 text-white p-4 flex space-x-4">
                 <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
                 <li><a href="lecture2.html" class="text-blue-400">2</a></li>
                 <li><a href="lecture3.html" class="text-blue-400">3</a></li>
                 <li><a href="lecture4.html" class="text-blue-400">4</a></li>
                 <li><a href="lecture5.html" class="text-blue-400">5</a></li>
                 <li><a href="lecture6.html" class="text-blue-400">6</a></li>
                 <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
             </ul>
         </nav>
-        <h1>Using Machine Learning to Generate Accounting Entries from Ethereum Transaction Data</h1>
+        <h1>Techniques for Improving LLM Accuracy and Performance</h1>
     </header>
     <main class="p-4">
-        <h3>1. Data Collection</h3>
-        <h4>Ethereum Node Setup</h4>
-        <ul>
-            <li><strong>Ethereum Nodes:</strong> Set up an Ethereum node (using Geth or Infura) to access blockchain data.</li>
-            <li><strong>APIs:</strong> Use Ethereum APIs to query transaction data. Infura, Alchemy, and Etherscan offer robust APIs for accessing Ethereum transaction data.</li>
-        </ul>
-        <h4>Transaction Data Extraction</h4>
-        <ul>
-            <li><strong>Web3.js:</strong> Use Web3.js (JavaScript library) to interact with Ethereum nodes. This can be done with Python using Web3.py as well.</li>
-            <li><strong>Event Logs:</strong> Extract transaction data, including smart contract events, logs, and block data.</li>
-        </ul>
-        <pre><code>const Web3 = require('web3');
-const web3 = new Web3('https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID');
+        <section>
+            <h2>Introduction</h2>
+            <p>Large Language Models (LLMs) have revolutionized natural language processing, but achieving high accuracy and performance requires careful optimization. Various techniques can be employed to enhance the capabilities of LLMs, making them more effective for specific tasks.</p>
 
-async function getTransaction(txHash) {
-  return await web3.eth.getTransaction(txHash);
-}
-        </code></pre>
+            <h3>Fine-Tuning</h3>
+            <p>Fine-tuning involves adjusting the weights of a pre-trained model on a specific dataset. This technique helps the model adapt to the nuances of the target data, improving its performance on specific tasks.</p>
 
+            <h3>Data Augmentation</h3>
+            <p>Data augmentation techniques, such as synonym replacement, back translation, and noise injection, can enhance the diversity of the training data. This helps the model generalize better to unseen data.</p>
 
-        <h3>2. Data Preprocessing</h3>
-        <h4>Data Transformation</h4>
-        <ul>
-            <li><strong>JSON Parsing:</strong> Parse the JSON response from the Ethereum node to extract relevant fields.</li>
-            <li><strong>Normalization:</strong> Normalize data to a consistent format. Ensure fields like <code>from</code>, <code>to</code>, <code>value</code>, <code>gas</code>, <code>gasPrice</code>, and <code>timestamp</code> are included.</li>
-        </ul>
-        <h4>Storage</h4>
-        <ul>
-            <li><strong>Database:</strong> Store the parsed and normalized data in a database (e.g., PostgreSQL, MongoDB) for easy retrieval and processing.</li>
-        </ul>
-        <h3>3. Feature Engineering</h3>
-        <h4>Transaction Features</h4>
-        <ul>
-            <li><strong>Categorization:</strong> Categorize transactions based on <code>to</code> addresses (e.g., known exchanges, DeFi protocols, wallets).</li>
-            <li><strong>Time-Series Features:</strong> Create features like transaction frequency, average transaction value, and time-of-day activity.</li>
-        </ul>
-        <h3>4. Machine Learning Model</h3>
-        <h4>Model Selection</h4>
-        <ul>
-            <li><strong>Supervised Learning:</strong> Use supervised learning models (e.g., Random Forest, Gradient Boosting, Neural Networks) if labeled data is available.</li>
-            <li><strong>Unsupervised Learning:</strong> Use clustering techniques (e.g., K-Means, DBSCAN) to identify patterns and categorize transactions if labels are not available.</li>
-        </ul>
-        <h4>Model Training</h4>
-        <pre><code>from sklearn.ensemble import RandomForestClassifier
+            <h3>Transfer Learning</h3>
+            <p>Transfer learning leverages the knowledge gained from one task to improve performance on another related task. This approach is particularly useful when the target dataset is small.</p>
 
-# Example feature vector: [transaction_value, gas_used, timestamp, ...]
-X = [...]  # Features
-y = [...]  # Labels
+            <h3>Hyperparameter Tuning</h3>
+            <p>Hyperparameter tuning involves experimenting with different values for hyperparameters like learning rate, batch size, and dropout rate. This helps in finding the optimal settings for the model.</p>
 
-model = RandomForestClassifier()
-model.fit(X, y)
-        </code></pre>
-        <ul>
-        <li><a href="https://builtin.com/data-science/random-forest-algorithm" class="text-blue-400">Random Forest: A Complete Guide for Machine Learning</a></li>
-        <li><a href="random-forest-model.html" class="text-blue-400">Random Forest Model Training Detailed</a></li>
-    </ul>
-        <h3>5. Generating Accounting Entries</h3>
-        <h4>Mapping Transactions to Accounting Entries</h4>
-        <ul>
-            <li><strong>Rules Engine:</strong> Implement a rules engine to map transaction types to accounting entries. For example, a <code>purchase</code> transaction might be mapped to a <code>debit</code> in the asset account and a <code>credit</code> in the cash account.</li>
-            <li><strong>ML Predictions:</strong> Use the trained model to predict transaction types and apply the rules engine to generate corresponding accounting entries.</li>
-        </ul>
-        <pre><code>predictions = model.predict(new_transactions_features)
+            <h3>Model Compression</h3>
+            <p>Model compression techniques, such as pruning, quantization, and knowledge distillation, reduce the model size and computational requirements without significantly affecting performance. This makes the models more efficient and easier to deploy.</p>
 
-for tx, pred in zip(new_transactions, predictions):
-    if pred == 'purchase':
-        create_accounting_entry(tx, 'debit', 'asset', tx['value'])
-        create_accounting_entry(tx, 'credit', 'cash', tx['value'])
-        </code></pre>
-        <h3>6. Integration with Financial Software</h3>
-        <h4>API Integration</h4>
-        <ul>
-            <li><strong>Financial Software API:</strong> Use APIs provided by financial software (e.g., QuickBooks, Xero) to automate the creation of accounting entries.</li>
-            <li><strong>Batch Processing:</strong> Implement batch processing to handle multiple transactions and reduce API call overhead.</li>
-        </ul>
-        <pre><code>import requests
+            <h3>Ensemble Methods</h3>
+            <p>Ensemble methods combine the predictions of multiple models to improve accuracy. Techniques like bagging, boosting, and stacking can help in creating robust models.</p>
 
-def create_accounting_entry(transaction, type, account, amount):
-    payload = {
-        "transaction_id": transaction['hash'],
-        "type": type,
-        "account": account,
-        "amount": amount,
-        "timestamp": transaction['timestamp']
-    }
-    response = requests.post('https://api.financialsoftware.com/entries', json=payload)
-    return response.json()
-        </code></pre>
-        <h3>7. Monitoring and Maintenance</h3>
-        <h4>Monitoring</h4>
-        <ul>
-            <li><strong>Dashboards:</strong> Create monitoring dashboards to track the performance of the machine learning model and the correctness of the accounting entries.</li>
-            <li><strong>Alerts:</strong> Set up alerts for any anomalies or errors in transaction processing.</li>
-        </ul>
-        <h4>Maintenance</h4>
-        <ul>
-            <li><strong>Model Retraining:</strong> Periodically retrain the machine learning model with new data to maintain accuracy.</li>
-            <li><strong>Data Pipeline:</strong> Ensure the data pipeline is robust and handles edge cases effectively.</li>
-        </ul>
-        <p>By following these steps, you can effectively use machine learning to automate the process of generating accounting entries from Ethereum transaction data, thus integrating blockchain transactions seamlessly into financial software applications.</p>
+            <h3>Regularization</h3>
+            <p>Regularization techniques, such as L2 regularization and dropout, prevent overfitting by penalizing large weights and randomly dropping units during training. This helps the model generalize better.</p>
+
+            <h3>Adversarial Training</h3>
+            <p>Adversarial training involves training the model with adversarial examples to make it more robust against malicious inputs. This enhances the model's reliability and security.</p>
+        </section>
+        <section>
+            <h2>Introduction to PEFT</h2>
+            <p>Performance Enhanced Fine Tuning (PEFT) is an advanced method for improving the performance of large language models. It involves fine-tuning the model on specific tasks or datasets to achieve better results.</p>
+            
+            <h3>Why Use PEFT?</h3>
+            <p>PEFT allows for more precise and efficient training of models, leading to better performance on specific tasks. This is especially useful for large language models that require extensive computational resources.</p>
+
+            <h3>Steps Involved in PEFT</h3>
+            <ul>
+                <li>Preprocessing the data</li>
+                <li>Setting up the model</li>
+                <li>Fine-tuning the model</li>
+                <li>Evaluating the model's performance</li>
+            </ul>
+
+            <h3>Example Applications of PEFT</h3>
+            <p>PEFT can be used in various applications such as natural language processing, computer vision, and more. It helps in improving the accuracy and efficiency of models in these domains.</p>
+
+            <h2>Quick Tour of PEFT with Hugging Face</h2>
+            <p>Below is a quick tour of using PEFT with Hugging Face, based on their official documentation.</p>
+
+            <h3>1. Installation</h3>
+            <pre><code>pip install peft</code></pre>
+
+            <h3>2. Importing Libraries</h3>
+            <pre><code>from transformers import AutoModelForSequenceClassification, TrainingArguments, Trainer
+from peft import get_peft_config, get_peft_model, LoraConfig, TaskType</code></pre>
+
+            <h3>3. Loading the Model</h3>
+            <pre><code>model_name_or_path = "bert-base-uncased"
+model = AutoModelForSequenceClassification.from_pretrained(model_name_or_path, num_labels=2)</code></pre>
+
+            <h3>4. Setting Up PEFT Configuration</h3>
+            <pre><code>peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=8, lora_alpha=32, lora_dropout=0.1)</code></pre>
+
+            <h3>5. Applying PEFT to the Model</h3>
+            <pre><code>model = get_peft_model(model, peft_config)
+model.print_trainable_parameters()</code></pre>
+
+            <h3>6. Training the Model</h3>
+            <pre><code>trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+    tokenizer=tokenizer,
+)
+trainer.train()</code></pre>
+
+            <h3>7. Evaluating the Model</h3>
+            <pre><code>trainer.evaluate()</code></pre>
+        </section>
     </main>
-    <footer>
+    <footer class="bg-gray-800 text-white p-4 text-center">
         <nav>
-            <ul class="bg-gray-800 text-white p-4">
+            <ul class="flex space-x-4">
                 <li><a href="index.html" class="text-blue-400">Home</a></li>
+                <li><a href="lecture1.html" class="text-blue-400">1</a></li>
                 <li><a href="lecture2.html" class="text-blue-400">2</a></li>
                 <li><a href="lecture3.html" class="text-blue-400">3</a></li>
                 <li><a href="lecture4.html" class="text-blue-400">4</a></li>
                 <li><a href="lecture5.html" class="text-blue-400">5</a></li>
                 <li><a href="lecture6.html" class="text-blue-400">6</a></li>
                 <li><a href="lecture7.html" class="text-blue-400">7</a></li>
+                <li><a href="lecture8.html" class="text-blue-400">8</a></li>
             </ul>
         </nav>
     </footer>
